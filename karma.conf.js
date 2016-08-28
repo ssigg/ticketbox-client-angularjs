@@ -15,7 +15,7 @@ module.exports = function (config) {
         ],
 
         preprocessors: {
-            'app/*/!(*_test).js,app/components/*/!(*_test).js}': [ 'coverage' ]
+            'app/{*/!(*_test).js,components/*/!(*_test).js}': [ 'coverage' ]
         },
 
         reporters: [ 'progress', 'coverage' ],
