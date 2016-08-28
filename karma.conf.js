@@ -11,7 +11,7 @@ module.exports = function (config) {
             'app/bower_components/ocanvas/index.js',
             'app//config/config_sample.js',
             'app/components/*/*.js',
-            'app/customer/*/*.js'
+            'app/*/*.js'
         ],
 
         preprocessors: {

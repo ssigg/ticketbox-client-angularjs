@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('ticketbox.components.seatplan', ['ticketbox.components.canvas'])
+angular.module('ticketbox.components.seatplan', [
+    'ticketbox.components.canvas'])
 
     .factory('styles', function() {
         return {

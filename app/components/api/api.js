@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ticketbox.customer.api', [
+angular.module('ticketbox.components.api', [
     'ngResource',
     'ticketbox.config'])
 
