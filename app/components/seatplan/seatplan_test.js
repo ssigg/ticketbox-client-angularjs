@@ -55,7 +55,7 @@ describe('ticketbox.components.seatplan', function () {
                 expect(reserveSpy).not.toHaveBeenCalled();
                 expect(releaseSpy).not.toHaveBeenCalled();
                 handlers.click(eventId, seat, element, reservationState);
-                expect(reserveSpy).toHaveBeenCalledWith(eventId, seat.seat.id);
+                expect(reserveSpy).toHaveBeenCalledWith(eventId, seat);
                 expect(releaseSpy).not.toHaveBeenCalled();
             });
 
@@ -73,7 +73,7 @@ describe('ticketbox.components.seatplan', function () {
                 expect(releaseSpy).not.toHaveBeenCalled();
                 handlers.click(eventId, seat, element, reservationState);
                 expect(reserveSpy).not.toHaveBeenCalled();
-                expect(releaseSpy).toHaveBeenCalledWith('r1');
+                expect(releaseSpy).toHaveBeenCalledWith(seat);
             });
 
             it('should do nothing if the seat is reserved', function () {
@@ -121,7 +121,7 @@ describe('ticketbox.components.seatplan', function () {
                     'reservation_id': null
                 };
                 var element = {};
-                
+
                 expect(applySeatStyleSpy).not.toHaveBeenCalled();
                 handlers.mouseleave(eventId, seat, element);
                 expect(applySeatStyleSpy).toHaveBeenCalledWith(element, reservationState, false);

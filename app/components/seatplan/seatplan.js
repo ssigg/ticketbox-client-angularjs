@@ -33,9 +33,9 @@ angular.module('ticketbox.components.seatplan', [
             },
             click: function (eventid, seat, element) {
                 if (seat.state === 'free') {
-                    reserver.reserve(eventid, seat.seat.id);
+                    reserver.reserve(eventid, seat);
                 } else if (seat.state === 'reservedbymyself') {
-                    reserver.release(seat.reservation_id);
+                    reserver.release(seat);
                 }
             },
             mouseenter: function (eventid, seat, element) {
