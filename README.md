@@ -1,1 +1,3 @@
-# ticketbox-client-angularjs
+# Ticketbox customer interface client
+
+[![Build Status](https://travis-ci.org/ssigg/ticketbox-customer-client-angularjs.svg?branch=master)](https://travis-ci.org/ssigg/ticketbox-customer-client-angularjs) [![Code Climate](https://codeclimate.com/github/ssigg/ticketbox-customer-client-angularjs/badges/gpa.svg)](https://codeclimate.com/github/ssigg/ticketbox-customer-client-angularjs) [![Test Coverage](https://codeclimate.com/github/ssigg/ticketbox-customer-client-angularjs/badges/coverage.svg)](https://codeclimate.com/github/ssigg/ticketbox-customer-client-angularjs/coverage)
