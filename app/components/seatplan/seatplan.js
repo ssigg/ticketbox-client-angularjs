@@ -28,21 +28,21 @@ angular.module('ticketbox.components.seatplan', [
 
     .service('handlers', function (draw, reserver) {
         return {
-            draw: function (eventid, seat, element, reservationState) {
-                draw.applySeatStyle(element, reservationState, false);
+            draw: function (eventid, seat, element) {
+                draw.applySeatStyle(element, seat.state, false);
             },
-            click: function (eventid, seat, element, reservationState) {
-                if (reservationState === 'free') {
-                    reserver.reserve(eventid, seat.id);
-                } else if (reservationState === 'reservedbymyself') {
+            click: function (eventid, seat, element) {
+                if (seat.state === 'free') {
+                    reserver.reserve(eventid, seat.seat.id);
+                } else if (seat.state === 'reservedbymyself') {
                     reserver.release(seat.reservation_id);
                 }
             },
-            mouseenter: function (eventid, seat, element, reservationState) {
-                draw.applySeatStyle(element, reservationState, true);
+            mouseenter: function (eventid, seat, element) {
+                draw.applySeatStyle(element, seat.state, true);
             },
-            mouseleave: function (eventid, seat, element, reservationState) {
-                draw.applySeatStyle(element, reservationState, false);
+            mouseleave: function (eventid, seat, element) {
+                draw.applySeatStyle(element, seat.state, false);
             }
         };
     })
@@ -81,31 +81,31 @@ angular.module('ticketbox.components.seatplan', [
             currentPolygons = [];
 
             _.each(seats, function (seat) {
-                var polygon = _drawSeat(scope, canvas, seat.seat, seat.state);
+                var polygon = _drawSeat(scope, canvas, seat);
                 currentPolygons.push(polygon);
             });
 
             canvas.redraw();
         }
 
-        function _drawSeat(scope, canvas, seat, reservationState) {
-            var polygon = canvasImage.drawPolygon(canvas, coordinates.seatToCoordinates(seat), '#333', '2px #000');
-            handlers.draw(scope.eventid, seat, polygon, reservationState);
-            _bind(scope, polygon, seat, reservationState);
+        function _drawSeat(scope, canvas, seat) {
+            var polygon = canvasImage.drawPolygon(canvas, coordinates.seatToCoordinates(seat.seat), '#333', '2px #000');
+            handlers.draw(scope.eventid, seat, polygon);
+            _bind(scope, polygon, seat);
             return polygon;
         }
 
         function _bind(scope, element, seat, reservationState) {
             element.bind("click tap", function () {
-                handlers.click(scope.eventid, seat, element, reservationState);
+                handlers.click(scope.eventid, seat, element);
                 element.redraw();
             });
             element.bind("mouseenter", function () {
-                handlers.mouseenter(scope.eventid, seat, element, reservationState);
+                handlers.mouseenter(scope.eventid, seat, element);
                 element.redraw();
             });
             element.bind("mouseleave", function () {
-                handlers.mouseleave(scope.eventid, seat, element, reservationState);
+                handlers.mouseleave(scope.eventid, seat, element);
                 element.redraw();
             });
         }

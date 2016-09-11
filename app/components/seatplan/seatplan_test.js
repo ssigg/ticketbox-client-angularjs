@@ -27,11 +27,16 @@ describe('ticketbox.components.seatplan', function () {
         describe('draw()', function () {
             it('should use draw.applySeatStyle()', function () {
                 var eventId = 'e1';
-                var seat = { 'seat': { 'id': 's1' }, 'reservation_id': null };
-                var element = {};
                 var reservationState = 'free';
+                var seat = {
+                    'seat': { 'id': 's1' },
+                    'state': reservationState,
+                    'reservation_id': null
+                };
+                var element = {};
+                
                 expect(applySeatStyleSpy).not.toHaveBeenCalled();
-                handlers.draw(eventId, seat, element, reservationState);
+                handlers.draw(eventId, seat, element);
                 expect(applySeatStyleSpy).toHaveBeenCalledWith(element, reservationState, false);
             });
         });
@@ -39,21 +44,31 @@ describe('ticketbox.components.seatplan', function () {
         describe('click()', function () {
             it('should reserve seat if the seat is free', function () {
                 var eventId = 'e1';
-                var seat = { 'id': 's1' };
-                var element = undefined;
                 var reservationState = 'free';
+                var seat = {
+                    'seat': { 'id': 's1' },
+                    'state': reservationState,
+                    'reservation_id': null
+                };
+                var element = undefined;
+
                 expect(reserveSpy).not.toHaveBeenCalled();
                 expect(releaseSpy).not.toHaveBeenCalled();
                 handlers.click(eventId, seat, element, reservationState);
-                expect(reserveSpy).toHaveBeenCalledWith(eventId, seat.id);
+                expect(reserveSpy).toHaveBeenCalledWith(eventId, seat.seat.id);
                 expect(releaseSpy).not.toHaveBeenCalled();
             });
 
             it('should release the seat if the seat is reserved by myself', function () {
                 var eventId = 'e1';
-                var seat = { 'seat': { 'id': 's1' }, 'reservation_id': 'r1' };
-                var element = undefined;
                 var reservationState = 'reservedbymyself';
+                var seat = {
+                    'seat': { 'id': 's1' },
+                    'state': reservationState,
+                    'reservation_id': 'r1'
+                };
+                var element = undefined;
+
                 expect(reserveSpy).not.toHaveBeenCalled();
                 expect(releaseSpy).not.toHaveBeenCalled();
                 handlers.click(eventId, seat, element, reservationState);
@@ -63,9 +78,14 @@ describe('ticketbox.components.seatplan', function () {
 
             it('should do nothing if the seat is reserved', function () {
                 var eventId = 'e1';
-                var seat = { 'seat': { 'id': 's1' }, 'reservation_id': null };
-                var element = undefined;
                 var reservationState = 'reserved';
+                var seat = {
+                    'seat': { 'id': 's1' },
+                    'state': reservationState,
+                    'reservation_id': null
+                };
+                var element = undefined;
+
                 expect(reserveSpy).not.toHaveBeenCalled();
                 expect(releaseSpy).not.toHaveBeenCalled();
                 handlers.click(eventId, seat, element, reservationState);
@@ -77,11 +97,16 @@ describe('ticketbox.components.seatplan', function () {
         describe('mouseenter()', function () {
             it('should use draw.applySeatStyle()', function () {
                 var eventId = 'e1';
-                var seat = { 'seat': { 'id': 's1' }, 'reservation_id': null };
-                var element = {};
                 var reservationState = 'free';
+                var seat = {
+                    'seat': { 'id': 's1' },
+                    'state': reservationState,
+                    'reservation_id': null
+                };
+                var element = {};
+
                 expect(applySeatStyleSpy).not.toHaveBeenCalled();
-                handlers.mouseenter(eventId, seat, element, reservationState);
+                handlers.mouseenter(eventId, seat, element);
                 expect(applySeatStyleSpy).toHaveBeenCalledWith(element, reservationState, true);
             });
         });
@@ -89,11 +114,16 @@ describe('ticketbox.components.seatplan', function () {
         describe('mouseleave()', function () {
             it('should use draw.applySeatStyle()', function () {
                 var eventId = 'e1';
-                var seat = { 'seat': { 'id': 's1' }, 'reservation_id': null };
-                var element = {};
                 var reservationState = 'free';
+                var seat = {
+                    'seat': { 'id': 's1' },
+                    'state': reservationState,
+                    'reservation_id': null
+                };
+                var element = {};
+                
                 expect(applySeatStyleSpy).not.toHaveBeenCalled();
-                handlers.mouseleave(eventId, seat, element, reservationState);
+                handlers.mouseleave(eventId, seat, element);
                 expect(applySeatStyleSpy).toHaveBeenCalledWith(element, reservationState, false);
             });
         });

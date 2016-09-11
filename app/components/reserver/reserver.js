@@ -12,8 +12,7 @@ angular.module('ticketbox.components.reserver', [
                 return reservation.$save();
             },
             release: function(reservationId) {
-                var reservation = Reservation.get({ 'id': reservationId });
-                return reservation.delete();
+                return Reservation.delete({ 'id': reservationId });
             }
         };
     });
