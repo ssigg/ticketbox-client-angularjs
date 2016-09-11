@@ -11,6 +11,6 @@ angular.module('ticketbox.events', [
         });
     })
 
-    .controller('EventsCtrl', function($scope, $location, Event) {
+    .controller('EventsCtrl', function($scope, Event) {
         $scope.events = Event.query();
     });

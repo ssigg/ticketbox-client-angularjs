@@ -2,7 +2,9 @@
 
 angular.module('ticketbox.customer', [
     'ngRoute',
-    'ticketbox.events'])
+    'ticketbox.events',
+    'ticketbox.event',
+    'ticketbox.block'])
 
     .config(function ($routeProvider) {
         $routeProvider.otherwise({

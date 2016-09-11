@@ -26,49 +26,49 @@ describe('ticketbox.components.seatplan', function () {
 
         describe('draw()', function () {
             it('should use draw.applySeatStyle()', function () {
-                var event = { 'id': 'e1' };
+                var eventId = 'e1';
                 var seat = { 'seat': { 'id': 's1' }, 'reservation_id': null };
                 var element = {};
                 var reservationState = 'free';
                 expect(applySeatStyleSpy).not.toHaveBeenCalled();
-                handlers.draw(event, seat, element, reservationState);
+                handlers.draw(eventId, seat, element, reservationState);
                 expect(applySeatStyleSpy).toHaveBeenCalledWith(element, reservationState, false);
             });
         });
 
         describe('click()', function () {
             it('should reserve seat if the seat is free', function () {
-                var event = { 'id': 'e1' };
-                var seat = { 'seat': { 'id': 's1' }, 'reservation_id': null };
+                var eventId = 'e1';
+                var seat = { 'id': 's1' };
                 var element = undefined;
                 var reservationState = 'free';
                 expect(reserveSpy).not.toHaveBeenCalled();
                 expect(releaseSpy).not.toHaveBeenCalled();
-                handlers.click(event, seat, element, reservationState);
-                expect(reserveSpy).toHaveBeenCalledWith(event.id, seat.seat.id);
+                handlers.click(eventId, seat, element, reservationState);
+                expect(reserveSpy).toHaveBeenCalledWith(eventId, seat.id);
                 expect(releaseSpy).not.toHaveBeenCalled();
             });
 
             it('should release the seat if the seat is reserved by myself', function () {
-                var event = { 'id': 'e1' };
+                var eventId = 'e1';
                 var seat = { 'seat': { 'id': 's1' }, 'reservation_id': 'r1' };
                 var element = undefined;
                 var reservationState = 'reservedbymyself';
                 expect(reserveSpy).not.toHaveBeenCalled();
                 expect(releaseSpy).not.toHaveBeenCalled();
-                handlers.click(event, seat, element, reservationState);
+                handlers.click(eventId, seat, element, reservationState);
                 expect(reserveSpy).not.toHaveBeenCalled();
                 expect(releaseSpy).toHaveBeenCalledWith('r1');
             });
 
             it('should do nothing if the seat is reserved', function () {
-                var event = { 'id': 'e1' };
+                var eventId = 'e1';
                 var seat = { 'seat': { 'id': 's1' }, 'reservation_id': null };
                 var element = undefined;
                 var reservationState = 'reserved';
                 expect(reserveSpy).not.toHaveBeenCalled();
                 expect(releaseSpy).not.toHaveBeenCalled();
-                handlers.click(event, seat, element, reservationState);
+                handlers.click(eventId, seat, element, reservationState);
                 expect(reserveSpy).not.toHaveBeenCalled();
                 expect(releaseSpy).not.toHaveBeenCalled();
             });
@@ -76,24 +76,24 @@ describe('ticketbox.components.seatplan', function () {
 
         describe('mouseenter()', function () {
             it('should use draw.applySeatStyle()', function () {
-                var event = { 'id': 'e1' };
+                var eventId = 'e1';
                 var seat = { 'seat': { 'id': 's1' }, 'reservation_id': null };
                 var element = {};
                 var reservationState = 'free';
                 expect(applySeatStyleSpy).not.toHaveBeenCalled();
-                handlers.mouseenter(event, seat, element, reservationState);
+                handlers.mouseenter(eventId, seat, element, reservationState);
                 expect(applySeatStyleSpy).toHaveBeenCalledWith(element, reservationState, true);
             });
         });
 
         describe('mouseleave()', function () {
             it('should use draw.applySeatStyle()', function () {
-                var event = { 'id': 'e1' };
+                var eventId = 'e1';
                 var seat = { 'seat': { 'id': 's1' }, 'reservation_id': null };
                 var element = {};
                 var reservationState = 'free';
                 expect(applySeatStyleSpy).not.toHaveBeenCalled();
-                handlers.mouseleave(event, seat, element, reservationState);
+                handlers.mouseleave(eventId, seat, element, reservationState);
                 expect(applySeatStyleSpy).toHaveBeenCalledWith(element, reservationState, false);
             });
         });

@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('ticketbox.components.seatplan', [
-    'ticketbox.components.canvas'])
+    'ticketbox.components.canvas',
+    'ticketbox.components.reserver'])
 
     .factory('styles', function() {
         return {
@@ -12,22 +13,35 @@ angular.module('ticketbox.components.seatplan', [
         };
     })
 
+    .service('coordinates', function() {
+        return {
+            seatToCoordinates: function(seat) {
+                return [
+                    { x: seat.x0, y: seat.y0 },
+                    { x: seat.x1, y: seat.y1 },
+                    { x: seat.x2, y: seat.y2 },
+                    { x: seat.x3, y: seat.y3 }
+                ];
+            }
+        };
+    })
+
     .service('handlers', function (draw, reserver) {
         return {
-            draw: function (event, seat, element, reservationState) {
+            draw: function (eventid, seat, element, reservationState) {
                 draw.applySeatStyle(element, reservationState, false);
             },
-            click: function (event, seat, element, reservationState) {
+            click: function (eventid, seat, element, reservationState) {
                 if (reservationState === 'free') {
-                    reserver.reserve(event.id, seat.seat.id);
+                    reserver.reserve(eventid, seat.id);
                 } else if (reservationState === 'reservedbymyself') {
                     reserver.release(seat.reservation_id);
                 }
             },
-            mouseenter: function (event, seat, element, reservationState) {
+            mouseenter: function (eventid, seat, element, reservationState) {
                 draw.applySeatStyle(element, reservationState, true);
             },
-            mouseleave: function (event, seat, element, reservationState) {
+            mouseleave: function (eventid, seat, element, reservationState) {
                 draw.applySeatStyle(element, reservationState, false);
             }
         };
@@ -57,7 +71,7 @@ angular.module('ticketbox.components.seatplan', [
         };
     })
 
-    .directive('ngSeatSelection', function (canvasImage, $rootScope, separator, coordinates, reservationState, handlers) {
+    .directive('ngSeatSelection', function (canvasImage, $rootScope, coordinates, handlers) {
         var currentPolygons = [];
 
         function _refreshSeats(scope, canvas, seats) {
@@ -76,22 +90,22 @@ angular.module('ticketbox.components.seatplan', [
 
         function _drawSeat(scope, canvas, seat, reservationState) {
             var polygon = canvasImage.drawPolygon(canvas, coordinates.seatToCoordinates(seat), '#333', '2px #000');
-            handlers.draw(scope.event, seat, polygon, reservationState);
+            handlers.draw(scope.eventid, seat, polygon, reservationState);
             _bind(scope, polygon, seat, reservationState);
             return polygon;
         }
 
         function _bind(scope, element, seat, reservationState) {
             element.bind("click tap", function () {
-                handlers.click(scope.event, seat, element, reservationState);
+                handlers.click(scope.eventid, seat, element, reservationState);
                 element.redraw();
             });
             element.bind("mouseenter", function () {
-                handlers.mouseenter(scope.event, seat, element, reservationState);
+                handlers.mouseenter(scope.eventid, seat, element, reservationState);
                 element.redraw();
             });
             element.bind("mouseleave", function () {
-                handlers.mouseleave(scope.event, seat, element, reservationState);
+                handlers.mouseleave(scope.eventid, seat, element, reservationState);
                 element.redraw();
             });
         }
@@ -124,7 +138,7 @@ angular.module('ticketbox.components.seatplan', [
             restrict: 'E',
             scope: {
                 src: '=',
-                event: '=',
+                eventid: '=',
                 seats: '='
             },
             template: '<canvas id="ngSelectableImageCanvas"></canvas>',
