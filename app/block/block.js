@@ -3,7 +3,8 @@
 angular.module('ticketbox.block', [
     'ngRoute',
     'ticketbox.components.api',
-    'ticketbox.components.seatplan'])
+    'ticketbox.components.seatplan',
+    'ticketbox.components.toolbar'])
 
     .config(function($routeProvider) {
         $routeProvider.when('/block/:blockId', {

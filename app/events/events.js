@@ -2,7 +2,8 @@
 
 angular.module('ticketbox.events', [
     'ngRoute',
-    'ticketbox.components.api'])
+    'ticketbox.components.api',
+    'ticketbox.components.toolbar'])
 
     .config(function($routeProvider) {
         $routeProvider.when('/events', {

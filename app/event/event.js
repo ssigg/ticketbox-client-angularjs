@@ -2,7 +2,8 @@
 
 angular.module('ticketbox.event', [
     'ngRoute',
-    'ticketbox.components.api'])
+    'ticketbox.components.api',
+    'ticketbox.components.toolbar'])
 
     .config(function($routeProvider) {
         $routeProvider.when('/event/:eventId', {
@@ -11,6 +12,10 @@ angular.module('ticketbox.event', [
         });
     })
 
-    .controller('EventCtrl', function($scope, $routeParams, Event) {
-        $scope.event = Event.get({ 'id': $routeParams.eventId });
+    .controller('EventCtrl', function($scope, $routeParams, Event, $location) {
+        $scope.event = Event.get({ 'id': $routeParams.eventId }, function() {
+            if ($scope.event.blocks.length == 1) {
+                $location.path('/block/' + $scope.event.blocks[0].id);
+            }
+        });
     });

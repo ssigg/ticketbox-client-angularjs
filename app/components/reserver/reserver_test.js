@@ -17,6 +17,9 @@ describe('ticketbox.components.reserver', function () {
             saveSpy = spyOn(reservation, 'save').and.returnValue(promiseContainer);
             deleteSpy = spyOn(reservation, 'delete').and.returnValue(promiseContainer);
             $provide.value('Reservation', reservation);
+            
+            var basket = {};
+            $provide.value('basket', basket);
         }));
 
         beforeEach(inject(function (_reserver_) {

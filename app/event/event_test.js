@@ -24,7 +24,7 @@ describe('ticketbox.event', function () {
     describe('EventCtrl', function () {
         describe('$scope.event', function () {
             it('should fetch event', function () {
-                expect(getSpy).toHaveBeenCalledWith({ 'id': 42 }); 
+                expect(getSpy).toHaveBeenCalledWith({ 'id': 42 }, jasmine.any(Function)); 
             });
         });
     });

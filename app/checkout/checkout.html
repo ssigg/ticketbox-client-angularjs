@@ -1,0 +1,12 @@
+<ul>
+    <li ng-repeat="reservation in reservations">
+        <h2>{{reservation.seat.name}}</h2>
+        <p>{{reservation.category.name}}</p>
+        <p>{{reservation.event.name}}, {{reservation.event.dateandtime}}</p>
+        <p><label><input type="checkbox" ng-checked="{{reservation.isReduced}}" ng-click="toggleReduction(reservation)"> Reduced</label></p>
+        <p><a ng-click="release(reservation)">Release</a></p>
+        <p>{{reservation.price}} {{currency}}</p>
+    </li>
+</ul>
+
+<p>Total price: {{reservations | totalPrice}} {{currency}}</p>
