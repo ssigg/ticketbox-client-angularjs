@@ -1,6 +1,15 @@
 <div class="row">
-    <div class="seven columns" ng-show="block.block.seatplan_image_data_url !== null">
+    <div class="twelve columns">
+        <toolbar/>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+        <h2>{{block.event.name}} - {{block.event.dateandtime}}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
         <ng-seat-selection src="block.block.seatplan_image_data_url" eventid="block.event_id" seats="block.seats">
     </div>
 </div>
-<toolbar/>

@@ -13,7 +13,7 @@ angular.module('ticketbox.checkout', [
         });
     })
 
-    .controller('CheckoutCtrl', function($scope, Reservation, basket, reserver, currency) {
+    .controller('CheckoutCtrl', function($scope, $location, Reservation, Order, basket, reserver, currency) {
         $scope.reservations = basket.getReservations();
         $scope.currency = currency;
 
@@ -29,14 +29,18 @@ angular.module('ticketbox.checkout', [
         $scope.release = function(reservation) {
             reserver.releaseReservation(reservation);
         };
-    })
-    
-    .filter('totalPrice', function() {
-        return function(reservations) {
-            if (reservations === undefined) {
-                return 0;
-            } else {
-                return _.reduce(reservations, function(totalPrice, r) { return totalPrice + r.price; }, 0);
-            }
+
+        $scope.createOrder = function(title, firstname, lastname, email) {
+            var order = {
+                title: title,
+                firstname: firstname,
+                lastname: lastname,
+                email: email
+            };
+            Order.save(order)
+                .$promise.then(function() {
+                    basket.refreshReservations();
+                    $location.path('/summary');
+                });
         }
     });
