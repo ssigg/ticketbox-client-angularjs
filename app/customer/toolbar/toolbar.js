@@ -8,7 +8,7 @@ angular.module('ticketbox.components.toolbar', [
             restrict: 'E',
             scope: { },
             controller: 'ToolbarCtrl',
-            templateUrl: 'components/toolbar/toolbar.html'
+            templateUrl: 'toolbar/toolbar.html'
         }
     })
 

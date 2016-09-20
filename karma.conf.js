@@ -10,13 +10,13 @@ module.exports = function (config) {
             'app/bower_components/angular-mocks/angular-mocks.js',
             'app/bower_components/underscore/underscore.js',
             'app/bower_components/ocanvas/index.js',
-            'app//config/config_sample.js',
+            'app/config/config_sample.js',
             'app/components/*/*.js',
-            'app/*/*.js'
+            'app/customer/*/*.js'
         ],
 
         preprocessors: {
-            'app/{*/!(*_test).js,components/*/!(*_test).js}': [ 'coverage' ]
+            'app/{customer/*/!(*_test).js,components/*/!(*_test).js}': [ 'coverage' ]
         },
 
         reporters: [ 'progress', 'coverage' ],
