@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ticketbox.boxoffice">
+<head>
+    <meta charset="utf-8">
+    <title>Ticket reservation</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="bower_components/skeleton-css/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/skeleton-css/css/skeleton.css">
+    <link rel="stylesheet" href="app.css">
+    <!-- /stylesheets -->
+</head>
+<body>
+<div class="container">
+    <div ng-view></div>
+</div>
+<!-- scripts -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+<script src="bower_components/ocanvas/index.js"></script>
+<script src="boxoffice.app.js"></script>
+<script src="boxoffice.config/config.js"></script>
+<script src="components/api/api.js"></script>
+<script src="components/polygonfrompoints/polygonfrompoints.js"></script>
+<script src="components/canvas/canvas.js"></script>
+<script src="components/basket/basket.js"></script>
+<script src="components/reserver/reserver.js"></script>
+<script src="components/seatplan/seatplan.js"></script>
+<script src="common.toolbar/common.toolbar.js"></script>
+<script src="common.events/common.events.js"></script>
+<script src="common.event/common.event.js"></script>
+<script src="common.block/common.block.js"></script>
+<script src="boxoffice.checkout/boxoffice.checkout.js"></script>
+<!-- /scripts -->
+</body>
+</html>

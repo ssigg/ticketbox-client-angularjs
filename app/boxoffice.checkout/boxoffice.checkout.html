@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="twelve columns">
+        <toolbar/>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+        <ul class="checkout-reservations">
+            <li ng-repeat="reservation in reservations">
+                <p class="reservation-release"><a class="button button-primary" ng-click="release(reservation)">✕</a></p>
+                <h2>{{reservation.seat.name}}</h2>
+                <p>{{reservation.category.name}}</p>
+                <p>{{reservation.event.name}}, {{reservation.event.dateandtime}}</p>
+                <p><label><input type="checkbox" ng-checked="{{reservation.isReduced}}" ng-click="toggleReduction(reservation)"> Reduced</label></p>
+                <p class="reservation-price">{{reservation.price}} {{currency}}</p>
+                <div class="clear"></div>
+            </li>
+        </ul>
+        <a class="button button-primary" ng-click="createBoxofficePurchase()">Finish reservation</a>
+    </div>
+</div>
