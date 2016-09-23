@@ -1,15 +1,16 @@
 'use strict';
 
-angular.module('ticketbox.checkout', [
+angular.module('ticketbox.customer.checkout', [
     'ngRoute',
     'ticketbox.components.api',
     'ticketbox.components.reserver',
+    'ticketbox.common.toolbar',
     'ticketbox.config'])
 
     .config(function($routeProvider) {
         $routeProvider.when('/checkout', {
             controller: 'CheckoutCtrl',
-            templateUrl: 'checkout/checkout.html'
+            templateUrl: 'customer.checkout/customer.checkout.html'
         });
     })
 

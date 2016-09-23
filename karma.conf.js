@@ -12,11 +12,11 @@ module.exports = function (config) {
             'app/bower_components/ocanvas/index.js',
             'app/config/config_sample.js',
             'app/components/*/*.js',
-            'app/customer/*/*.js'
+            'app/*/*.js'
         ],
 
         preprocessors: {
-            'app/{customer/*/!(*_test).js,components/*/!(*_test).js}': [ 'coverage' ]
+            'app/{*/!(*_test).js,components/*/!(*_test).js}': [ 'coverage' ]
         },
 
         reporters: [ 'progress', 'coverage' ],

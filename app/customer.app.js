@@ -2,10 +2,10 @@
 
 angular.module('ticketbox.customer', [
     'ngRoute',
-    'ticketbox.events',
-    'ticketbox.event',
-    'ticketbox.block',
-    'ticketbox.checkout'])
+    'ticketbox.common.events',
+    'ticketbox.common.event',
+    'ticketbox.common.block',
+    'ticketbox.customer.checkout'])
 
     .config(function ($routeProvider) {
         $routeProvider.otherwise({

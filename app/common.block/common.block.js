@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('ticketbox.block', [
+angular.module('ticketbox.common.block', [
     'ngRoute',
     'ticketbox.components.api',
     'ticketbox.components.seatplan',
-    'ticketbox.components.toolbar'])
+    'ticketbox.common.toolbar'])
 
     .config(function($routeProvider) {
         $routeProvider.when('/block/:blockId', {
             controller: 'BlockCtrl',
-            templateUrl: 'block/block.html'
+            templateUrl: 'common.block/common.block.html'
         });
     })
 

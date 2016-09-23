@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ticketbox.components.toolbar', [
+angular.module('ticketbox.common.toolbar', [
     'ticketbox.components.basket'])
 
     .directive('toolbar', function() {
@@ -8,7 +8,7 @@ angular.module('ticketbox.components.toolbar', [
             restrict: 'E',
             scope: { },
             controller: 'ToolbarCtrl',
-            templateUrl: 'toolbar/toolbar.html'
+            templateUrl: 'common.toolbar/common.toolbar.html'
         }
     })
 
