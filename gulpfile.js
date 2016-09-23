@@ -28,7 +28,7 @@ var paths = {
         '!app/components/*/*_test.js',
         'app/common.*/*.js',
         '!app/common.*/*_test.js',
-        '!app/config/*.js'
+        '!app/*.config/*.js'
     ],
     templates: [
         'app/components/*/*.html',
