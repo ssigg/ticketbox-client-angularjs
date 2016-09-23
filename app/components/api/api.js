@@ -5,19 +5,23 @@ angular.module('ticketbox.components.api', [
     'ticketbox.config'])
 
     .factory('Event', function($resource, api) {
-        return $resource(api + '/customer/events/:id', { id: '@id' });
+        return $resource(api + '/events/:id', { id: '@id' });
     })
 
     .factory('Block', function($resource, api) {
-        return $resource(api + '/customer/blocks/:id', { id: '@id' });
+        return $resource(api + '/blocks/:id', { id: '@id' });
     })
 
     .factory('Reservation', function($resource, api) {
-        return $resource(api + '/customer/reservations/:id', { id: '@id' }, {
+        return $resource(api + '/reservations/:id', { id: '@id' }, {
             update: { method: 'PUT' }
         });
     })
 
     .factory('Order', function($resource, api) {
-        return $resource(api + '/customer/orders');
+        return $resource(api + '/orders');
+    })
+    
+    .factory('BoxofficePurchase', function($resource, api) {
+        return $resource(api + '/boxoffice-purchases');
     });
