@@ -12,7 +12,7 @@ angular.module('ticketbox.common.toolbar', [
         }
     })
 
-    .controller('ToolbarCtrl', function($scope, $location, Reservation, reserver, basket, currency) {
+    .controller('ToolbarCtrl', function($scope, $location, reserver, basket, currency) {
         $scope.reservations = basket.getReservations();
         $scope.currency = currency;
         
