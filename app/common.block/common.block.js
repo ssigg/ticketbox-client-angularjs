@@ -13,6 +13,6 @@ angular.module('ticketbox.common.block', [
         });
     })
 
-    .controller('BlockCtrl', function($scope, $routeParams, Block) {
-        $scope.block = Block.get({ 'id': $routeParams.blockId });
+    .controller('BlockCtrl', function($scope, $routeParams, Eventblock) {
+        $scope.block = Eventblock.get({ 'id': $routeParams.blockId });
     });
