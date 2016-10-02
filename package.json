@@ -34,6 +34,6 @@
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js  --single-run",
-    "deploy": "npm install; gulp customer; gulp boxoffice"
+    "deploy": "npm install; gulp customer; gulp boxoffice; gulp admin"
   }
 }

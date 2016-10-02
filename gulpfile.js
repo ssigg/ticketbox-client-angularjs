@@ -9,7 +9,8 @@ var rename = require('gulp-rename');
 
 var bases = {
     customer: 'dist/customer/',
-    boxoffice: 'dist/boxoffice/'
+    boxoffice: 'dist/boxoffice/',
+    admin: 'dist/admin/'
 };
 
 var paths = {
@@ -26,13 +27,10 @@ var paths = {
         'app/bower_components/underscore/underscore.js',
         'app/components/*/*.js',
         '!app/components/*/*_test.js',
-        'app/common.*/*.js',
-        '!app/common.*/*_test.js',
         '!app/*.config/*.js'
     ],
     templates: [
-        'app/components/*/*.html',
-        'app/common.*/*.html'
+        'app/components/*/*.html'
     ],
     customer: {
         page: [
@@ -41,12 +39,18 @@ var paths = {
         config: [
             'app/customer.config/*.js'
         ],
+        stylesheets: [
+            'app/customer.app.css'
+        ],
         scripts: [
+            'app/common.*/*.js',
+            '!app/common.*/*_test.js',
             'app/customer.app.js',
             'app/customer.*/*.js',
             '!app/customer.*/*_test.js' 
         ],
         templates: [
+            'app/common.*/*.html',
             'app/customer.*/*.html'
         ]
     },
@@ -57,13 +61,38 @@ var paths = {
         config: [
             'app/boxoffice.config/*.js'
         ],
+        stylesheets: [
+            'app/boxoffice.app.css'
+        ],
         scripts: [
+            'app/common.*/*.js',
+            '!app/common.*/*_test.js',
             'app/boxoffice.app.js',
             'app/boxoffice.*/*.js',
             '!app/boxoffice.*/*_test.js' 
         ],
         templates: [
+            'app/common.*/*.html',
             'app/boxoffice.*/*.html'
+        ]
+    },
+    admin: {
+        page: [
+            'app/admin.html'
+        ],
+        config: [
+            'app/admin.config/*.js'
+        ],
+        stylesheets: [
+            'app/admin.app.css'
+        ],
+        scripts: [
+            'app/admin.app.js',
+            'app/admin.*/*.js',
+            '!app/admin.*/*_test.js' 
+        ],
+        templates: [
+            'app/admin.*/*.html'
         ]
     }
 };
@@ -86,7 +115,7 @@ gulp.task('customer-scripts', [ 'customer-clean' ], function() {
 });
 
 gulp.task('customer-stylesheets', [ 'customer-clean' ], function() {
-    return gulp.src(paths.stylesheets)
+    return gulp.src(paths.stylesheets.concat(paths.customer.stylesheets))
         .pipe(cleanCss())
         .pipe(concat('app.min.css'))
         .pipe(gulp.dest(bases.customer));
@@ -125,7 +154,7 @@ gulp.task('boxoffice-scripts', [ 'boxoffice-clean' ], function() {
 });
 
 gulp.task('boxoffice-stylesheets', [ 'boxoffice-clean' ], function() {
-    return gulp.src(paths.stylesheets)
+    return gulp.src(paths.stylesheets.concat(paths.boxoffice.stylesheets))
         .pipe(cleanCss())
         .pipe(concat('app.min.css'))
         .pipe(gulp.dest(bases.boxoffice));
@@ -145,3 +174,42 @@ gulp.task('boxoffice-page', [ 'boxoffice-clean' ], function() {
 });
 
 gulp.task('boxoffice', [ 'boxoffice-config', 'boxoffice-scripts', 'boxoffice-stylesheets', 'boxoffice-templates', 'boxoffice-page' ]);
+
+gulp.task('admin-clean', function() {
+    return gulp.src(bases.admin)
+        .pipe(clean());
+});
+
+gulp.task('admin-config', [ 'admin-clean' ], function() {
+    return gulp.src(paths.admin.config)
+        .pipe(gulp.dest(bases.admin));
+});
+
+gulp.task('admin-scripts', [ 'admin-clean' ], function() {
+    return gulp.src(paths.scripts.concat(paths.admin.scripts))
+        .pipe(uglify({ mangle: false }))
+        .pipe(concat('app.min.js'))
+        .pipe(gulp.dest(bases.admin));
+});
+
+gulp.task('admin-stylesheets', [ 'admin-clean' ], function() {
+    return gulp.src(paths.stylesheets.concat(paths.admin.stylesheets))
+        .pipe(cleanCss())
+        .pipe(concat('app.min.css'))
+        .pipe(gulp.dest(bases.admin));
+});
+
+gulp.task('admin-templates', [ 'admin-clean' ], function() {
+    return gulp.src(paths.templates.concat(paths.admin.templates), { base: './app/' })
+        .pipe(gulp.dest(bases.admin));
+});
+
+gulp.task('admin-page', [ 'admin-clean' ], function() {
+    return gulp.src(paths.admin.page)
+        .pipe(replace(/<!-- stylesheets -->([\w\W\s]*)<!-- \/stylesheets -->/, '<link rel="stylesheet" href="app.min.css">'))
+        .pipe(replace(/<!-- scripts -->([\w\W\s]*)<!-- \/scripts -->/, '<script src="app.min.js"></script>\n<script src="config.js"></script>'))
+        .pipe(rename('index.html'))
+        .pipe(gulp.dest(bases.admin));
+});
+
+gulp.task('admin', [ 'admin-config', 'admin-scripts', 'admin-stylesheets', 'admin-templates', 'admin-page' ]);

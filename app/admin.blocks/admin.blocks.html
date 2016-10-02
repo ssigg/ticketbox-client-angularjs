@@ -1,0 +1,34 @@
+<div class="row dashboard-title-row">
+    <div class="twelve columns">
+        <h2>Blocks</h2>
+    </div>
+</div>
+<div class="row dashboard-content-row" ng-repeat="block in blocks">
+    <!-- view mode -->
+    <div class="eight columns" ng-show="!block.isInEditMode">
+        {{block.name}}
+    </div>
+    <div class="four columns" ng-show="!block.isInEditMode">
+        <a class="button button-primary" ng-click="delete(block)">delete</a>
+        <a class="button button-primary" ng-click="block.isInEditMode = true">edit</a>
+    </div>
+    <!-- /view mode -->
+
+    <!-- edit mode -->
+    <form ng-submit="save(block)" ng-show="block.isInEditMode">
+        <div class="eight columns">
+            <label for="block-name-{{block.id}}">Name</label>
+            <input type="text" ng-model="block.name" id="block-name-{{block.id}}">
+        </div>
+        <div class="four columns">
+            <a class="button button-primary" ng-click="cancel()">cancel</a>
+            <input type="submit" class="button button-primary" value="save">
+        </div>
+    </form>
+    <!-- /edit mode -->
+</div>
+<div class="row dashboard-button-row">
+    <div class="twelve columns">
+        <a class="button button-primary dashboard-list-button" ng-click="create()">add</a>
+    </div>
+</div>

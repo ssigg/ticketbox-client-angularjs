@@ -1,0 +1,55 @@
+div.dashboard-title-row {
+    margin-top:1em;
+}
+
+div.dashboard-title-row h2 {
+    margin:0;
+}
+
+div.dashboard-content-row {
+    padding-top:1em;
+    background:#ddd;
+    margin:.5em 0;
+    border-radius: .3em;
+}
+
+div.dashboard-content-row div {
+    padding:.2em .5em;
+}
+
+div.dashboard-content-row .button {
+    float:right;
+    margin:-.5em 0 1em 1em;
+}
+
+div.dashboard-content-row .button.button-primary {
+    background-color:#666;
+    border-color:#666;
+}
+
+div.dashboard-content-row .button.button-primary:hover, div.dashboard-content-row .button.button-primary:focus, div.dashboard-content-row .button.button-primary:hover, div.dashboard-content-row .button.button-primary:focus {
+    background-color:#333;
+    border-color:#333;
+}
+
+@media all and (max-width: 550px) {
+    div.dashboard-content-row .button {
+        width:100%;
+        margin-top:.5em;
+    }
+}
+
+div.dashboard-button-row {
+    padding-top:1em;
+    margin-bottom:3em;
+}
+
+@media all and (max-width: 550px) {
+    div.dashboard-button-row .button {
+        width:100%;
+    }
+}
+
+div.dashboard-content-row input[type=number], div.dashboard-content-row input[type=text] {
+    width:100%;
+}

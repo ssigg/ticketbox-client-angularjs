@@ -1,0 +1,38 @@
+<div class="row dashboard-title-row">
+    <div class="twelve columns">
+        <h2>Categories</h2>
+    </div>
+</div>
+<div class="row dashboard-content-row" ng-repeat="category in categories">
+    <!-- view mode -->
+    <div class="eight columns" ng-show="!category.isInEditMode">
+        {{category.name}} - {{category.price}} {{currency}}/{{category.price_reduced}} {{currency}}
+    </div>
+    <div class="four columns" ng-show="!category.isInEditMode">
+        <a class="button button-primary" ng-click="delete(category)">delete</a>
+        <a class="button button-primary" ng-click="category.isInEditMode = true">edit</a>
+    </div>
+    <!-- /view mode -->
+
+    <!-- edit mode -->
+    <form ng-submit="save(category)" ng-show="category.isInEditMode">
+        <div class="eight columns">
+            <label for="category-name-{{category.id}}">Name</label>
+            <input type="text" ng-model="category.name" id="category-name-{{category.id}}">
+            <label for="category-price-{{category.id}}">Price ({{currency}})</label>
+            <input type="number" ng-model="category.price" id="category-price-{{category.id}}">
+            <label for="category-price_reduced-{{category.id}}">Reduced Price ({{currency}})</label>
+            <input type="number" ng-model="category.price_reduced" id="category-price_reduced-{{category.id}}">
+        </div>
+        <div class="four columns">
+            <a class="button button-primary" ng-click="cancel()">cancel</a>
+            <input type="submit" class="button button-primary" value="save">
+        </div>
+    </form>
+    <!-- /edit mode -->
+</div>
+<div class="row dashboard-button-row" ng-show="categories | isAnyCategoryTransient">
+    <div class="twelve columns">
+        <a class="button button-primary dashboard-list-button" ng-click="create()">add</a>
+    </div>
+</div>

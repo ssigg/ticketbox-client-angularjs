@@ -1,0 +1,38 @@
+<div class="row dashboard-title-row">
+    <div class="twelve columns">
+        <h2>Events</h2>
+    </div>
+</div>
+<div class="row dashboard-content-row" ng-repeat="event in events">
+    <!-- view mode -->
+    <div class="eight columns" ng-show="!event.isInEditMode">
+        {{event.name}} - {{event.dateandtime}}
+    </div>
+    <div class="four columns" ng-show="!event.isInEditMode">
+        <a class="button button-primary" ng-click="delete(event)">delete</a>
+        <a class="button button-primary" ng-click="event.isInEditMode = true">edit</a>
+    </div>
+    <!-- /view mode -->
+
+    <!-- edit mode -->
+    <form ng-submit="save(event)" ng-show="event.isInEditMode">
+        <div class="eight columns">
+            <label for="event-name-{{event.id}}">Name</label>
+            <input type="text" ng-model="event.name" id="event-name-{{event.id}}">
+            <label for="event-location-{{event.id}}">Location</label>
+            <input type="text" ng-model="event.location" id="event-location-{{event.id}}">
+            <label for="event-dateandtime-{{event.id}}">Date and Time</label>
+            <input type="text" ng-model="event.dateandtime" id="event-dateandtime-{{event.id}}">
+        </div>
+        <div class="four columns">
+            <a class="button button-primary" ng-click="cancel()">cancel</a>
+            <input type="submit" class="button button-primary" value="save">
+        </div>
+    </form>
+    <!-- /edit mode -->
+</div>
+<div class="row dashboard-button-row" ng-show="events | isAnyEventTransient">
+    <div class="twelve columns">
+        <a class="button button-primary dashboard-list-button" ng-click="create()">add</a>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="row dashboard-title-row">
+    <div class="twelve columns">
+        <h2>Reservations</h2>
+    </div>
+</div>
+<div class="row dashboard-content-row" ng-repeat="eventAggregate in eventAggregates">
+    <div class="eight columns">
+        {{eventAggregate.event.name}} - {{eventAggregate.event.dateandtime}}
+    </div>
+    <div class="four columns">
+        <strong>{{eventAggregate.reservations.length}}</strong> Reservations
+    </div>
+</div>
