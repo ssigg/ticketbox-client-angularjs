@@ -23,7 +23,10 @@ angular.module('ticketbox.admin.reservations', [
                 return {
                     event: e,
                     reservations: _.filter(reservationList, function(r) {
-                        return r.event_id === e.id && r.order_id !== null;
+                        return r.event_id === e.id && r.order_id !== null && r.order_kind === 'reservation';
+                    }),
+                    boxofficePurchases: _.filter(reservationList, function(r) {
+                        return r.event-id === e.id && r.order_id !== null && r.order_kind === 'boxoffice-purchase';
                     })
                 };
             });
