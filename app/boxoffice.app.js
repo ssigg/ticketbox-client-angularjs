@@ -21,6 +21,13 @@ angular.module('ticketbox.boxoffice', [
             suffix: '.json'
         });
         $translateProvider.useSanitizeValueStrategy('escape');
+        $translateProvider.registerAvailableLanguageKeys(['en', 'de'], {
+            'en_US': 'en',
+            'en_UK': 'en',
+            'de_DE': 'de',
+            'de_CH': 'de',
+            'de_AT': 'de'
+        });
         $translateProvider.determinePreferredLanguage();
         $translateProvider.fallbackLanguage('en');
     })
