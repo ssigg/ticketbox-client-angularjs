@@ -7,17 +7,17 @@
     margin-right:auto;
 }
 
-.event-list {
+.item-list {
     margin-top:0.5em;
     list-style:none;
     font-size:1.5em;
 }
 
-.event-list li {
+.item-list li {
     border-bottom:1px solid #333;
 }
 
-.event-list a {
+.item-list a {
     color:#333;
     text-decoration:none;
 }
@@ -123,8 +123,29 @@ input.button.button-primary:hover, input.button.button-primary:focus, a.button.b
     border-color:#111;
 }
 
-input.button-primary[disabled], input.button[disabled], input.button-primary[disabled]:hover, input.button[disabled]:hover,
-button[disabled], button[disabled]:hover, button.button-primary[disabled], button.button-primary[disabled]:hover {
+.checkout.button {
+    width:100%;
+}
+
+.checkout.button.button-primary {
+    background-color:#3a7;
+    border-color:#3a7;
+    cursor: pointer;
+    margin:0;
+    font-size:1.5em;
+    padding:.1em;
+    height:2em;
+}
+
+.checkout.button.button-primary:hover, .checkout.button.button-primary:focus {
+    background-color:#195;
+    border-color:#195;
+    font-size:1.5em;
+    padding:.1em;
+    height:2em;
+}
+
+input.checkout.button-primary[disabled], input.checkout.button[disabled], input.checkout.button-primary[disabled]:hover, input.checkout.button[disabled]:hover {
     background:#ccc;
     border-color: #ccc;
     text-shadow:none;

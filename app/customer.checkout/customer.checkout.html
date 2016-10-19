@@ -11,7 +11,7 @@
                 <h2>{{reservation.seat.name}}</h2>
                 <p>{{reservation.category.name}}</p>
                 <p>{{reservation.event.name}}, {{reservation.event.dateandtime}}</p>
-                <p><label><input type="checkbox" ng-checked="{{reservation.isReduced}}" ng-click="toggleReduction(reservation)"> Reduced</label></p>
+                <p><label><input type="checkbox" ng-checked="{{reservation.isReduced}}" ng-click="toggleReduction(reservation)"> <translate>REDUCED</translate></label></p>
                 <p class="reservation-price">{{reservation.price}} {{currency}}</p>
                 <div class="clear"></div>
             </li>
@@ -20,17 +20,17 @@
     <div class="six columns">
         <form class="checkout-form" name="checkoutForm" ng-submit="createOrder(data.title, data.firstname, data.lastname, data.email)">
             <select ng-model="data.title" name="title" required>
-                <option value="m">Mr.</option>
-                <option value="f">Ms.</option>
+                <option value="m" translate>MR</option>
+                <option value="f" translate>MRS</option>
             </select>
-            <div class="hint" ng-show="checkoutForm.title.$touched && checkoutForm.title.$error.required">Please select a title</div> 
-            <input type="text" ng-model="data.firstname" name="firstname" placeholder="Firstname" class="u-full-width" required>
-            <div class="hint" ng-show="checkoutForm.firstname.$touched && checkoutForm.firstname.$error.required">Please enter a firstname</div>
-            <input type="text" ng-model="data.lastname" name="lastname" placeholder="Lastname" class="u-full-width" required>
-            <div class="hint" ng-show="checkoutForm.lastname.$touched && checkoutForm.lastname.$error.required">Please enter a lastname</div>
-            <input type="email" ng-model="data.email" name="email" placeholder="Email" class="u-full-width" required>
-            <div class="hint" ng-show="checkoutForm.email.$touched && checkoutForm.email.$error.required">Please enter a valid email address</div>
-            <input type="submit" ng-disabled="!checkoutForm.$valid" title="{{!checkoutForm.$valid ? 'Please fill in all fields.' : ''}}" value="Reserve" class="button button-primary">
+            <div class="hint" ng-show="checkoutForm.title.$touched && checkoutForm.title.$error.required" translate>PLEASE SELECT A TITLE</div> 
+            <input type="text" ng-model="data.firstname" name="firstname" translate-attr="{ placeholder: 'FIRSTNAME' }" class="u-full-width" required>
+            <div class="hint" ng-show="checkoutForm.firstname.$touched && checkoutForm.firstname.$error.required" translate>PLEASE ENTER A FIRSTNAME</div>
+            <input type="text" ng-model="data.lastname" name="lastname" translate-attr="{ placeholder: 'LASTNAME' }" class="u-full-width" required>
+            <div class="hint" ng-show="checkoutForm.lastname.$touched && checkoutForm.lastname.$error.required" translate>PLEASE ENTER A LASTNAME</div>
+            <input type="email" ng-model="data.email" name="email" translate-attr="{ placeholder: 'EMAIL' }" class="u-full-width" required>
+            <div class="hint" ng-show="checkoutForm.email.$touched && checkoutForm.email.$error.required" translate>PLEASE ENTER A VALID EMAIL ADDRESS</div>
+            <input type="submit" ng-disabled="!checkoutForm.$valid" title="{{!checkoutForm.$valid ? 'PLEASE FILL IN ALL FIELDS' : '' | translate}}" translate-attr="{ value: 'FINISH RESERVATION' }" class="checkout button button-primary">
         </form>
     </div>
 </div>

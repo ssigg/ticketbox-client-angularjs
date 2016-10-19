@@ -11,12 +11,12 @@
                 <h2>{{reservation.seat.name}}</h2>
                 <p>{{reservation.category.name}}</p>
                 <p>{{reservation.event.name}}, {{reservation.event.dateandtime}}</p>
-                <p><label><input type="checkbox" ng-checked="{{reservation.isReduced}}" ng-click="toggleReduction(reservation)"> Reduced</label></p>
+                <p><label><input type="checkbox" ng-checked="{{reservation.isReduced}}" ng-click="toggleReduction(reservation)"> <translate>REDUCED</translate></label></p>
                 <p class="reservation-price">{{reservation.price}} {{currency}}</p>
                 <div class="clear"></div>
             </li>
         </ul>
-        <a class="checkout button button-primary" ng-click="createBoxofficePurchase()">Finish reservation</a>
+        <a class="checkout button button-primary" ng-click="createBoxofficePurchase()" translate>FINISH RESERVATION</a>
     </div>
 </div>
 <div class="row">

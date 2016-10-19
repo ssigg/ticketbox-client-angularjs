@@ -1,0 +1,18 @@
+{
+  "SEATS": "Plätze",
+  "SELECT MORE SEATS": "Weitere Plätze reservieren",
+  "CHECKOUT AND REDUCTIONS": "Abschluss & Reduktionen",
+  "CANCEL": "Abbrechen",
+  "REDUCED": "Reduziert",
+  "FIRSTNAME": "Vorname",
+  "LASTNAME": "Nachname",
+  "EMAIL": "Email",
+  "MR": "Herr",
+  "MRS": "Frau",
+  "FINISH RESERVATION": "Reservation abschliessen",
+  "PLEASE SELECT A TITLE": "Bitte wählen Sie einen Titel aus",
+  "PLEASE ENTER A FIRSTNAME": "Bitte geben Sie einen Vornamen an",
+  "PLEASE ENTER A LASTNAME": "Bitte geben Sie einen Nachnamen an",
+  "PLEASE ENTER A VALID EMAIL ADDRESS": "Bitte geben Sie eine gültige Email-Adresse an",
+  "PLEASE FILL IN ALL FIELDS": "Bitte füllen Sie alle Felder aus"
+}

@@ -27,11 +27,16 @@ var paths = {
         'app/bower_components/angular/angular.js',
         'app/bower_components/angular-resource/angular-resource.js',
         'app/bower_components/angular-route/angular-route.js',
+        'app/bower_components/angular-translate/angular-translate.js',
+        'app/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
         'app/bower_components/ocanvas/index.js',
         'app/bower_components/underscore/underscore.js',
         'app/components/*/*.js',
         '!app/components/*/*_test.js',
         '!app/*.config/*.js'
+    ],
+    locales: [
+        'app/common.locales/*.json'
     ],
     templates: [
         'app/components/*/*.html'
@@ -119,6 +124,11 @@ gulp.task('customer-config', [ 'customer-clean' ], function() {
         .pipe(gulp.dest(bases.customer));
 });
 
+gulp.task('customer-locales', [ 'customer-clean' ], function() {
+    return gulp.src(paths.locales, { base: './app/' })
+        .pipe(gulp.dest(bases.customer));
+});
+
 gulp.task('customer-scripts', [ 'customer-clean' ], function() {
     return gulp.src(paths.scripts.concat(paths.customer.scripts))
         .pipe(uglify({ mangle: false }))
@@ -146,7 +156,7 @@ gulp.task('customer-page', [ 'customer-clean' ], function() {
         .pipe(gulp.dest(bases.customer));
 });
 
-gulp.task('customer', [ 'customer-config', 'customer-icons', 'customer-scripts', 'customer-stylesheets', 'customer-templates', 'customer-page' ]);
+gulp.task('customer', [ 'customer-config', 'customer-icons', 'customer-locales', 'customer-scripts', 'customer-stylesheets', 'customer-templates', 'customer-page' ]);
 
 gulp.task('boxoffice-clean', function() {
     return gulp.src(bases.boxoffice)
@@ -160,6 +170,11 @@ gulp.task('boxoffice-icons', [ 'boxoffice-clean' ], function() {
 
 gulp.task('boxoffice-config', [ 'boxoffice-clean' ], function() {
     return gulp.src(paths.boxoffice.config)
+        .pipe(gulp.dest(bases.boxoffice));
+});
+
+gulp.task('boxoffice-locales', [ 'boxoffice-clean' ], function() {
+    return gulp.src(paths.locales, { base: './app/' })
         .pipe(gulp.dest(bases.boxoffice));
 });
 
@@ -190,7 +205,7 @@ gulp.task('boxoffice-page', [ 'boxoffice-clean' ], function() {
         .pipe(gulp.dest(bases.boxoffice));
 });
 
-gulp.task('boxoffice', [ 'boxoffice-config', 'boxoffice-icons', 'boxoffice-scripts', 'boxoffice-stylesheets', 'boxoffice-templates', 'boxoffice-page' ]);
+gulp.task('boxoffice', [ 'boxoffice-config', 'boxoffice-icons', 'boxoffice-locales', 'boxoffice-scripts', 'boxoffice-stylesheets', 'boxoffice-templates', 'boxoffice-page' ]);
 
 gulp.task('admin-clean', function() {
     return gulp.src(bases.admin)
@@ -204,6 +219,11 @@ gulp.task('admin-icons', [ 'admin-clean' ], function() {
 
 gulp.task('admin-config', [ 'admin-clean' ], function() {
     return gulp.src(paths.admin.config)
+        .pipe(gulp.dest(bases.admin));
+});
+
+gulp.task('admin-locales', [ 'admin-clean' ], function() {
+    return gulp.src(paths.locales, { base: './app/' })
         .pipe(gulp.dest(bases.admin));
 });
 
@@ -234,4 +254,4 @@ gulp.task('admin-page', [ 'admin-clean' ], function() {
         .pipe(gulp.dest(bases.admin));
 });
 
-gulp.task('admin', [ 'admin-config', 'admin-icons', 'admin-scripts', 'admin-stylesheets', 'admin-templates', 'admin-page' ]);
+gulp.task('admin', [ 'admin-config', 'admin-icons', 'admin-scripts', 'admin-locales', 'admin-stylesheets', 'admin-templates', 'admin-page' ]);

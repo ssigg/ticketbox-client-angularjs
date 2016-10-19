@@ -2,17 +2,27 @@
 
 angular.module('ticketbox.customer', [
     'ngRoute',
+    'pascalprecht.translate',
     'ticketbox.components.progressInterceptor',
     'ticketbox.common.events',
     'ticketbox.common.event',
     'ticketbox.common.block',
     'ticketbox.customer.checkout'])
 
-    .config(function ($routeProvider, $httpProvider) {
+    .config(function ($routeProvider, $httpProvider, $translateProvider) {
         $routeProvider.otherwise({
             redirectTo: '/events'
         });
+
         $httpProvider.interceptors.push('progressInterceptor');
+
+        $translateProvider.useStaticFilesLoader({
+            prefix: 'common.locales/',
+            suffix: '.json'
+        });
+        $translateProvider.useSanitizeValueStrategy('escape');
+        $translateProvider.determinePreferredLanguage();
+        $translateProvider.fallbackLanguage('en');
     })
 
     .run(function($rootScope) {

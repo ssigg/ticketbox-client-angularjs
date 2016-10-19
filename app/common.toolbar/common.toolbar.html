@@ -2,15 +2,15 @@
     <div class="row toolbar-top">
         <div class="twelve columns">
             <div class="six columns">
-            <p class="reservations-count">{{reservations.length}} seats - <strong>{{reservations | totalPrice}} {{currency}}</strong></p>
+            <p class="reservations-count">{{reservations.length}} <translate>SEATS</translate> - <strong>{{reservations | totalPrice}} {{currency}}</strong></p>
         </div>
     </div>
     <div class="row toolbar-bottom">
         <div class="twelve columns">
             <p>
-                <a class="button button-primary" href="#/events">Select more seats</a>
-                <a class="button button-primary" ng-show="reservations.length > 0" href="#/checkout">Checkout &amp; Reductions</a>
-                <a class="button button-primary" ng-show="reservations.length > 0" ng-click="cancel()">Cancel</a>
+                <a class="button button-primary" href="#/events" translate>SELECT MORE SEATS</a>
+                <a class="button button-primary" ng-show="reservations.length > 0" href="#/checkout" translate>CHECKOUT AND REDUCTIONS</a>
+                <a class="button button-primary" ng-show="reservations.length > 0" ng-click="cancel()" translate>CANCEL</a>
             </p>
         </div>
     </div>

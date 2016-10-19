@@ -7,7 +7,7 @@
     <div class="twelve columns">
         <h2>{{event.name}}</h2>
         <p>{{event.dateandtime}}</p>
-        <ul>
+        <ul class="item-list">
             <li ng-repeat="block in event.blocks">
                 <a href="#/block/{{block.id}}">{{block.block.name}}</a>
             </li>

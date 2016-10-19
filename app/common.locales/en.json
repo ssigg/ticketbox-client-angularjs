@@ -1,0 +1,18 @@
+{
+  "SEATS": "Seats",
+  "SELECT MORE SEATS": "Select more seats",
+  "CHECKOUT AND REDUCTIONS": "Checkout & Reductions",
+  "CANCEL": "Cancel",
+  "REDUCED": "Reduced",
+  "FIRSTNAME": "Firstname",
+  "LASTNAME": "Lastname",
+  "EMAIL": "Email",
+  "MR": "Mr.",
+  "MRS": "Mrs.",
+  "FINISH RESERVERVATION": "Finish reservation",
+  "PLEASE SELECT A TITLE": "Please select a title",
+  "PLEASE ENTER A FIRSTNAME": "Please enter a firstname",
+  "PLEASE ENTER A LASTNAME": "Please enter a lastname",
+  "PLEASE ENTER A VALID EMAIL ADDRESS": "Please enter a valid email address",
+  "PLEASE FILL IN ALL FIELDS": "Please fill in all fields"
+}

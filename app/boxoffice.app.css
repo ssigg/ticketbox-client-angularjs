@@ -28,28 +28,6 @@ body {
     margin-top:9.5em;
 }
 
-.checkout.button {
-    width:100%;
-}
-
-.checkout.button.button-primary {
-    background-color:#3a7;
-    border-color:#3a7;
-    cursor: pointer;
-    margin:0;
-    font-size:1.5em;
-    padding:.1em;
-    height:2em;
-}
-
-.checkout.button.button-primary:hover, .checkout.button.button-primary:focus {
-    background-color:#195;
-    border-color:#195;
-    font-size:1.5em;
-    padding:.1em;
-    height:2em;
-}
-
 @media all and (max-width: 660px) {
     .toolbar a.button {
         width:100%;
