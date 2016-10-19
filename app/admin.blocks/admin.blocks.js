@@ -17,7 +17,7 @@ angular.module('ticketbox.admin.blocks', [
         var list = null;
 
         $scope.blocks = Block.query(function() {
-            list = itemListFactory(Block, $scope.blocks);
+            list = itemListFactory.create(Block, $scope.blocks);
         });
 
         $scope.save = function(block) {

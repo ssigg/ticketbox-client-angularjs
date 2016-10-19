@@ -8,16 +8,25 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
+    <link rel="icon" sizes="192x192" href="icon-192.png">
+    <link rel="icon" sizes="128x128" href="icon-128.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="icon-128.png">
+    <link rel="apple-touch-icon-precomposed" sizes="128x128" href="icon-128.png">
+    
     <!-- stylesheets -->
     <link rel="stylesheet" href="bower_components/skeleton-css/css/normalize.css">
     <link rel="stylesheet" href="bower_components/skeleton-css/css/skeleton.css">
+    <link rel="stylesheet" href="loading.css">
     <link rel="stylesheet" href="app.css">
     <link rel="stylesheet" href="customer.app.css">
     <!-- /stylesheets -->
 </head>
 <body>
 <div class="container">
-    <div ng-view></div>
+    <div id="loading" class="uil-ripple-css" style="transform:scale(0.6);"><div></div><div></div></div>
+    <div id="content" class="hide">
+        <ng-view>
+    </div>
 </div>
 <!-- scripts -->
 <script src="bower_components/angular/angular.js"></script>
@@ -25,6 +34,7 @@
 <script src="bower_components/angular-resource/angular-resource.js"></script>
 <script src="bower_components/underscore/underscore.js"></script>
 <script src="bower_components/ocanvas/index.js"></script>
+<script src="components/progressInterceptor/progressInterceptor.js"></script>
 <script src="customer.app.js"></script>
 <script src="customer.config/config.js"></script>
 <script src="components/api/api.js"></script>

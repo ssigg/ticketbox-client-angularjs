@@ -17,7 +17,7 @@ angular.module('ticketbox.admin.events', [
         var list = null;
 
         $scope.events = Event.query(function() {
-            list = itemListFactory(Event, $scope.events);
+            list = itemListFactory.create(Event, $scope.events);
         });
 
         $scope.save = function(event) {

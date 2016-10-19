@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="twelve columns">
+        <form ng-submit="add(block.id, namePattern, startSeatNumber, endSeatNumber, coordinates)">
+            <input type="text" ng-model="namePattern" placeholder="Name Pattern">
+            * use {i} where you want to put the seat number
+            <input type="number" ng-model="startSeatNumber" placeholder="lowest seat number" min="1" class="narrow">
+            <input type="number" ng-model="endSeatNumber" placeholder="highest seat number" min="1" class="narrow">
+            <input type="submit" class="button button-primary" value="add">
+            <a class="button button-primary" ng-click="removeAll()" ng-show="seats.length > 0">Remove all</a>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+        <ng-seat-definition src="block.seatplan_image_data_url" seats="seats" coordinates="coordinates">
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+        <ul>
+            <li ng-repeat="seat in seats">
+                {{seat.name}}
+                <a ng-click="remove(seat)" class="button button-primary">Remove</a>
+            </li>
+        </ul>
+    </div>
+</div>

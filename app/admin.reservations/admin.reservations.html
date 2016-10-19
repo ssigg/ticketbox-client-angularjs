@@ -8,7 +8,9 @@
         {{eventAggregate.event.name}} - {{eventAggregate.event.dateandtime}}
     </div>
     <div class="four columns">
-        <strong>{{eventAggregate.reservations.length}}</strong> Reservations<br>
-        <strong>{{eventAggregate.boxofficePurchases.length}}</strong> Boxoffice purchases<br>
+        <a href="#/event/{{eventAggregate.event.id}}/reservations">
+            <strong>{{eventAggregate.reservations.length}}</strong> Reservations<br>
+            <strong>{{eventAggregate.boxofficePurchases.length}}</strong> Boxoffice purchases
+        </a>
     </div>
 </div>

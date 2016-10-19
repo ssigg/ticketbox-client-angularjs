@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg id="svg2" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs id="defs7">
+    <style id="bx-google-fonts">@import url(https://fonts.googleapis.com/css?family=Archivo+Black:400);</style>
+  </defs>
+  <rect x="-0.218" y="0.772" width="512.435" height="510.456" style="fill: rgb(45, 45, 45);"/>
+  <path id="check-mark-4-icon" d="M 461.492 254.008 C 461.492 367.779 369.263 460.008 255.492 460.008 C 141.721 460.008 49.492 367.779 49.492 254.008 C 49.492 140.237 141.721 48.008 255.492 48.008 C 369.263 48.008 461.492 140.237 461.492 254.008 Z M 421.492 254.008 C 421.492 162.253 347.234 88.008 255.492 88.008 C 163.737 88.008 89.492 162.267 89.492 254.008 C 89.492 345.763 163.75 420.008 255.492 420.008 C 347.247 420.008 421.492 345.749 421.492 254.008 Z" style="fill-opacity: 1; fill: rgb(210, 210, 210);"/>
+  <text x="147.182" y="372.732" style="fill: rgb(210, 210, 210); font-family: &quot;Archivo Black&quot;; font-size: 300px; font-weight: bold; white-space: pre;">T</text>
+</svg>

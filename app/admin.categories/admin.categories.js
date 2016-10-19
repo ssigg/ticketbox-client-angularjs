@@ -19,7 +19,7 @@ angular.module('ticketbox.admin.categories', [
 
         var list = null;
         $scope.categories = Category.query(function() {
-            list = itemListFactory(Category, $scope.categories);
+            list = itemListFactory.create(Category, $scope.categories);
         });
 
         $scope.save = function(category) {

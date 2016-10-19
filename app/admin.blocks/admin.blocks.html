@@ -11,6 +11,8 @@
     <div class="four columns" ng-show="!block.isInEditMode">
         <a class="button button-primary" ng-click="delete(block)">delete</a>
         <a class="button button-primary" ng-click="block.isInEditMode = true">edit</a>
+        <a class="button button-primary" href="#/block/{{block.id}}/image">image</a>
+        <a class="button button-primary" href="#/block/{{block.id}}/seats">seats</a>
     </div>
     <!-- /view mode -->
 

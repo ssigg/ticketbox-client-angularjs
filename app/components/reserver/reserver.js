@@ -16,6 +16,11 @@ angular.module('ticketbox.components.reserver', [
                         seat.state = 'reservedbymyself';
                         seat.reservation_id = data.id;
                         basket.addReservation(data);
+                    }, function(response) {
+                        if (response.status === 409) {
+                            seat.state = 'reserved';
+                            alert('This seat is already reserved.');
+                        }
                     });
             },
             release: function(seat) {

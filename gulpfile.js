@@ -14,9 +14,13 @@ var bases = {
 };
 
 var paths = {
+    icons: [
+        'app/icon-*.png'
+    ],
     stylesheets: [
         'app/bower_components/skeleton-css/css/normalize.css',
         'app/bower_components/skeleton-css/css/skeleton.css',
+        'app/loading.css',
         'app/app.css'
     ],
     scripts: [
@@ -77,6 +81,9 @@ var paths = {
         ]
     },
     admin: {
+        icons: [
+            'app/admin-icon-*.png'
+        ],
         page: [
             'app/admin.html'
         ],
@@ -100,6 +107,11 @@ var paths = {
 gulp.task('customer-clean', function() {
     return gulp.src(bases.customer)
         .pipe(clean());
+});
+
+gulp.task('customer-icons', [ 'customer-clean' ], function() {
+    return gulp.src(paths.icons)
+        .pipe(gulp.dest(bases.customer));
 });
 
 gulp.task('customer-config', [ 'customer-clean' ], function() {
@@ -134,11 +146,16 @@ gulp.task('customer-page', [ 'customer-clean' ], function() {
         .pipe(gulp.dest(bases.customer));
 });
 
-gulp.task('customer', [ 'customer-config', 'customer-scripts', 'customer-stylesheets', 'customer-templates', 'customer-page' ]);
+gulp.task('customer', [ 'customer-config', 'customer-icons', 'customer-scripts', 'customer-stylesheets', 'customer-templates', 'customer-page' ]);
 
 gulp.task('boxoffice-clean', function() {
     return gulp.src(bases.boxoffice)
         .pipe(clean());
+});
+
+gulp.task('boxoffice-icons', [ 'boxoffice-clean' ], function() {
+    return gulp.src(paths.icons)
+        .pipe(gulp.dest(bases.boxoffice));
 });
 
 gulp.task('boxoffice-config', [ 'boxoffice-clean' ], function() {
@@ -173,11 +190,16 @@ gulp.task('boxoffice-page', [ 'boxoffice-clean' ], function() {
         .pipe(gulp.dest(bases.boxoffice));
 });
 
-gulp.task('boxoffice', [ 'boxoffice-config', 'boxoffice-scripts', 'boxoffice-stylesheets', 'boxoffice-templates', 'boxoffice-page' ]);
+gulp.task('boxoffice', [ 'boxoffice-config', 'boxoffice-icons', 'boxoffice-scripts', 'boxoffice-stylesheets', 'boxoffice-templates', 'boxoffice-page' ]);
 
 gulp.task('admin-clean', function() {
     return gulp.src(bases.admin)
         .pipe(clean());
+});
+
+gulp.task('admin-icons', [ 'admin-clean' ], function() {
+    return gulp.src(paths.admin.icons)
+        .pipe(gulp.dest(bases.admin));
 });
 
 gulp.task('admin-config', [ 'admin-clean' ], function() {
@@ -212,4 +234,4 @@ gulp.task('admin-page', [ 'admin-clean' ], function() {
         .pipe(gulp.dest(bases.admin));
 });
 
-gulp.task('admin', [ 'admin-config', 'admin-scripts', 'admin-stylesheets', 'admin-templates', 'admin-page' ]);
+gulp.task('admin', [ 'admin-config', 'admin-icons', 'admin-scripts', 'admin-stylesheets', 'admin-templates', 'admin-page' ]);
