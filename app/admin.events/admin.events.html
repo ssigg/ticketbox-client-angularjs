@@ -9,6 +9,7 @@
         {{event.name}} - {{event.dateandtime}}
     </div>
     <div class="four columns" ng-show="!event.isInEditMode">
+        <a class="button button-primary" href="#/event/{{event.id}}/blocks">blocks</a>
         <a class="button button-primary" ng-click="delete(event)">delete</a>
         <a class="button button-primary" ng-click="event.isInEditMode = true">edit</a>
     </div>

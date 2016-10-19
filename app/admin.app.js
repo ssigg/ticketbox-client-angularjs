@@ -6,6 +6,7 @@ angular.module('ticketbox.admin', [
     'ticketbox.components.api',
     'ticketbox.admin.dashboard',
     'ticketbox.admin.reservations.printout',
+    'ticketbox.admin.event.blocks',
     'ticketbox.admin.block.image',
     'ticketbox.admin.block.seats'])
 

@@ -1,0 +1,44 @@
+<div class="row admin-toolbar">
+    <div class="twelve columns">
+        <a class="button button-primary" href="#/dashboard">back</a>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+        <h2>Block assignment for "{{event.name}}"</h2>
+    </div>
+</div>
+<div class="row dashboard-content-row" ng-repeat="eventblock in event.blocks">
+    <!-- view mode -->
+    <div class="eight columns" ng-show="!eventblock.isInEditMode">
+        <p>{{eventblock.block.name}} - {{eventblock.category.name}}</p>
+    </div>
+    <div class="four columns" ng-show="!eventblock.isInEditMode">
+        <a class="button button-primary" ng-click="delete(eventblock)">delete</a>
+    </div>
+    <!-- /view mode -->
+
+    <!-- edit mode -->
+    <form ng-submit="save(eventblock)" ng-show="eventblock.isInEditMode">
+        <div class="eight columns">
+            <label for="eventblock-block_id">Block</label>
+            <select ng-model="eventblock.block_id" id="eventblock-block_id">
+                <option ng-repeat="block in blocks" value="{{block.id}}">{{block.name}}</option>
+            </select>
+            <label for="eventblock-category_id">Category</label>
+            <select ng-model="eventblock.category_id" id="eventblock-category_id">
+                <option ng-repeat="category in categories" value="{{category.id}}">{{category.name}}</option>
+            </select>
+        </div>
+        <div class="four columns">
+            <a class="button button-primary" ng-click="cancel()">cancel</a>
+            <input type="submit" class="button button-primary" value="save">
+        </div>
+    </form>
+    <!-- /edit mode -->
+</div>
+<div class="row dashboard-button-row" ng-show="event.blocks | isAnyEventblockTransient">
+    <div class="twelve columns">
+        <a class="button button-primary dashboard-list-button" ng-click="create()">add</a>
+    </div>
+</div>

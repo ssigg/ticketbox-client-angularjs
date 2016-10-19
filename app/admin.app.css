@@ -53,3 +53,7 @@ div.dashboard-button-row {
 div.dashboard-content-row input[type=number], div.dashboard-content-row input[type=text] {
     width:100%;
 }
+
+div.admin-toolbar {
+    padding:1em 0;
+}

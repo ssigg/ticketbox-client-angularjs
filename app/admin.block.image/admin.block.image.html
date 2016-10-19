@@ -1,15 +1,17 @@
+<div class="row admin-toolbar">
+    <div class="twelve columns">
+        <a class="button button-primary" href="#/dashboard">back</a>
+        <a class="button button-primary" ng-click="save(block)">save</a>
+    </div>
+</div>
 <div class="row">
     <div class="twelve columns">
         <h2>Edit image of block "{{block.name}}"</h2>
     </div>
 </div>
 <div class="row">
-    <div class="six columns">
+    <div class="twelve columns">
         <ng-image-upload ng-model="block.seatplan_image_data_url"></ng-image-upload>
-    </div>
-    <div class="six columns">
-        <a class="button button-primary" href="#/dashboard">cancel</a>
-        <a class="button button-primary" ng-click="save(block)">save</a>
     </div>
 </div>
 <div class="row">
