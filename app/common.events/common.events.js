@@ -2,6 +2,7 @@
 
 angular.module('ticketbox.common.events', [
     'ngRoute',
+    'ticketbox.config',
     'ticketbox.components.api',
     'ticketbox.common.toolbar'])
 
@@ -12,7 +13,9 @@ angular.module('ticketbox.common.events', [
         });
     })
 
-    .controller('EventsCtrl', function($scope, Event, $location) {
+    .controller('EventsCtrl', function($scope, Event, $location, administrator) {
+        $scope.administrator = administrator;
+        
         $scope.events = Event.query(function() {
             if ($scope.events.length == 1) {
                 $location.path('/event/' + $scope.events[0].id);

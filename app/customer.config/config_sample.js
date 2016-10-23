@@ -5,6 +5,12 @@ angular.module('ticketbox.config', [])
     .constant('api', '<ticketbox-server-url>')
     
     .constant('currency', '$')
+
+    .constant('administrator', {
+        'firstname': 'John',
+        'lastname': 'Doe',
+        'email': 'john.doe@example.com'
+    })
     
     .factory('styles', function() {
         return {
