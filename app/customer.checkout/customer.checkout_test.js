@@ -1,14 +1,20 @@
 'use strict';
 
 describe('ticketbox.customer.checkout', function () {
-    var scope, reservationUpdateSpy, orderSaveSpy, basketGetReservationsSpy, reserverReleaseReservationSpy;
+    var scope, translateUsesSpy, reservationUpdateSpy, orderSaveSpy, basketGetReservationsSpy, reserverReleaseReservationSpy;
     
     beforeEach(function () {
         angular.module('ticketbox.components.api',[]);
+        angular.module('pascalprecht.translate',[]);
         module('ticketbox.customer.checkout');
 
         inject(function (_$rootScope_, $controller) {
             scope = _$rootScope_.$new();
+
+            var translate = {
+                uses: function() { }
+            };
+            translateUsesSpy = spyOn(translate, 'uses').and.returnValue('en');
             
             var reservation = {
                 update: function() { }
@@ -33,7 +39,7 @@ describe('ticketbox.customer.checkout', function () {
             var routeParams = {
                 'blockId': 42
             };
-            $controller('CheckoutCtrl', {$scope: scope, Reservation: reservation, Order: order, basket: basket, reserver: reserver, currency: '$'});
+            $controller('CheckoutCtrl', {$scope: scope, $translate: translate, Reservation: reservation, Order: order, basket: basket, reserver: reserver, currency: '$'});
         });
     });
 
@@ -87,11 +93,18 @@ describe('ticketbox.customer.checkout', function () {
                     'title': 'title',
                     'firstname': 'firstname',
                     'lastname': 'lastname',
-                    'email' :  'email'
+                    'email' :  'email',
+                    'locale': 'en'
                 };
                 expect(orderSaveSpy).not.toHaveBeenCalled();
                 scope.createOrder(order.title, order.firstname, order.lastname, order.email);
                 expect(orderSaveSpy).toHaveBeenCalledWith(order);
+            });
+
+            it('should use the current locale', function() {
+                expect(translateUsesSpy).not.toHaveBeenCalled();
+                scope.createOrder('title', 'firstname', 'lastname', 'email');
+                expect(translateUsesSpy).toHaveBeenCalled();
             });
         });
     });

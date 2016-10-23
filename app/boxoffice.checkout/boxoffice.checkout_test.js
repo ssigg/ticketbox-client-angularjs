@@ -1,14 +1,20 @@
 'use strict';
 
 describe('ticketbox.boxoffice.checkout', function () {
-    var scope, reservationUpdateSpy, boxofficePurchaseSaveSpy, basketGetReservationsSpy, reserverReleaseReservationSpy;
+    var scope, translateUsesSpy, reservationUpdateSpy, boxofficePurchaseSaveSpy, basketGetReservationsSpy, reserverReleaseReservationSpy;
     
     beforeEach(function () {
         angular.module('ticketbox.components.api',[]);
+        angular.module('pascalprecht.translate',[]);
         module('ticketbox.boxoffice.checkout');
 
         inject(function (_$rootScope_, $controller) {
             scope = _$rootScope_.$new();
+
+            var translate = {
+                uses: function() { }
+            };
+            translateUsesSpy = spyOn(translate, 'uses').and.returnValue('en');
             
             var reservation = {
                 update: function() { }
@@ -33,7 +39,7 @@ describe('ticketbox.boxoffice.checkout', function () {
             var routeParams = {
                 'blockId': 42
             };
-            $controller('CheckoutCtrl', {$scope: scope, Reservation: reservation, BoxofficePurchase: boxofficePurchase, basket: basket, reserver: reserver, currency: '$'});
+            $controller('CheckoutCtrl', {$scope: scope, $translate: translate, Reservation: reservation, BoxofficePurchase: boxofficePurchase, basket: basket, reserver: reserver, currency: '$'});
         });
     });
 
@@ -85,7 +91,13 @@ describe('ticketbox.boxoffice.checkout', function () {
             it('should create order and save it', function() {
                 expect(boxofficePurchaseSaveSpy).not.toHaveBeenCalled();
                 scope.createBoxofficePurchase();
-                expect(boxofficePurchaseSaveSpy).toHaveBeenCalledWith({});
+                expect(boxofficePurchaseSaveSpy).toHaveBeenCalledWith({ locale: 'en' });
+            });
+
+            it('should use the current locale', function() {
+                expect(translateUsesSpy).not.toHaveBeenCalled();
+                scope.createBoxofficePurchase();
+                expect(translateUsesSpy).toHaveBeenCalled();
             });
         });
     });

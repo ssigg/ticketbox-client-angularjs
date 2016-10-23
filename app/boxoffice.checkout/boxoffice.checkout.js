@@ -14,7 +14,7 @@ angular.module('ticketbox.boxoffice.checkout', [
         });
     })
 
-    .controller('CheckoutCtrl', function($scope, $location, Reservation, BoxofficePurchase, basket, reserver, currency) {
+    .controller('CheckoutCtrl', function($scope, $location, $translate, Reservation, BoxofficePurchase, basket, reserver, currency) {
         $scope.reservations = basket.getReservations();
         $scope.currency = currency;
 
@@ -32,7 +32,9 @@ angular.module('ticketbox.boxoffice.checkout', [
         };
 
         $scope.createBoxofficePurchase = function() {
-            var purchase = { };
+            var purchase = {
+                locale: $translate.uses()
+            };
             BoxofficePurchase.save(purchase)
                 .$promise.then(function() {
                     basket.refreshReservations();

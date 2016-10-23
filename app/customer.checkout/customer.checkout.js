@@ -2,6 +2,7 @@
 
 angular.module('ticketbox.customer.checkout', [
     'ngRoute',
+    'pascalprecht.translate',
     'ticketbox.components.api',
     'ticketbox.components.reserver',
     'ticketbox.common.toolbar',
@@ -14,7 +15,7 @@ angular.module('ticketbox.customer.checkout', [
         });
     })
 
-    .controller('CheckoutCtrl', function($scope, $location, Reservation, Order, basket, reserver, currency) {
+    .controller('CheckoutCtrl', function($scope, $location, $translate, Reservation, Order, basket, reserver, currency) {
         $scope.reservations = basket.getReservations();
         $scope.currency = currency;
 
@@ -36,7 +37,8 @@ angular.module('ticketbox.customer.checkout', [
                 title: title,
                 firstname: firstname,
                 lastname: lastname,
-                email: email
+                email: email,
+                locale: $translate.uses()
             };
             Order.save(order)
                 .$promise.then(function() {
