@@ -1,17 +1,33 @@
-<div class="toolbar">
-    <div class="row toolbar-top">
-        <div class="twelve columns">
-            <div class="six columns">
-            <p class="reservations-count">{{reservations.length}} <translate>SEATS</translate> - <strong>{{reservations | totalPrice}} {{currency}}</strong></p>
-        </div>
+<div class="row header-top">
+    <div class="twelve columns">
+        <p class="reservations-count">{{reservations.length}} <translate>SEATS</translate> - <strong>{{reservations | totalPrice}} {{currency}}</strong></p>
     </div>
-    <div class="row toolbar-bottom">
-        <div class="twelve columns">
-            <p>
-                <a class="button button-primary" href="#/events" translate>SELECT MORE SEATS</a>
-                <a class="button button-primary" ng-show="reservations.length > 0" href="#/checkout" translate>CHECKOUT AND REDUCTIONS</a>
-                <a class="button button-primary" ng-show="reservations.length > 0" ng-click="cancel()" translate>CANCEL</a>
-            </p>
-        </div>
+</div>
+<div class="row header-bottom">
+    <div class="twelve columns">
+        <p>
+            <a class="button button-primary" ng-show="controller !== 'EventsCtrl'" href="#/events" translate>SELECT MORE SEATS (HEADER)</a>
+            <a class="button button-primary" ng-show="reservations.length > 0 && controller !== 'CheckoutCtrl'" href="#/checkout" translate>CHECKOUT AND REDUCTIONS (HEADER)</a>
+            <a class="button button-primary" ng-show="reservations.length > 0" ng-click="cancel()" translate>CANCEL (HEADER)</a>
+        </p>
+    </div>
+</div>
+<div class="row toolbar">
+    <div class="twelve columns">
+        <p>
+            <div class="reservations-count">
+                {{reservations.length}} <translate>SEATS</translate> - <strong>{{reservations | totalPrice}} {{currency}}</strong>
+            </div>
+            <div class="buttons desktop">
+                <a class="button button-primary" ng-show="controller !== 'EventsCtrl'" href="#/events" translate>SELECT MORE SEATS (TOOLBAR)</a>
+                <a class="button button-primary" ng-show="reservations.length > 0 && controller !== 'CheckoutCtrl'" href="#/checkout" translate>CHECKOUT AND REDUCTIONS (TOOLBAR)</a>
+                <a class="button button-primary" ng-show="reservations.length > 0" ng-click="cancel()" translate>CANCEL (TOOLBAR)</a>
+            </div>
+            <div class="buttons mobile">
+                <a class="button button-primary" ng-show="controller !== 'EventsCtrl'" href="#/events">+</a>
+                <a class="button button-primary" ng-show="reservations.length > 0 && controller !== 'CheckoutCtrl'" href="#/checkout">$</a>
+                <a class="button button-primary" ng-show="reservations.length > 0" ng-click="cancel()">⨉</a>
+            </div>
+         </p>
     </div>
 </div>

@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('ticketbox.common.toolbar', [
+    'ngRoute',
     'ticketbox.components.basket'])
 
     .directive('toolbar', function() {
@@ -12,7 +13,17 @@ angular.module('ticketbox.common.toolbar', [
         }
     })
 
-    .controller('ToolbarCtrl', function($scope, $location, reserver, basket, currency) {
+    .controller('ToolbarCtrl', function($scope, $route, $location, $window, reserver, basket, currency) {
+        $scope.controller = $route.current.controller;
+
+        angular.element($window).bind("scroll", function() {
+            if (this.pageYOffset >= 100) {
+                angular.element(document.getElementsByClassName('toolbar')[0]).addClass('visible');
+            } else {
+                angular.element(document.getElementsByClassName('toolbar')[0]).removeClass('visible');
+            }
+        });
+
         $scope.reservations = basket.getReservations();
         $scope.currency = currency;
         

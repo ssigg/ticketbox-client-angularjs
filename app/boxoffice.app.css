@@ -1,39 +1,72 @@
-.toolbar {
-    position:fixed;
-    top:0;
-    left:0;
-    background:#fff;
-    width:100%;
+.header-top {
+    margin:.5em 0 0 0;
 }
 
-.toolbar-top {
-    padding:1em .7em 0 .7em;
-    margin:0;
-    font-size:1.8em;
+.header-bottom {
+    margin:0 0 .5em 0;
+    border-bottom:3px solid #333;
 }
 
-.toolbar-top p {
-    padding:0;
-    margin:0;
-}
-
-.toolbar-bottom {
-    padding:0;
-    margin-bottom: 0.5em;
-    padding-bottom: 0.5em;
-    border-bottom: 3px solid #333;
-}
-
-body {
-    margin-top:9.5em;
+.reservations-count {
+    font-size:1.5em;
 }
 
 @media all and (max-width: 660px) {
-    .toolbar a.button {
+    .header a.button {
         width:100%;
     }
 
-    body {
-        margin-top:15em;
+    .header a.button {
+        display:block;
+        margin:.2em;
+    }
+}
+
+.toolbar {
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    padding:0 .5em .5em .5em;
+    height:70px;
+    background:#fff;
+    border-bottom:3px solid #333;
+}
+
+.toolbar.visible {
+    display:block;
+}
+
+.toolbar .reservations-count {
+    float:left;
+}
+
+.toolbar .buttons {
+    float:right;
+}
+
+.toolbar .mobile {
+    display:none;
+}
+
+.toolbar .desktop {
+    display:block;
+}
+
+@media all and (max-width: 660px) {
+    .toolbar .mobile {
+        display:block;
+    }
+
+    .toolbar .desktop {
+        display:none;
+    }
+
+    .toolbar .buttons .button {
+        padding:0 1em;
+        line-height:2.5em;
+        font-size:1.2em;
+        height:2.5em;
     }
 }

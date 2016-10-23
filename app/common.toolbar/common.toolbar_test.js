@@ -15,6 +15,12 @@ describe('ticketbox.common.toolbar', function () {
             };
             pathSpy = spyOn(location, 'path');
 
+            var route = {
+                current: {
+                    controller: 'Ctrl'
+                }
+            };
+
             var reserver = {
                 releaseReservation: function() { }
             };
@@ -25,7 +31,7 @@ describe('ticketbox.common.toolbar', function () {
             };
             getReservationsSpy = spyOn(basket, 'getReservations').and.returnValue([ 'reservation 1', 'reservation 2' ]);
 
-            $controller('ToolbarCtrl', {$scope: scope, $location: location, reserver: reserver, basket: basket, currency: '$'});
+            $controller('ToolbarCtrl', {$scope: scope, $location: location, $route: route, reserver: reserver, basket: basket, currency: '$'});
         });
     });
 
