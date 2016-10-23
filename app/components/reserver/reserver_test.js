@@ -2,9 +2,16 @@
 
 describe('ticketbox.components.reserver', function () {
     describe('reserver', function () {
-        var reserver, saveSpy, deleteSpy;
+        var translateUseSpy, reserver, saveSpy, deleteSpy;
 
+        angular.module('pascalprecht.translate',[]);
         beforeEach(module('ticketbox.components.reserver', function ($provide) {
+            var translate = {
+                use: function() { }
+            };
+            translateUseSpy = spyOn(translate, 'use').and.returnValue('en');
+            $provide.value('$translate', translate);
+
             var reservation = {
                 save: function() { },
                 delete: function () { }

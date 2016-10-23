@@ -132,6 +132,8 @@ describe('ticketbox.components.seatplan', function () {
     describe('draw', function () {
         var draw;
 
+        angular.module('pascalprecht.translate',[]);
+
         beforeEach(module('ticketbox.components.seatplan', function ($provide) {
             var styles = {
                 'free': {'background': 'fb', 'stroke': 'fs', 'opacity': 0.0},

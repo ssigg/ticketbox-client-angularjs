@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('ticketbox.components.reserver', [
+    'pascalprecht.translate',
     'ticketbox.components.basket',
     'ticketbox.components.api'])
 
-    .service('reserver', function(Reservation, basket) {
+    .service('reserver', function($translate, Reservation, basket) {
         return {
             reserve: function(eventId, seat) {
                 var reservation = {
@@ -19,7 +20,11 @@ angular.module('ticketbox.components.reserver', [
                     }, function(response) {
                         if (response.status === 409) {
                             seat.state = 'reserved';
-                            alert('This seat is already reserved.');
+                            $translate('SEAT IS ALREADY RESERVED').then(function (message) {
+                                alert(message);
+                            }, function (translationId) {
+                                alert(translationId);
+                            });
                         }
                     });
             },
