@@ -1,7 +1,7 @@
 'use strict';
 
 describe('ticketbox.boxoffice.checkout', function () {
-    var scope, translateUsesSpy, reservationUpdateSpy, boxofficePurchaseSaveSpy, basketGetReservationsSpy, reserverReleaseReservationSpy;
+    var scope, translateUseSpy, reservationUpdateSpy, boxofficePurchaseSaveSpy, basketGetReservationsSpy, reserverReleaseReservationSpy;
     
     beforeEach(function () {
         angular.module('ticketbox.components.api',[]);
@@ -12,9 +12,9 @@ describe('ticketbox.boxoffice.checkout', function () {
             scope = _$rootScope_.$new();
 
             var translate = {
-                uses: function() { }
+                use: function() { }
             };
-            translateUsesSpy = spyOn(translate, 'uses').and.returnValue('en');
+            translateUseSpy = spyOn(translate, 'use').and.returnValue('en');
             
             var reservation = {
                 update: function() { }
@@ -95,9 +95,9 @@ describe('ticketbox.boxoffice.checkout', function () {
             });
 
             it('should use the current locale', function() {
-                expect(translateUsesSpy).not.toHaveBeenCalled();
+                expect(translateUseSpy).not.toHaveBeenCalled();
                 scope.createBoxofficePurchase();
-                expect(translateUsesSpy).toHaveBeenCalled();
+                expect(translateUseSpy).toHaveBeenCalled();
             });
         });
     });

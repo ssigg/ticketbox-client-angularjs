@@ -33,7 +33,7 @@ angular.module('ticketbox.boxoffice.checkout', [
 
         $scope.createBoxofficePurchase = function() {
             var purchase = {
-                locale: $translate.uses()
+                locale: $translate.use()
             };
             BoxofficePurchase.save(purchase)
                 .$promise.then(function() {

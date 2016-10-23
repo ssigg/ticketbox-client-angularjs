@@ -38,7 +38,7 @@ angular.module('ticketbox.customer.checkout', [
                 firstname: firstname,
                 lastname: lastname,
                 email: email,
-                locale: $translate.uses()
+                locale: $translate.use()
             };
             Order.save(order)
                 .$promise.then(function() {

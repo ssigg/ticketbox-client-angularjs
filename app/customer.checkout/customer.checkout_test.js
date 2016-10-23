@@ -1,7 +1,7 @@
 'use strict';
 
 describe('ticketbox.customer.checkout', function () {
-    var scope, translateUsesSpy, reservationUpdateSpy, orderSaveSpy, basketGetReservationsSpy, reserverReleaseReservationSpy;
+    var scope, translateUseSpy, reservationUpdateSpy, orderSaveSpy, basketGetReservationsSpy, reserverReleaseReservationSpy;
     
     beforeEach(function () {
         angular.module('ticketbox.components.api',[]);
@@ -12,9 +12,9 @@ describe('ticketbox.customer.checkout', function () {
             scope = _$rootScope_.$new();
 
             var translate = {
-                uses: function() { }
+                use: function() { }
             };
-            translateUsesSpy = spyOn(translate, 'uses').and.returnValue('en');
+            translateUseSpy = spyOn(translate, 'use').and.returnValue('en');
             
             var reservation = {
                 update: function() { }
@@ -102,9 +102,9 @@ describe('ticketbox.customer.checkout', function () {
             });
 
             it('should use the current locale', function() {
-                expect(translateUsesSpy).not.toHaveBeenCalled();
+                expect(translateUseSpy).not.toHaveBeenCalled();
                 scope.createOrder('title', 'firstname', 'lastname', 'email');
-                expect(translateUsesSpy).toHaveBeenCalled();
+                expect(translateUseSpy).toHaveBeenCalled();
             });
         });
     });
