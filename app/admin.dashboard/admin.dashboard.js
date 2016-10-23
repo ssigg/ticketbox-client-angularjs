@@ -2,6 +2,7 @@
 
 angular.module('ticketbox.admin.dashboard', [
     'ngRoute',
+    'ticketbox.config',
     'ticketbox.admin.reservations',
     'ticketbox.admin.events',
     'ticketbox.admin.blocks',
@@ -14,4 +15,8 @@ angular.module('ticketbox.admin.dashboard', [
         });
     })
 
-    .controller('DashboardCtrl', function() { });
+    .controller('DashboardCtrl', function($scope, $http, api) {
+        $scope.migrate = function() {
+            $http.post(api + '/migrate', {});
+        }
+    });
