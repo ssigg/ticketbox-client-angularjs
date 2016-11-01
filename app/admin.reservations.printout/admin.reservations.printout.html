@@ -14,11 +14,14 @@
         <h2>Customer Reservations</h2>
     </div>
 </div>
-<div class="row" ng-repeat="order in eventAggregate.reservations">
+<div class="row" ng-repeat="reservationAggregate in eventAggregate.reservations">
     <div class="twelve columns">
+        <p><strong>{{reservationAggregate.metaData.order.firstname}} {{reservationAggregate.metaData.order.lastname}} - {{reservationAggregate.metaData.totalPrice}} {{currency}}:</strong></p>
         <ul>
-            <li ng-repeat="reservation in order">
-                {{reservation.seat_id}}
+            <li ng-repeat="reservation in reservationAggregate.reservations">
+                {{reservation.seat.name}}
+                <span ng-show="reservation.reservation.is_reduced"> (reduced)</span>
+                - <strong>{{reservation.price}} {{currency}}</strong>
             </li>
         </ul>
     </div>
@@ -28,11 +31,11 @@
         <h2>Boxoffice Purchases</h2>
     </div>
 </div>
-<div class="row" ng-repeat="order in eventAggregate.boxofficePurchases">
+<div class="row">
     <div class="twelve columns">
         <ul>
-            <li ng-repeat="reservation in order">
-                {{reservation.seat_id}}
+            <li ng-repeat="purchase in eventAggregate.boxofficePurchases">
+                {{purchase.seat.name}} - <strong>{{purchase.price}} {{currency}}</strong>
             </li>
         </ul>
     </div>
