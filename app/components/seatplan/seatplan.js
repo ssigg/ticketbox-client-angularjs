@@ -2,8 +2,7 @@
 
 angular.module('ticketbox.components.seatplan', [
     'ticketbox.config',
-    'ticketbox.components.canvas',
-    'ticketbox.components.reserver'])
+    'ticketbox.components.canvas'])
 
     .service('coordinates', function() {
         return {
@@ -14,51 +13,6 @@ angular.module('ticketbox.components.seatplan', [
                     { x: seat.x2, y: seat.y2 },
                     { x: seat.x3, y: seat.y3 }
                 ];
-            }
-        };
-    })
-
-    .service('handlers', function (draw, reserver) {
-        return {
-            draw: function (eventid, seat, element) {
-                draw.applySeatStyle(element, seat.state, false);
-            },
-            click: function (eventid, seat, element) {
-                if (seat.state === 'free') {
-                    reserver.reserve(eventid, seat);
-                } else if (seat.state === 'reservedbymyself') {
-                    reserver.release(seat);
-                }
-            },
-            mouseenter: function (eventid, seat, element) {
-                draw.applySeatStyle(element, seat.state, true);
-            },
-            mouseleave: function (eventid, seat, element) {
-                draw.applySeatStyle(element, seat.state, false);
-            }
-        };
-    })
-
-    .service('draw', function (styles) {
-        return {
-            applySeatStyle: function (element, reservationState, isHovered) {
-                var style = {};
-                if (reservationState === 'free') {
-                    if (isHovered) {
-                        style = styles.freeHover;
-                    } else {
-                        style = styles.free;
-                    }
-                } else if (reservationState === 'reservedbymyself') {
-                    style = styles.reservedbymyself;
-                } else if (reservationState === 'reserved') {
-                    style = styles.reserved;
-                } else if (reservationState === 'ordered') {
-                    style = styles.reserved;
-                }
-                element.fill = style.background;
-                element.stroke = style.stroke;
-                element.opacity = style.opacity;
             }
         };
     })

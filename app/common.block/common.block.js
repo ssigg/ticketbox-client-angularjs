@@ -3,6 +3,7 @@
 angular.module('ticketbox.common.block', [
     'ngRoute',
     'ticketbox.components.api',
+    'ticketbox.common.seatplan.handlers',
     'ticketbox.components.seatplan',
     'ticketbox.common.toolbar'])
 

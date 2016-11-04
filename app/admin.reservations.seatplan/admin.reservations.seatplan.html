@@ -1,0 +1,17 @@
+<div class="row admin-toolbar no-print">
+    <div class="twelve columns">
+        <a class="button button-primary" href="#/dashboard">back</a>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+        <h2>{{event.name}}</h2>
+        <p>{{event.location}}, {{event.dateandtime}}</p>
+    </div>
+</div>
+<div class="row" ng-repeat="block in blocks">
+    <div class="twelve columns">
+        <p><strong>{{block.block.name}}</strong></p>
+        <ng-seat-selection src="block.block.seatplan_image_data_url" eventid="event.id" seats="block.seats"> 
+    </div>
+</div>

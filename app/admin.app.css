@@ -1,3 +1,22 @@
+@media print {
+    .no-print {
+        display:none;
+    }
+    h2 {
+        margin:0;
+        padding:0;
+    }
+    p {
+        margin:0;
+        padding:0;
+    }
+    canvas {
+        max-height:230mm;
+        margin:0;
+        padding:0;
+    }
+}
+
 div.dashboard-title-row {
     margin-top:1em;
 }
@@ -30,6 +49,12 @@ div.dashboard-content-row .button.button-primary {
 div.dashboard-content-row .button.button-primary:hover, div.dashboard-content-row .button.button-primary:focus, div.dashboard-content-row .button.button-primary:hover, div.dashboard-content-row .button.button-primary:focus {
     background-color:#333;
     border-color:#333;
+}
+
+div.dashboard-content-row.danger-message {
+    background-color:#c11;
+    font-size:1.2em;
+    color:#fff;
 }
 
 @media all and (max-width: 550px) {
