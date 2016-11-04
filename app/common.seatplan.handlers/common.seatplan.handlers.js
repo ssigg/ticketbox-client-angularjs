@@ -20,6 +20,8 @@ angular.module('ticketbox.common.seatplan.handlers', [
                     style = styles.reserved;
                 } else if (reservationState === 'ordered') {
                     style = styles.reserved;
+                } else if (reservationState === 'sold') {
+                    style = styles.reserved;
                 }
                 element.fill = style.background;
                 element.stroke = style.stroke;

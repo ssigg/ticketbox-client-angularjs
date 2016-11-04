@@ -21,6 +21,10 @@ angular.module('ticketbox.admin.reservations.seatplan', [
                     style = styles.free;
                 } else if (reservationState === 'ordered') {
                     style = styles.ordered;
+                } else if (reservationState === 'sold') {
+                    style = styles.sold;
+                } else {
+                    style = styles.free;
                 }
                 element.fill = style.background;
                 element.stroke = style.stroke;
