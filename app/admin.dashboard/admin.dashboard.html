@@ -1,9 +1,20 @@
 <reservations></reservations>
-<events></events>
-<blocks></blocks>
-<categories></categories>
-<div class="row dashboard-content-row">
-    <div class="twelve columns">
-        <a ng-click="migrate()" class="button button-primary">migrate</a>
+<div class="row dashboard-content-row danger-message" ng-show="!showEditArea">
+    <div class="eight columns">
+        <p>Danger zone! You may not want to edit the things below if reservations started for your next event.</p>
+    </div>
+    <div class="four columns">
+        <a class="button button-primary" ng-click="showEditArea = !showEditarea">Show anyway</a>
+    </div>
+</div>
+
+<div ng-show="showEditArea">
+    <events></events>
+    <blocks></blocks>
+    <categories></categories>
+    <div class="row dashboard-content-row">
+        <div class="twelve columns">
+            <a ng-click="migrate()" class="button button-primary">migrate</a>
+        </div>
     </div>
 </div>
