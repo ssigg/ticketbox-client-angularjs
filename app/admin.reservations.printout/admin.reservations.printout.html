@@ -1,6 +1,6 @@
 <div class="row admin-toolbar">
     <div class="twelve columns">
-        <a class="button button-primary" href="#/dashboard">back</a>
+        <a class="button button-primary" href="#/dashboard" translate>BACK BUTTON</a>
     </div>
 </div>
 <div class="row">
@@ -11,7 +11,7 @@
 </div>
 <div class="row">
     <div class="six columns">
-        <h3>Customer Reservations</h3>
+        <h3 translate>RESERVATIONS LIST TITLE</h3>
         <div ng-repeat="reservationAggregate in eventAggregate.reservations">
             <p><strong>{{reservationAggregate.metaData.order.firstname}} {{reservationAggregate.metaData.order.lastname}} - {{reservationAggregate.metaData.totalPrice}} {{currency}}:</strong></p>
             <ul>
@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="six columns">
-        <h3>Boxoffice Purchases</h3>
+        <h3 translate>BOXOFFICE PURCHASES LIST TITLE</h3>
         <ul>
             <li ng-repeat="purchase in eventAggregate.boxofficePurchases">
                 {{purchase.seat.name}} - <strong>{{purchase.price}} {{currency}}</strong>

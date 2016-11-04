@@ -1,0 +1,14 @@
+{
+  "DANGER ZONE ALERT": "Achtung! Ab hier sollten beim aktiven System nur im absoluten Notfall Änderungen nötig sein.",
+  "DANGER ZONE BUTTON": "Trotzdem anzeigen",
+  "MIGRATE BUTTON": "Datenbank migrieren",
+  "MIGRATE QUESTION": "Soll die Datenbank wirklich migriert werden? Dies könnte zu Datenverlust führen.",
+  "RESERVATIONS TITLE": "Reservationen",
+  "NUMBER OF RESERVATIONS LABEL": "Plätze über die Webseite reserviert",
+  "NUMBER OF BOXOFFICE PURCHASES LABEL": "Plätze in Vorverkaufsstellen verkauft",
+  "RESERVATIONS BUTTON": "Reservationen",
+  "SEATPLAN BUTTON": "Sitzplan",
+  "BACK BUTTON": "Zurück",
+  "RESERVATIONS LIST TITLE": "Reservationen über die Webseite",
+  "BOXOFFICE PURCHASES LIST TITLE": "In den Vorverkaufsstellen verkaufte Plätze"
+}

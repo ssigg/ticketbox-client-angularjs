@@ -1,0 +1,14 @@
+{
+  "DANGER ZONE ALERT": "Danger zone! You may not want to edit the things below if reservations started for your next event.",
+  "DANGER ZONE BUTTON": "Show anyway",
+  "MIGRATE BUTTON": "Migrate database",
+  "MIGRATE QUESTION": "Should the database really be migrated? This could lead to data loss.",
+  "RESERVATIONS TITLE": "Reservations",
+  "NUMBER OF RESERVATIONS LABEL": "Seats reserved directly",
+  "NUMBER OF BOXOFFICE PURCHASES LABEL": "Seats sold by a box office",
+  "RESERVATIONS BUTTON": "Reservations",
+  "SEATPLAN BUTTON": "Seat plan",
+  "BACK BUTTON": "Back",
+  "RESERVATIONS LIST TITLE": "Directly reserved seats",
+  "BOXOFFICE PURCHASES LIST TITLE": "Seats sold by a box office"
+}

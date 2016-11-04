@@ -1,10 +1,10 @@
 <reservations></reservations>
 <div class="row dashboard-content-row danger-message" ng-show="!showEditArea">
     <div class="eight columns">
-        <p>Danger zone! You may not want to edit the things below if reservations started for your next event.</p>
+        <p translate>DANGER ZONE ALERT</p>
     </div>
     <div class="four columns">
-        <a class="button button-primary" ng-click="showEditArea = !showEditarea">Show anyway</a>
+        <a class="button button-primary" ng-click="show()" translate>DANGER ZONE BUTTON</a>
     </div>
 </div>
 
@@ -14,7 +14,7 @@
     <categories></categories>
     <div class="row dashboard-content-row">
         <div class="twelve columns">
-            <a ng-click="migrate()" class="button button-primary">migrate</a>
+            <a ng-click="migrate()" class="button button-primary" translate>MIGRATE BUTTON</a>
         </div>
     </div>
 </div>

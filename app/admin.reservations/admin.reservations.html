@@ -1,16 +1,16 @@
 <div class="row dashboard-title-row">
     <div class="twelve columns">
-        <h2>Reservations</h2>
+        <h2 translate>RESERVATIONS TITLE</h2>
     </div>
 </div>
 <div class="row dashboard-content-row" ng-repeat="eventAggregate in eventAggregates">
     <div class="eight columns">
         {{eventAggregate.event.name}} - {{eventAggregate.event.dateandtime}}<br>
-        <strong>{{eventAggregate.reservations.length}}</strong> Reservations<br>
-        <strong>{{eventAggregate.boxofficePurchases.length}}</strong> Boxoffice purchases
+        <strong>{{eventAggregate.reservations.length}}</strong> <translate>NUMBER OF RESERVATIONS LABEL</translate><br>
+        <strong>{{eventAggregate.boxofficePurchases.length}}</strong> <translate>NUMBER OF BOXOFFICE PURCHASES LABEL</translate>
     </div>
     <div class="four columns">
-        <a class="button button-primary" href="#/event/{{eventAggregate.event.id}}/reservations">Reservations</a>
-        <a class="button button-primary" href="#/event/{{eventAggregate.event.id}}/seatplan">Seatplan</a>
+        <a class="button button-primary" href="#/event/{{eventAggregate.event.id}}/reservations" translate>RESERVATIONS BUTTON</a>
+        <a class="button button-primary" href="#/event/{{eventAggregate.event.id}}/seatplan" translate>SEATPLAN BUTTON</a>
     </div>
 </div>

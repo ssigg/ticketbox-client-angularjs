@@ -2,6 +2,7 @@
 
 angular.module('ticketbox.admin.dashboard', [
     'ngRoute',
+    'pascalprecht.translate',
     'ticketbox.config',
     'ticketbox.admin.reservations',
     'ticketbox.admin.events',
@@ -15,8 +16,25 @@ angular.module('ticketbox.admin.dashboard', [
         });
     })
 
-    .controller('DashboardCtrl', function($scope, $http, api) {
+    .controller('DashboardCtrl', function($scope, $translate, $http, api) {
+        $scope.showEditArea = false;
+        $scope.show = function() {
+            $scope.showEditArea = true;
+        };
+
         $scope.migrate = function() {
+            $translate('MIGRATE QUESTION').then(function (message) {
+                if (confirm(message)) {
+                    _doMigration();
+                }
+            }, function (translationId) {
+                if (confirm(translationId)) {
+                    _doMigration();
+                }
+            })
+        };
+
+        function _doMigration() {
             $http.post(api + '/migrate', {});
-        }
+        };
     });
