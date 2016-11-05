@@ -103,6 +103,9 @@ var paths = {
             'app/admin.*/*.js',
             '!app/admin.*/*_test.js' 
         ],
+        locales: [
+            'app/admin.locales/*.json'
+        ],
         templates: [
             'app/admin.*/*.html'
         ]
@@ -223,7 +226,7 @@ gulp.task('admin-config', [ 'admin-clean' ], function() {
 });
 
 gulp.task('admin-locales', [ 'admin-clean' ], function() {
-    return gulp.src(paths.locales, { base: './app/' })
+    return gulp.src(paths.admin.locales, { base: './app/' })
         .pipe(gulp.dest(bases.admin));
 });
 
