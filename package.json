@@ -25,7 +25,8 @@
     "gulp-uglify": "^2.0.0",
     "gulp-clean-css": "^2.0.12",
     "gulp-replace": "^0.5.4",
-    "gulp-rename": "^1.2.2"
+    "gulp-rename": "^1.2.2",
+    "gulp-zip": "^3.2.0"
   },
   "scripts": {
     "postinstall": "bower install --config.interactive=false",
@@ -34,6 +35,6 @@
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js  --single-run",
-    "deploy": "npm install; gulp customer; gulp boxoffice; gulp admin"
+    "deploy": "npm install; gulp zip"
   }
 }

@@ -6,11 +6,13 @@ var uglify = require('gulp-uglify');
 var cleanCss = require('gulp-clean-css');
 var replace = require('gulp-replace');
 var rename = require('gulp-rename');
+var zip = require('gulp-zip');
 
 var bases = {
     customer: 'dist/customer/',
     boxoffice: 'dist/boxoffice/',
-    admin: 'dist/admin/'
+    admin: 'dist/admin/',
+    root: 'dist/'
 };
 
 var paths = {
@@ -46,7 +48,7 @@ var paths = {
             'app/customer.html'
         ],
         config: [
-            'app/customer.config/*.js'
+            'app/customer.config/*_sample.js'
         ],
         stylesheets: [
             'app/customer.app.css'
@@ -68,7 +70,7 @@ var paths = {
             'app/boxoffice.html'
         ],
         config: [
-            'app/boxoffice.config/*.js'
+            'app/boxoffice.config/*_sample.js'
         ],
         stylesheets: [
             'app/boxoffice.app.css'
@@ -93,7 +95,7 @@ var paths = {
             'app/admin.html'
         ],
         config: [
-            'app/admin.config/*.js'
+            'app/admin.config/*_sample.js'
         ],
         stylesheets: [
             'app/admin.app.css'
@@ -112,46 +114,46 @@ var paths = {
     }
 };
 
-gulp.task('customer-clean', function() {
-    return gulp.src(bases.customer)
+gulp.task('clean', function() {
+    return gulp.src(bases.root)
         .pipe(clean());
 });
 
-gulp.task('customer-icons', [ 'customer-clean' ], function() {
+gulp.task('customer-icons', [ 'clean' ], function() {
     return gulp.src(paths.icons)
         .pipe(gulp.dest(bases.customer));
 });
 
-gulp.task('customer-config', [ 'customer-clean' ], function() {
+gulp.task('customer-config', [ 'clean' ], function() {
     return gulp.src(paths.customer.config)
         .pipe(gulp.dest(bases.customer));
 });
 
-gulp.task('customer-locales', [ 'customer-clean' ], function() {
+gulp.task('customer-locales', [ 'clean' ], function() {
     return gulp.src(paths.locales, { base: './app/' })
         .pipe(gulp.dest(bases.customer));
 });
 
-gulp.task('customer-scripts', [ 'customer-clean' ], function() {
+gulp.task('customer-scripts', [ 'clean' ], function() {
     return gulp.src(paths.scripts.concat(paths.customer.scripts))
         .pipe(uglify({ mangle: false }))
         .pipe(concat('app.min.js'))
         .pipe(gulp.dest(bases.customer));
 });
 
-gulp.task('customer-stylesheets', [ 'customer-clean' ], function() {
+gulp.task('customer-stylesheets', [ 'clean' ], function() {
     return gulp.src(paths.stylesheets.concat(paths.customer.stylesheets))
         .pipe(cleanCss())
         .pipe(concat('app.min.css'))
         .pipe(gulp.dest(bases.customer));
 });
 
-gulp.task('customer-templates', [ 'customer-clean' ], function() {
+gulp.task('customer-templates', [ 'clean' ], function() {
     return gulp.src(paths.templates.concat(paths.customer.templates), { base: './app/' })
         .pipe(gulp.dest(bases.customer));
 });
 
-gulp.task('customer-page', [ 'customer-clean' ], function() {
+gulp.task('customer-page', [ 'clean' ], function() {
     return gulp.src(paths.customer.page)
         .pipe(replace(/<!-- stylesheets -->([\w\W\s]*)<!-- \/stylesheets -->/, '<link rel="stylesheet" href="app.min.css">'))
         .pipe(replace(/<!-- scripts -->([\w\W\s]*)<!-- \/scripts -->/, '<script src="app.min.js"></script>\n<script src="config.js"></script>'))
@@ -161,46 +163,41 @@ gulp.task('customer-page', [ 'customer-clean' ], function() {
 
 gulp.task('customer', [ 'customer-config', 'customer-icons', 'customer-locales', 'customer-scripts', 'customer-stylesheets', 'customer-templates', 'customer-page' ]);
 
-gulp.task('boxoffice-clean', function() {
-    return gulp.src(bases.boxoffice)
-        .pipe(clean());
-});
-
-gulp.task('boxoffice-icons', [ 'boxoffice-clean' ], function() {
+gulp.task('boxoffice-icons', [ 'clean' ], function() {
     return gulp.src(paths.icons)
         .pipe(gulp.dest(bases.boxoffice));
 });
 
-gulp.task('boxoffice-config', [ 'boxoffice-clean' ], function() {
+gulp.task('boxoffice-config', [ 'clean' ], function() {
     return gulp.src(paths.boxoffice.config)
         .pipe(gulp.dest(bases.boxoffice));
 });
 
-gulp.task('boxoffice-locales', [ 'boxoffice-clean' ], function() {
+gulp.task('boxoffice-locales', [ 'clean' ], function() {
     return gulp.src(paths.locales, { base: './app/' })
         .pipe(gulp.dest(bases.boxoffice));
 });
 
-gulp.task('boxoffice-scripts', [ 'boxoffice-clean' ], function() {
+gulp.task('boxoffice-scripts', [ 'clean' ], function() {
     return gulp.src(paths.scripts.concat(paths.boxoffice.scripts))
         .pipe(uglify({ mangle: false }))
         .pipe(concat('app.min.js'))
         .pipe(gulp.dest(bases.boxoffice));
 });
 
-gulp.task('boxoffice-stylesheets', [ 'boxoffice-clean' ], function() {
+gulp.task('boxoffice-stylesheets', [ 'clean' ], function() {
     return gulp.src(paths.stylesheets.concat(paths.boxoffice.stylesheets))
         .pipe(cleanCss())
         .pipe(concat('app.min.css'))
         .pipe(gulp.dest(bases.boxoffice));
 });
 
-gulp.task('boxoffice-templates', [ 'boxoffice-clean' ], function() {
+gulp.task('boxoffice-templates', [ 'clean' ], function() {
     return gulp.src(paths.templates.concat(paths.boxoffice.templates), { base: './app/' })
         .pipe(gulp.dest(bases.boxoffice));
 });
 
-gulp.task('boxoffice-page', [ 'boxoffice-clean' ], function() {
+gulp.task('boxoffice-page', [ 'clean' ], function() {
     return gulp.src(paths.boxoffice.page)
         .pipe(replace(/<!-- stylesheets -->([\w\W\s]*)<!-- \/stylesheets -->/, '<link rel="stylesheet" href="app.min.css">'))
         .pipe(replace(/<!-- scripts -->([\w\W\s]*)<!-- \/scripts -->/, '<script src="app.min.js"></script>\n<script src="config.js"></script>'))
@@ -210,46 +207,41 @@ gulp.task('boxoffice-page', [ 'boxoffice-clean' ], function() {
 
 gulp.task('boxoffice', [ 'boxoffice-config', 'boxoffice-icons', 'boxoffice-locales', 'boxoffice-scripts', 'boxoffice-stylesheets', 'boxoffice-templates', 'boxoffice-page' ]);
 
-gulp.task('admin-clean', function() {
-    return gulp.src(bases.admin)
-        .pipe(clean());
-});
-
-gulp.task('admin-icons', [ 'admin-clean' ], function() {
+gulp.task('admin-icons', [ 'clean' ], function() {
     return gulp.src(paths.admin.icons)
         .pipe(gulp.dest(bases.admin));
 });
 
-gulp.task('admin-config', [ 'admin-clean' ], function() {
+gulp.task('admin-config', [ 'clean' ], function() {
     return gulp.src(paths.admin.config)
         .pipe(gulp.dest(bases.admin));
 });
 
-gulp.task('admin-locales', [ 'admin-clean' ], function() {
+gulp.task('admin-locales', [ 'clean' ], function() {
     return gulp.src(paths.admin.locales, { base: './app/' })
         .pipe(gulp.dest(bases.admin));
 });
 
-gulp.task('admin-scripts', [ 'admin-clean' ], function() {
+gulp.task('admin-scripts', [ 'clean' ], function() {
     return gulp.src(paths.scripts.concat(paths.admin.scripts))
         .pipe(uglify({ mangle: false }))
         .pipe(concat('app.min.js'))
         .pipe(gulp.dest(bases.admin));
 });
 
-gulp.task('admin-stylesheets', [ 'admin-clean' ], function() {
+gulp.task('admin-stylesheets', [ 'clean' ], function() {
     return gulp.src(paths.stylesheets.concat(paths.admin.stylesheets))
         .pipe(cleanCss())
         .pipe(concat('app.min.css'))
         .pipe(gulp.dest(bases.admin));
 });
 
-gulp.task('admin-templates', [ 'admin-clean' ], function() {
+gulp.task('admin-templates', [ 'clean' ], function() {
     return gulp.src(paths.templates.concat(paths.admin.templates), { base: './app/' })
         .pipe(gulp.dest(bases.admin));
 });
 
-gulp.task('admin-page', [ 'admin-clean' ], function() {
+gulp.task('admin-page', [ 'clean' ], function() {
     return gulp.src(paths.admin.page)
         .pipe(replace(/<!-- stylesheets -->([\w\W\s]*)<!-- \/stylesheets -->/, '<link rel="stylesheet" href="app.min.css">'))
         .pipe(replace(/<!-- scripts -->([\w\W\s]*)<!-- \/scripts -->/, '<script src="app.min.js"></script>\n<script src="config.js"></script>'))
@@ -258,3 +250,9 @@ gulp.task('admin-page', [ 'admin-clean' ], function() {
 });
 
 gulp.task('admin', [ 'admin-config', 'admin-icons', 'admin-scripts', 'admin-locales', 'admin-stylesheets', 'admin-templates', 'admin-page' ]);
+
+gulp.task('zip', [ 'customer', 'boxoffice', 'admin' ], function() {
+    return gulp.src(bases.root + '**')
+        .pipe(zip('ticketbox-client-angularjs.zip'))
+        .pipe(gulp.dest(bases.root));
+});
