@@ -1,6 +1,6 @@
 # Ticketbox customer interface client
 
-[![Build Status](https://travis-ci.org/ssigg/ticketbox-customer-client-angularjs.svg?branch=master)](https://travis-ci.org/ssigg/ticketbox-customer-client-angularjs) [![Code Climate](https://codeclimate.com/github/ssigg/ticketbox-customer-client-angularjs/badges/gpa.svg)](https://codeclimate.com/github/ssigg/ticketbox-customer-client-angularjs) [![Test Coverage](https://codeclimate.com/github/ssigg/ticketbox-customer-client-angularjs/badges/coverage.svg)](https://codeclimate.com/github/ssigg/ticketbox-customer-client-angularjs/coverage)
+[![Build Status](https://travis-ci.org/ssigg/ticketbox-client-angularjs.svg?branch=master)](https://travis-ci.org/ssigg/ticketbox-client-angularjs) [![Code Climate](https://codeclimate.com/github/ssigg/ticketbox-customer-client-angularjs/badges/gpa.svg)](https://codeclimate.com/github/ssigg/ticketbox-customer-client-angularjs) [![Test Coverage](https://codeclimate.com/github/ssigg/ticketbox-customer-client-angularjs/badges/coverage.svg)](https://codeclimate.com/github/ssigg/ticketbox-customer-client-angularjs/coverage)
 
 ## Server
 Use this web client together with the server available at https://github.com/ssigg/ticketbox-server-php
