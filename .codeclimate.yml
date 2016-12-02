@@ -4,6 +4,11 @@ engines:
     enabled: true
   duplication:
     enabled: true
+    checks:
+      Identical code:
+        enabled: false
+      Similar code:
+        enabled: false
     config:
       languages:
       - javascript
@@ -14,10 +19,8 @@ engines:
 ratings:
   paths:
   - "**.css"
-  - "app/admin/**.js"
-  - "app/customer/**.js"
+  - "app/**.js"
   - "app/components/**.js"
 exclude_paths:
-  - "app/admin/**_test.js"
-  - "app/customer/**_test.js"
+  - "app/**_test.js"
   - "app/components/**_test.js"
