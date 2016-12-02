@@ -14,7 +14,7 @@ angular.module('ticketbox.common.event', [
 
     .controller('EventCtrl', function($scope, $routeParams, Event, $location) {
         $scope.event = Event.get({ 'id': $routeParams.eventId }, function() {
-            if ($scope.event.blocks.length == 1) {
+            if ($scope.event.blocks.length === 1) {
                 $location.path('/block/' + $scope.event.blocks[0].id);
             }
         });

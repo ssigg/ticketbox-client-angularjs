@@ -28,8 +28,8 @@ angular.module('ticketbox.admin.event.blocks', [
                 'category_id': eventblock.category_id
             };
 
-            eventblock.block = _.find($scope.blocks, function(b) { return b.id == eventblock.block_id; });
-            eventblock.category = _.find($scope.categories, function(c) { return c.id == eventblock.category_id; });
+            eventblock.block = _.find($scope.blocks, function(b) { return b.id === eventblock.block_id; });
+            eventblock.category = _.find($scope.categories, function(c) { return c.id === eventblock.category_id; });
 
             list.save(eventblockData, eventblock);
         }

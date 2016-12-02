@@ -17,7 +17,7 @@ angular.module('ticketbox.common.events', [
         $scope.administrator = administrator;
         
         $scope.events = Event.query(function() {
-            if ($scope.events.length == 1) {
+            if ($scope.events.length === 1) {
                 $location.path('/event/' + $scope.events[0].id);
             }
         });
