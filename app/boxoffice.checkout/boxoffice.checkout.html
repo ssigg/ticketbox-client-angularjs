@@ -4,7 +4,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="twelve columns">
+    <div class="six columns">
         <ul class="checkout-reservations">
             <li ng-repeat="reservation in reservations">
                 <p class="reservation-release"><a class="button button-primary" ng-click="release(reservation)">✕</a></p>
@@ -16,11 +16,15 @@
                 <div class="clear"></div>
             </li>
         </ul>
-        <a class="checkout button button-primary" ng-click="createBoxofficePurchase()" translate>SELL</a>
     </div>
-</div>
-<div class="row">
-    <div class="twelve columns">
-        &nbsp;
+    <div ng-show="boxoffice.type == 'pdf'" class="six columns">
+        <form class="checkout-form" name="checkoutForm" ng-submit="createBoxofficePurchase(data.email)">
+            <input type="email" ng-model="data.email" name="email" translate-attr="{ placeholder: 'EMAIL' }" class="u-full-width" required>
+            <div class="hint" ng-show="checkoutForm.email.$touched && checkoutForm.email.$error.required" translate>PLEASE ENTER A VALID EMAIL ADDRESS</div>
+            <input type="submit" ng-disabled="!checkoutForm.$valid" title="{{!checkoutForm.$valid ? 'PLEASE FILL IN ALL FIELDS' : '' | translate}}" translate-attr="{ value: 'SELL' }" class="checkout button button-primary">
+        </form>
+    </div>
+    <div ng-show="boxoffice.type == 'paper'" class="six columns">
+        <a class="checkout button button-primary" ng-click="createBoxofficePurchase()" translate>SELL</a>
     </div>
 </div>

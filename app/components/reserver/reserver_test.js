@@ -36,31 +36,35 @@ describe('ticketbox.components.reserver', function () {
         describe('reserve()', function () {
             it('should create a reservation', function () {
                 var eventId = 'e1';
+                var categoryId = 'c1';
                 var seatId = 's1';
                 var seat = {
                     'seat': { 'id': seatId }
                 };
                 var expectedReservation = {
                     event_id: eventId,
+                    category_id: categoryId,
                     seat_id: seatId
                 };                
                 expect(saveSpy).not.toHaveBeenCalled();
-                reserver.reserve(eventId, seat);
+                reserver.reserve(eventId, categoryId, seat);
                 expect(saveSpy).toHaveBeenCalledWith(expectedReservation);
             });
 
             it('should update the seat', function () {
                 var eventId = 'e1';
+                var categoryId = 'c1';
                 var seatId = 's1';
                 var seat = {
                     'seat': { 'id': seatId }
                 };
                 var expectedReservation = {
                     event_id: eventId,
+                    category_id: categoryId,
                     seat_id: seatId
                 };                
                 expect(saveSpy).not.toHaveBeenCalled();
-                reserver.reserve(eventId, seat);
+                reserver.reserve(eventId, categoryId, seat);
                 expect(saveSpy).toHaveBeenCalledWith(expectedReservation);
             });
         });
