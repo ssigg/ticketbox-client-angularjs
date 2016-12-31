@@ -36,10 +36,15 @@ describe('ticketbox.boxoffice.checkout', function () {
             };
             reserverReleaseReservationSpy = spyOn(reserver, 'releaseReservation');
 
+            var boxoffice = {
+                name: 'Box Office',
+                type: 'paper'
+            };
+
             var routeParams = {
                 'blockId': 42
             };
-            $controller('CheckoutCtrl', {$scope: scope, $translate: translate, Reservation: reservation, BoxofficePurchase: boxofficePurchase, basket: basket, reserver: reserver, currency: '$'});
+            $controller('CheckoutCtrl', {$scope: scope, $translate: translate, Reservation: reservation, BoxofficePurchase: boxofficePurchase, basket: basket, reserver: reserver, currency: '$', boxoffice: boxoffice});
         });
     });
 
@@ -91,7 +96,13 @@ describe('ticketbox.boxoffice.checkout', function () {
             it('should create order and save it', function() {
                 expect(boxofficePurchaseSaveSpy).not.toHaveBeenCalled();
                 scope.createBoxofficePurchase();
-                expect(boxofficePurchaseSaveSpy).toHaveBeenCalledWith({ locale: 'en' });
+                expect(boxofficePurchaseSaveSpy).toHaveBeenCalledWith({ locale: 'en', boxofficeName: 'Box Office', boxofficeType: 'paper', email: undefined });
+            });
+
+            it('should create order and save it', function() {
+                expect(boxofficePurchaseSaveSpy).not.toHaveBeenCalled();
+                scope.createBoxofficePurchase('email');
+                expect(boxofficePurchaseSaveSpy).toHaveBeenCalledWith({ locale: 'en', boxofficeName: 'Box Office', boxofficeType: 'paper', email: 'email' });
             });
 
             it('should use the current locale', function() {

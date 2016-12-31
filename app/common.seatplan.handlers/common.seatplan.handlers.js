@@ -32,20 +32,20 @@ angular.module('ticketbox.common.seatplan.handlers', [
 
     .service('handlers', function (draw, reserver) {
         return {
-            draw: function (eventid, seat, element) {
+            draw: function (eventid, categoryid, seat, element) {
                 draw.applySeatStyle(element, seat.state, false);
             },
-            click: function (eventid, seat, element) {
+            click: function (eventid, categoryid, seat, element) {
                 if (seat.state === 'free') {
-                    reserver.reserve(eventid, seat);
+                    reserver.reserve(eventid, categoryid, seat);
                 } else if (seat.state === 'reservedbymyself') {
                     reserver.release(seat);
                 }
             },
-            mouseenter: function (eventid, seat, element) {
+            mouseenter: function (eventid, categoryid, seat, element) {
                 draw.applySeatStyle(element, seat.state, true);
             },
-            mouseleave: function (eventid, seat, element) {
+            mouseleave: function (eventid, categoryid, seat, element) {
                 draw.applySeatStyle(element, seat.state, false);
             }
         };

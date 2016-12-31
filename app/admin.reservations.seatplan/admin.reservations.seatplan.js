@@ -35,12 +35,12 @@ angular.module('ticketbox.admin.reservations.seatplan', [
 
     .service('handlers', function (draw) {
         return {
-            draw: function (eventid, seat, element) {
+            draw: function (eventid, categoryid, seat, element) {
                 draw.applySeatStyle(element, seat.state, false);
             },
-            click: function (eventid, seat, element) { },
-            mouseenter: function (eventid, seat, element) { },
-            mouseleave: function (eventid, seat, element) { }
+            click: function (eventid, categoryid, seat, element) { },
+            mouseenter: function (eventid, categoryid, seat, element) { },
+            mouseleave: function (eventid, categoryid, seat, element) { }
         };
     })
 

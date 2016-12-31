@@ -7,10 +7,11 @@ angular.module('ticketbox.components.reserver', [
 
     .service('reserver', function($translate, Reservation, basket) {
         return {
-            reserve: function(eventId, seat) {
+            reserve: function(eventId, categoryId, seat) {
                 var reservation = {
                     event_id: eventId,
-                    seat_id: seat.seat.id
+                    seat_id: seat.seat.id,
+                    category_id: categoryId
                 };
                 return Reservation.save(reservation)
                     .$promise.then(function(data) {

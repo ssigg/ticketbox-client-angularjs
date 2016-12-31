@@ -36,22 +36,22 @@ angular.module('ticketbox.components.seatplan', [
 
         function _drawSeat(scope, canvas, seat) {
             var polygon = canvasImage.drawPolygon(canvas, coordinates.seatToCoordinates(seat.seat), '#333', '2px #000');
-            handlers.draw(scope.eventid, seat, polygon);
+            handlers.draw(scope.eventid, scope.categoryid, seat, polygon);
             _bind(scope, polygon, seat);
             return polygon;
         }
 
         function _bind(scope, element, seat, reservationState) {
             element.bind("click tap", function () {
-                handlers.click(scope.eventid, seat, element);
+                handlers.click(scope.eventid, scope.categoryid, seat, element);
                 element.redraw();
             });
             element.bind("mouseenter", function () {
-                handlers.mouseenter(scope.eventid, seat, element);
+                handlers.mouseenter(scope.eventid, scope.categoryid, seat, element);
                 element.redraw();
             });
             element.bind("mouseleave", function () {
-                handlers.mouseleave(scope.eventid, seat, element);
+                handlers.mouseleave(scope.eventid, scope.categoryid, seat, element);
                 element.redraw();
             });
         }
@@ -85,6 +85,7 @@ angular.module('ticketbox.components.seatplan', [
             scope: {
                 src: '=',
                 eventid: '=',
+                categoryid: '=',
                 seats: '='
             },
             template: '<canvas id="ngSelectableImageCanvas"></canvas>',

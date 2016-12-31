@@ -11,6 +11,12 @@ angular.module('ticketbox.config', [])
         'lastname': 'Doe',
         'email': 'john.doe@example.com'
     })
+
+    .constant('boxoffice', {
+        'name': 'Box Office Name',
+        'type': 'paper' // paper: Hardware tickets. Only a notification is sent and the seats are reserved.
+                        // pdf: PDF tickets. Additionally to the notification, a confirmation with PDF tickets is sent to the customer.
+    })
     
     .factory('styles', function() {
         return {

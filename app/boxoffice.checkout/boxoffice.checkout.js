@@ -14,9 +14,10 @@ angular.module('ticketbox.boxoffice.checkout', [
         });
     })
 
-    .controller('CheckoutCtrl', function($scope, $location, $translate, Reservation, BoxofficePurchase, basket, reserver, currency) {
+    .controller('CheckoutCtrl', function($scope, $location, $translate, Reservation, BoxofficePurchase, basket, reserver, currency, boxoffice) {
         $scope.reservations = basket.getReservations();
         $scope.currency = currency;
+        $scope.boxoffice = boxoffice;
 
         $scope.toggleReduction = function(reservation) {
             var newReductionValue = !reservation.isReduced;
@@ -31,9 +32,12 @@ angular.module('ticketbox.boxoffice.checkout', [
             reserver.releaseReservation(reservation);
         };
 
-        $scope.createBoxofficePurchase = function() {
+        $scope.createBoxofficePurchase = function(email) {
             var purchase = {
-                locale: $translate.use()
+                locale: $translate.use(),
+                boxofficeName: boxoffice.name,
+                boxofficeType: boxoffice.type,
+                email: email
             };
             BoxofficePurchase.save(purchase)
                 .$promise.then(function() {
