@@ -44,4 +44,17 @@ angular.module('ticketbox.components.api', [
     
     .factory('BoxofficePurchase', function($resource, api) {
         return $resource(api + '/boxoffice-purchases');
+    })
+    
+    .factory('CustomerPurchase', function($resource, api) {
+        return $resource(api + '/customer-purchases');
+    })
+    
+    .factory('Token', function($resource, api) {
+        return $resource(api + '/customer-purchase-token', {}, {
+            query: {
+                method: 'GET',
+                isArray: false
+            }
+        });
     });

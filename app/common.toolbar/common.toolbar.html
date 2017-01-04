@@ -8,6 +8,7 @@
         <p>
             <a class="button button-primary" ng-show="controller !== 'EventsCtrl'" href="#/events" translate>SELECT MORE SEATS (HEADER)</a>
             <a class="button button-primary" ng-show="reservations.length > 0 && controller !== 'CheckoutCtrl'" href="#/checkout" translate>CHECKOUT AND REDUCTIONS (HEADER)</a>
+            <a class="button button-primary" ng-show="reservations.length > 0 && controller !== 'PurchaseCtrl'" href="#/purchase" translate>PURCHASE AND REDUCTIONS (HEADER)</a>
             <a class="button button-primary" ng-show="reservations.length > 0" ng-click="cancel()" translate>CANCEL (HEADER)</a>
         </p>
     </div>
@@ -21,11 +22,13 @@
             <div class="buttons desktop">
                 <a class="button button-primary" ng-show="controller !== 'EventsCtrl'" href="#/events" translate>SELECT MORE SEATS (TOOLBAR)</a>
                 <a class="button button-primary" ng-show="reservations.length > 0 && controller !== 'CheckoutCtrl'" href="#/checkout" translate>CHECKOUT AND REDUCTIONS (TOOLBAR)</a>
+                <a class="button button-primary" ng-show="reservations.length > 0 && controller !== 'PurchaseCtrl'" href="#/purchase" translate>PURCHASE AND REDUCTIONS (TOOLBAR)</a>
                 <a class="button button-primary" ng-show="reservations.length > 0" ng-click="cancel()" translate>CANCEL (TOOLBAR)</a>
             </div>
             <div class="buttons mobile">
                 <a class="button button-primary" ng-show="controller !== 'EventsCtrl'" href="#/events">+</a>
-                <a class="button button-primary" ng-show="reservations.length > 0 && controller !== 'CheckoutCtrl'" href="#/checkout">$</a>
+                <a class="button button-primary" ng-show="reservations.length > 0 && controller !== 'CheckoutCtrl'" href="#/checkout">✔</a>
+                <a class="button button-primary" ng-show="reservations.length > 0 && controller !== 'PurchaseCtrl'" href="#/purchase">$</a>
                 <a class="button button-primary" ng-show="reservations.length > 0" ng-click="cancel()">⨉</a>
             </div>
          </p>
