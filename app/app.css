@@ -58,8 +58,12 @@
     font-size:1.2em;
 }
 
-.checkout-form {
+p.expiration-time {
     margin-top:2em;
+    background-color: #faa;
+    padding:.2em;
+    border-radius: .2em;
+    font-weight: bold;
 }
 
 a.action {

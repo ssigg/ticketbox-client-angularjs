@@ -23,5 +23,6 @@
   "PLEASE ENTER A LASTNAME": "Bitte geben Sie einen Nachnamen an",
   "PLEASE ENTER A VALID EMAIL ADDRESS": "Bitte geben Sie eine gültige Email-Adresse an",
   "PLEASE FILL IN ALL FIELDS": "Bitte füllen Sie alle Felder aus",
-  "SEAT IS ALREADY RESERVED": "Dieser Platz wurde soeben von einem anderen Benutzer reserviert"
+  "SEAT IS ALREADY RESERVED": "Dieser Platz wurde soeben von einem anderen Benutzer reserviert",
+  "EXPIRATION TIME": "Die Reservationen sind gültig bis"
 }

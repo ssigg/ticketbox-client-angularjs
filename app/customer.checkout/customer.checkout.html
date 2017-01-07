@@ -18,6 +18,7 @@
         </ul>
     </div>
     <div class="six columns">
+        <p class="expiration-time"><span translate>EXPIRATION TIME</span> {{expirationTimestamp.value * 1000 | date:'HH:mm'}}</p>
         <form class="checkout-form" name="checkoutForm" ng-submit="createOrder(data.title, data.firstname, data.lastname, data.email)">
             <select ng-model="data.title" name="title" required>
                 <option value="m" translate>MR</option>

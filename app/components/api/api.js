@@ -38,6 +38,15 @@ angular.module('ticketbox.components.api', [
         });
     })
 
+    .factory('ReservationsExpirationTimestamp', function($resource, api) {
+        return $resource(api + '/reservations-expiration-timestamp', {}, {
+            query: {
+                method: 'GET',
+                isArray: false
+            }
+        });
+    })
+
     .factory('Order', function($resource, api) {
         return $resource(api + '/orders');
     })

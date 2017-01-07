@@ -15,9 +15,23 @@ angular.module('ticketbox.customer.purchase', [
         });
     })
 
-    .controller('PurchaseCtrl', function($scope, $location, $translate, Reservation, Token, CustomerPurchase, basket, reserver, currency) {
+    .controller('PurchaseCtrl', function($scope, $location, $timeout, $translate, Reservation, ReservationsExpirationTimestamp, Token, CustomerPurchase, basket, reserver, currency) {
         $scope.reservations = basket.getReservations();
         $scope.currency = currency;
+
+        $scope.expirationTimestamp = ReservationsExpirationTimestamp.query(function() {
+            if ($scope.expirationTimestamp.value === null) {
+                _close();
+            }
+
+            var epsilon = 1000;
+            var expirationDurationInMs = ($scope.expirationTimestamp.value * 1000) - Date.now() + epsilon;
+            if (expirationDurationInMs < 0) {
+                _close();
+            } else {
+                $timeout(_close, expirationDurationInMs);
+            }
+        });
 
         var token = Token.query(function() {
             braintree.setup(token.value, 'dropin', {
@@ -56,18 +70,8 @@ angular.module('ticketbox.customer.purchase', [
             reserver.releaseReservation(reservation);
         };
 
-        // $scope.createPurchase = function(title, firstname, lastname, email) {
-        //     var order = {
-        //         title: title,
-        //         firstname: firstname,
-        //         lastname: lastname,
-        //         email: email,
-        //         locale: $translate.use()
-        //     };
-        //     Order.save(order)
-        //         .$promise.then(function() {
-        //             basket.refreshReservations();
-        //             $location.path('/summary');
-        //         });
-        // }
+        function _close() {
+            basket.refreshReservations();
+            $location.path('/summary');
+        }
     });

@@ -1,7 +1,7 @@
 'use strict';
 
 describe('ticketbox.customer.checkout', function () {
-    var scope, translateUseSpy, reservationUpdateSpy, orderSaveSpy, basketGetReservationsSpy, reserverReleaseReservationSpy;
+    var scope, translateUseSpy, reservationUpdateSpy, reservationsExpirationTimestampQuerySpy, orderSaveSpy, basketGetReservationsSpy, reserverReleaseReservationSpy;
     
     beforeEach(function () {
         angular.module('ticketbox.components.api',[]);
@@ -19,7 +19,12 @@ describe('ticketbox.customer.checkout', function () {
             var reservation = {
                 update: function() { }
             };
-            reservationUpdateSpy = spyOn(reservation, 'update').and.returnValue({ '$promise': { then: function() {}} });
+            reservationUpdateSpy = spyOn(reservation, 'update').and.returnValue({ '$promise': { then: function() {} } });
+
+            var reservationsExpirationTimestamp = {
+                query: function() { }
+            };
+            reservationsExpirationTimestampQuerySpy = spyOn(reservationsExpirationTimestamp, 'query').and.returnValue({ '$promise': { then: function() {} } });
 
             var order = {
                 save: function() { }
@@ -39,7 +44,7 @@ describe('ticketbox.customer.checkout', function () {
             var routeParams = {
                 'blockId': 42
             };
-            $controller('CheckoutCtrl', {$scope: scope, $translate: translate, Reservation: reservation, Order: order, basket: basket, reserver: reserver, currency: '$'});
+            $controller('CheckoutCtrl', {$scope: scope, $translate: translate, Reservation: reservation, ReservationsExpirationTimestamp: reservationsExpirationTimestamp, Order: order, basket: basket, reserver: reserver, currency: '$'});
         });
     });
 
