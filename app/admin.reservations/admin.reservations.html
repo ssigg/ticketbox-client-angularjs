@@ -7,7 +7,8 @@
     <div class="eight columns">
         {{eventAggregate.event.name}} - {{eventAggregate.event.dateandtime}}<br>
         <strong>{{eventAggregate.reservations.length}}</strong> <translate>NUMBER OF RESERVATIONS LABEL</translate><br>
-        <strong>{{eventAggregate.boxofficePurchases.length}}</strong> <translate>NUMBER OF BOXOFFICE PURCHASES LABEL</translate>
+        <strong>{{eventAggregate.boxofficePurchases.length}}</strong> <translate>NUMBER OF BOXOFFICE PURCHASES LABEL</translate><br>
+        <strong>{{eventAggregate.customerPurchases.length}}</strong> <translate>NUMBER OF CUSTOMER PURCHASES LABEL</translate>
     </div>
     <div class="four columns">
         <a class="button button-primary" href="#/event/{{eventAggregate.event.id}}/reservations" translate>RESERVATIONS BUTTON</a>

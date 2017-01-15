@@ -3,7 +3,7 @@
 angular.module('ticketbox.components.basket', [
     'ticketbox.components.api'])
 
-    .service('basket', function(Reservation) {
+    .service('basket', function($interval, Reservation) {
         var reservations = Reservation.query();
 
         function _addReservationInternal(reservation) {

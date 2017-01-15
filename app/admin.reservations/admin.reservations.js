@@ -27,6 +27,9 @@ angular.module('ticketbox.admin.reservations', [
                     }),
                     boxofficePurchases: _.filter(reservationList, function(r) {
                         return r.event_id === e.id && r.order_id !== null && r.order_kind === 'boxoffice-purchase';
+                    }),
+                    customerPurchases: _.filter(reservationList, function(r) {
+                        return r.event_id === e.id && r.order_id !== null && r.order_kind === 'customer-purchase';
                     })
                 };
             });

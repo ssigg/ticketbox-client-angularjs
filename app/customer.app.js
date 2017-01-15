@@ -7,7 +7,8 @@ angular.module('ticketbox.customer', [
     'ticketbox.common.events',
     'ticketbox.common.event',
     'ticketbox.common.block',
-    'ticketbox.customer.checkout'])
+    'ticketbox.customer.checkout',
+    'ticketbox.customer.purchase'])
 
     .config(function ($routeProvider, $httpProvider, $translateProvider) {
         $routeProvider.otherwise({

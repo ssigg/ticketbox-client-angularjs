@@ -19,7 +19,7 @@
     </div>
     <div class="six columns">
         <p class="expiration-time"><span translate>EXPIRATION TIME</span> {{expirationTimestamp.value * 1000 | date:'HH:mm'}}</p>
-        <form class="checkout-form" name="checkoutForm" ng-submit="createOrder(data.title, data.firstname, data.lastname, data.email)">
+        <form class="checkout-form" name="checkoutForm">
             <select ng-model="data.title" name="title" required>
                 <option value="m" translate>MR</option>
                 <option value="f" translate>MRS</option>
@@ -31,7 +31,8 @@
             <div class="hint" ng-show="checkoutForm.lastname.$touched && checkoutForm.lastname.$error.required" translate>PLEASE ENTER A LASTNAME</div>
             <input type="email" ng-model="data.email" name="email" translate-attr="{ placeholder: 'EMAIL' }" class="u-full-width" required>
             <div class="hint" ng-show="checkoutForm.email.$touched && checkoutForm.email.$error.required" translate>PLEASE ENTER A VALID EMAIL ADDRESS</div>
-            <input type="submit" ng-disabled="!checkoutForm.$valid" title="{{!checkoutForm.$valid ? 'PLEASE FILL IN ALL FIELDS' : '' | translate}}" translate-attr="{ value: 'RESERVE DEFINITELY' }" class="checkout button button-primary">
+            <div id="dropin-container"></div>
+            <input type="submit" ng-disabled="!checkoutForm.$valid" title="{{!checkoutForm.$valid ? 'PLEASE FILL IN ALL FIELDS' : '' | translate}}" translate-attr="{ value: 'PURCHASE DEFINITELY' }" class="checkout button button-primary">
         </form>
     </div>
 </div>

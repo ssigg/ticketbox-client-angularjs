@@ -38,10 +38,32 @@ angular.module('ticketbox.components.api', [
         });
     })
 
+    .factory('ReservationsExpirationTimestamp', function($resource, api) {
+        return $resource(api + '/reservations-expiration-timestamp', {}, {
+            query: {
+                method: 'GET',
+                isArray: false
+            }
+        });
+    })
+
     .factory('Order', function($resource, api) {
         return $resource(api + '/orders');
     })
     
     .factory('BoxofficePurchase', function($resource, api) {
         return $resource(api + '/boxoffice-purchases');
+    })
+    
+    .factory('CustomerPurchase', function($resource, api) {
+        return $resource(api + '/customer-purchases');
+    })
+    
+    .factory('Token', function($resource, api) {
+        return $resource(api + '/customer-purchase-token', {}, {
+            query: {
+                method: 'GET',
+                isArray: false
+            }
+        });
     });

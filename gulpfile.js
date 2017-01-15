@@ -54,6 +54,7 @@ var paths = {
             'app/customer.app.css'
         ],
         scripts: [
+            'app/bower_components/braintree-web/dist/braintree.js',
             'app/common.*/*.js',
             '!app/common.*/*_test.js',
             'app/customer.app.js',

@@ -6,8 +6,8 @@
 Use this web client together with the server available at https://github.com/ssigg/ticketbox-server-php
 
 ## Available interfaces
-* `/customer`: Customer interface available to all visitors. Currently, they can only reserve seats but they cannot purchase any tickets.
-* `/boxoffice`: Box office or ticket agency interface. Currently, they can sell hardware tickets and mark the seats as sold.
+* `/customer`: Customer interface available to all visitors.
+* `/boxoffice`: Box office or ticket agency interface.
 * `/admin`: Administration interface.
 
 

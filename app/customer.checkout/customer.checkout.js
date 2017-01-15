@@ -15,9 +15,24 @@ angular.module('ticketbox.customer.checkout', [
         });
     })
 
-    .controller('CheckoutCtrl', function($scope, $location, $translate, Reservation, Order, basket, reserver, currency) {
+    .controller('CheckoutCtrl', function($scope, $location, $timeout, $translate, Reservation, ReservationsExpirationTimestamp, Order, basket, reserver, currency) {
         $scope.reservations = basket.getReservations();
         $scope.currency = currency;
+
+        $scope.expirationTimestamp = ReservationsExpirationTimestamp.query()
+            .$promise.then(function() {
+                if ($scope.expirationTimestamp.value === null) {
+                    _close();
+                }
+
+                var epsilon = 1000;
+                var expirationDurationInMs = ($scope.expirationTimestamp.value * 1000) - Date.now() + epsilon;
+                if (expirationDurationInMs < 0) {
+                    _close();
+                } else {
+                    $timeout(_close, expirationDurationInMs);
+                }
+            });
 
         $scope.toggleReduction = function(reservation) {
             var newReductionValue = !reservation.isReduced;
@@ -41,9 +56,11 @@ angular.module('ticketbox.customer.checkout', [
                 locale: $translate.use()
             };
             Order.save(order)
-                .$promise.then(function() {
-                    basket.refreshReservations();
-                    $location.path('/summary');
-                });
+                .$promise.then(_close);
+        }
+
+        function _close() {
+            basket.refreshReservations();
+            $location.path('/summary');
         }
     });
