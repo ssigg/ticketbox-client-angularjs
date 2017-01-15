@@ -19,20 +19,19 @@ angular.module('ticketbox.customer.checkout', [
         $scope.reservations = basket.getReservations();
         $scope.currency = currency;
 
-        $scope.expirationTimestamp = ReservationsExpirationTimestamp.query()
-            .$promise.then(function() {
-                if ($scope.expirationTimestamp.value === null) {
-                    _close();
-                }
+        $scope.expirationTimestamp = ReservationsExpirationTimestamp.query(function() {
+            if ($scope.expirationTimestamp.value === null) {
+                _close();
+            }
 
-                var epsilon = 1000;
-                var expirationDurationInMs = ($scope.expirationTimestamp.value * 1000) - Date.now() + epsilon;
-                if (expirationDurationInMs < 0) {
-                    _close();
-                } else {
-                    $timeout(_close, expirationDurationInMs);
-                }
-            });
+            var epsilon = 1000;
+            var expirationDurationInMs = ($scope.expirationTimestamp.value * 1000) - Date.now() + epsilon;
+            if (expirationDurationInMs < 0) {
+                _close();
+            } else {
+                $timeout(_close, expirationDurationInMs);
+            }
+        });
 
         $scope.toggleReduction = function(reservation) {
             var newReductionValue = !reservation.isReduced;
