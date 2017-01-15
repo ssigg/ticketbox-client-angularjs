@@ -10,7 +10,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="six columns">
+    <div class="twelve columns">
         <h3 translate>RESERVATIONS LIST TITLE</h3>
         <div ng-repeat="order in orders">
             <p><strong>{{order.firstname}} {{order.lastname}} - {{order.totalPrice}} {{currency}}:</strong></p>
@@ -23,12 +23,29 @@
             </ul>
         </div>
     </div>
-    <div class="six columns">
+</div>
+<div class="row">
+    <div class="twelve columns">
         <h3 translate>BOXOFFICE PURCHASES LIST TITLE</h3>
         <div ng-repeat="boxofficePurchase in boxofficePurchases">
             <p><strong>{{boxofficePurchase.boxoffice}} - {{boxofficePurchase.totalPrice}} {{currency}}</strong></p>
             <ul>
                 <li ng-repeat="reservation in boxofficePurchase.reservations">
+                    {{reservation.seat.name}}
+                    <span ng-show="reservation.reservation.is_reduced"> (reduced)</span>
+                    - <strong>{{reservation.price}} {{currency}}</strong>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+        <h3 translate>CUSTOMER PURCHASES LIST TITLE</h3>
+        <div ng-repeat="customerPurchase in customerPurchases">
+            <p><strong>{{customerPurchase.firstname}} {{customerPurchase.lastname}} - {{customerPurchase.totalPrice}} {{currency}}</strong></p>
+            <ul>
+                <li ng-repeat="reservation in customerPurchase.reservations">
                     {{reservation.seat.name}}
                     <span ng-show="reservation.reservation.is_reduced"> (reduced)</span>
                     - <strong>{{reservation.price}} {{currency}}</strong>

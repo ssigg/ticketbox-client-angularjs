@@ -6,9 +6,11 @@
   "RESERVATIONS TITLE": "Reservationen",
   "NUMBER OF RESERVATIONS LABEL": "Plätze über die Webseite reserviert",
   "NUMBER OF BOXOFFICE PURCHASES LABEL": "Plätze in Vorverkaufsstellen verkauft",
+  "NUMBER OF CUSTOMER PURCHASES LABEL": "Plätze über die Webseite verkauft",
   "RESERVATIONS BUTTON": "Reservationen",
   "SEATPLAN BUTTON": "Sitzplan",
   "BACK BUTTON": "Zurück",
   "RESERVATIONS LIST TITLE": "Reservationen über die Webseite",
-  "BOXOFFICE PURCHASES LIST TITLE": "In den Vorverkaufsstellen verkaufte Plätze"
+  "BOXOFFICE PURCHASES LIST TITLE": "In den Vorverkaufsstellen verkaufte Plätze",
+  "CUSTOMER PURCHASES LIST TITLE": "Über die Webseite verkaufte Plätze"
 }

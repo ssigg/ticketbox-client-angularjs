@@ -6,9 +6,11 @@
   "RESERVATIONS TITLE": "Reservations",
   "NUMBER OF RESERVATIONS LABEL": "Seats reserved directly",
   "NUMBER OF BOXOFFICE PURCHASES LABEL": "Seats sold by a box office",
+  "NUMBER OF CUSTOMER PURCHASES LABEL": "Seats sold directly",
   "RESERVATIONS BUTTON": "Reservations",
   "SEATPLAN BUTTON": "Seat plan",
   "BACK BUTTON": "Back",
   "RESERVATIONS LIST TITLE": "Directly reserved seats",
-  "BOXOFFICE PURCHASES LIST TITLE": "Seats sold by a box office"
+  "BOXOFFICE PURCHASES LIST TITLE": "Seats sold by a box office",
+  "CUSTOMER PURCHASES LIST TITLE": "Seats sold directly"
 }
