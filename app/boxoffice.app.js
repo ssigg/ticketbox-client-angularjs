@@ -19,7 +19,7 @@ angular.module('ticketbox.boxoffice', [
         $httpProvider.interceptors.push('progressInterceptor');
 
         $translateProvider.useStaticFilesLoader({
-            prefix: 'common.locales/',
+            prefix: 'boxoffice.locales/',
             suffix: '.json'
         });
         $translateProvider.useSanitizeValueStrategy('escape');

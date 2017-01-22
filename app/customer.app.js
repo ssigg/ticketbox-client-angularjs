@@ -18,7 +18,7 @@ angular.module('ticketbox.customer', [
         $httpProvider.interceptors.push('progressInterceptor');
 
         $translateProvider.useStaticFilesLoader({
-            prefix: 'common.locales/',
+            prefix: 'customer.locales/',
             suffix: '.json'
         });
         $translateProvider.useSanitizeValueStrategy('escape');

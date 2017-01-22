@@ -37,9 +37,6 @@ var paths = {
         '!app/components/*/*_test.js',
         '!app/*.config/*.js'
     ],
-    locales: [
-        'app/common.locales/*.json'
-    ],
     templates: [
         'app/components/*/*.html'
     ],
@@ -60,6 +57,9 @@ var paths = {
             'app/customer.app.js',
             'app/customer.*/*.js',
             '!app/customer.*/*_test.js' 
+        ],
+        locales: [
+            'app/customer.locales/*.json'
         ],
         templates: [
             'app/common.*/*.html',
@@ -82,6 +82,9 @@ var paths = {
             'app/boxoffice.app.js',
             'app/boxoffice.*/*.js',
             '!app/boxoffice.*/*_test.js' 
+        ],
+        locales: [
+            'app/boxoffice.locales/*.json'
         ],
         templates: [
             'app/common.*/*.html',
@@ -131,7 +134,7 @@ gulp.task('customer-config', [ 'clean' ], function() {
 });
 
 gulp.task('customer-locales', [ 'clean' ], function() {
-    return gulp.src(paths.locales, { base: './app/' })
+    return gulp.src(paths.customer.locales, { base: './app/' })
         .pipe(gulp.dest(bases.customer));
 });
 
@@ -175,7 +178,7 @@ gulp.task('boxoffice-config', [ 'clean' ], function() {
 });
 
 gulp.task('boxoffice-locales', [ 'clean' ], function() {
-    return gulp.src(paths.locales, { base: './app/' })
+    return gulp.src(paths.boxoffice.locales, { base: './app/' })
         .pipe(gulp.dest(bases.boxoffice));
 });
 
