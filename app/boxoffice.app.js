@@ -9,6 +9,8 @@ angular.module('ticketbox.boxoffice', [
     'ticketbox.common.block',
     'ticketbox.boxoffice.checkout'])
 
+    .constant('canCustomerPurchase', false)
+
     .config(function($routeProvider, $httpProvider, $translateProvider) {
         $routeProvider.otherwise({
             redirectTo: '/events'

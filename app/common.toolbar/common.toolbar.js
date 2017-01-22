@@ -2,6 +2,7 @@
 
 angular.module('ticketbox.common.toolbar', [
     'ngRoute',
+    'ticketbox.config',
     'ticketbox.components.basket'])
 
     .directive('toolbar', function() {
@@ -13,7 +14,7 @@ angular.module('ticketbox.common.toolbar', [
         }
     })
 
-    .controller('ToolbarCtrl', function($scope, $route, $location, $window, reserver, basket, currency) {
+    .controller('ToolbarCtrl', function($scope, $route, $location, $window, reserver, basket, currency, canCustomerPurchase) {
         $scope.controller = $route.current.controller;
 
         angular.element($window).bind("scroll", function() {
@@ -26,6 +27,17 @@ angular.module('ticketbox.common.toolbar', [
 
         $scope.reservations = basket.getReservations();
         $scope.currency = currency;
+        $scope.canCustomerPurchase = canCustomerPurchase;
+
+        $scope.areButtonsVisible = false;
+        $scope.toggleButtonsVisibility = function() {
+            $scope.areButtonsVisible = !$scope.areButtonsVisible;
+            if ($scope.areButtonsVisible) {
+                angular.element(document.getElementsByClassName('buttons')[0]).addClass('buttons-visible');
+            } else {
+                angular.element(document.getElementsByClassName('buttons')[0]).removeClass('buttons-visible');
+            }
+        }
         
         $scope.cancel = function() {
             var reservations = basket.getReservations();

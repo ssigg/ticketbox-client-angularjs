@@ -51,7 +51,7 @@ var paths = {
             'app/customer.config/*_sample.js'
         ],
         stylesheets: [
-            'app/customer.app.css'
+            'app/common.app.css'
         ],
         scripts: [
             'app/bower_components/braintree-web/dist/braintree.js',
@@ -74,7 +74,7 @@ var paths = {
             'app/boxoffice.config/*_sample.js'
         ],
         stylesheets: [
-            'app/boxoffice.app.css'
+            'app/common.app.css'
         ],
         scripts: [
             'app/common.*/*.js',

@@ -12,7 +12,7 @@
 }
 
 @media all and (max-width: 660px) {
-    .header-bottom a.button {
+    .header-bottom a.action-button, .toolbar a.action-button {
         display:block;
         width:100%;
         margin:.2em;
@@ -26,7 +26,6 @@
     left:0;
     right:0;
     padding:0 .5em .5em .5em;
-    height:70px;
     background:#fff;
     border-bottom:3px solid #333;
 }
@@ -39,31 +38,32 @@
     float:left;
 }
 
-.toolbar .buttons {
-    float:right;
-}
-
-.toolbar .mobile {
+.mobile-toggle-button {
     display:none;
 }
 
-.toolbar .desktop {
-    display:block;
+@media all and (min-width: 661px) {
+    .toolbar .buttons {
+        float:right;
+    }
 }
 
 @media all and (max-width: 660px) {
-    .toolbar .mobile {
-        display:block;
-    }
-
-    .toolbar .desktop {
+    .toolbar .buttons {
+        clear:both;
         display:none;
     }
 
-    .toolbar .buttons .button {
-        padding:0 1em;
-        line-height:2.5em;
-        font-size:1.2em;
-        height:2.5em;
+    .toolbar .buttons-visible {
+        display:block;
+    }
+
+    .mobile-toggle-button {
+        display:block;
+        float:right;
+        padding:0 .2em 0 .2em;
+        width:1.3em;
+        font-size:2em;
+        line-height:1em;
     }
 }

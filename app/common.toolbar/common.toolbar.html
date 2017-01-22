@@ -6,10 +6,10 @@
 <div class="row header-bottom">
     <div class="twelve columns">
         <p>
-            <a class="button button-primary" ng-show="controller !== 'EventsCtrl'" href="#/events" translate>SELECT MORE SEATS (HEADER)</a>
-            <a class="button button-primary" ng-show="reservations.length > 0 && controller !== 'CheckoutCtrl'" href="#/checkout" translate>CHECKOUT AND REDUCTIONS (HEADER)</a>
-            <a class="button button-primary" ng-show="reservations.length > 0 && controller !== 'PurchaseCtrl'" href="#/purchase" translate>PURCHASE AND REDUCTIONS (HEADER)</a>
-            <a class="button button-primary" ng-show="reservations.length > 0" ng-click="cancel()" translate>CANCEL (HEADER)</a>
+            <a class="button button-primary action-button" ng-show="controller !== 'EventsCtrl'" href="#/events" translate>SELECT MORE SEATS (HEADER)</a>
+            <a class="button button-primary action-button" ng-show="reservations.length > 0 && controller !== 'CheckoutCtrl'" href="#/checkout" translate>CHECKOUT AND REDUCTIONS (HEADER)</a>
+            <a class="button button-primary action-button" ng-show="canCustomerPurchase && reservations.length > 0 && controller !== 'PurchaseCtrl'" href="#/purchase" translate>PURCHASE AND REDUCTIONS (HEADER)</a>
+            <a class="button button-primary action-button" ng-show="reservations.length > 0" ng-click="cancel()" translate>CANCEL (HEADER)</a>
         </p>
     </div>
 </div>
@@ -19,17 +19,13 @@
             <div class="reservations-count">
                 {{reservations.length}} <translate>SEATS</translate> - <strong>{{reservations | totalPrice}} {{currency}}</strong>
             </div>
-            <div class="buttons desktop">
-                <a class="button button-primary" ng-show="controller !== 'EventsCtrl'" href="#/events" translate>SELECT MORE SEATS (TOOLBAR)</a>
-                <a class="button button-primary" ng-show="reservations.length > 0 && controller !== 'CheckoutCtrl'" href="#/checkout" translate>CHECKOUT AND REDUCTIONS (TOOLBAR)</a>
-                <a class="button button-primary" ng-show="reservations.length > 0 && controller !== 'PurchaseCtrl'" href="#/purchase" translate>PURCHASE AND REDUCTIONS (TOOLBAR)</a>
-                <a class="button button-primary" ng-show="reservations.length > 0" ng-click="cancel()" translate>CANCEL (TOOLBAR)</a>
-            </div>
-            <div class="buttons mobile">
-                <a class="button button-primary" ng-show="controller !== 'EventsCtrl'" href="#/events">+</a>
-                <a class="button button-primary" ng-show="reservations.length > 0 && controller !== 'CheckoutCtrl'" href="#/checkout">✔</a>
-                <a class="button button-primary" ng-show="reservations.length > 0 && controller !== 'PurchaseCtrl'" href="#/purchase">$</a>
-                <a class="button button-primary" ng-show="reservations.length > 0" ng-click="cancel()">⨉</a>
+            <a class="button mobile-toggle-button" ng-show="!areButtonsVisible" ng-click="toggleButtonsVisibility()">+</a>
+            <a class="button mobile-toggle-button" ng-show="areButtonsVisible" ng-click="toggleButtonsVisibility()">–</a>
+            <div class="buttons">
+                <a class="button button-primary action-button" ng-show="controller !== 'EventsCtrl'" href="#/events" translate>SELECT MORE SEATS (TOOLBAR)</a>
+                <a class="button button-primary action-button" ng-show="reservations.length > 0 && controller !== 'CheckoutCtrl'" href="#/checkout" translate>CHECKOUT AND REDUCTIONS (TOOLBAR)</a>
+                <a class="button button-primary action-button" ng-show="canCustomerPurchase && reservations.length > 0 && controller !== 'PurchaseCtrl'" href="#/purchase" translate>PURCHASE AND REDUCTIONS (TOOLBAR)</a>
+                <a class="button button-primary action-button" ng-show="reservations.length > 0" ng-click="cancel()" translate>CANCEL (TOOLBAR)</a>
             </div>
          </p>
     </div>

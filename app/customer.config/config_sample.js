@@ -6,6 +6,8 @@ angular.module('ticketbox.config', [])
     
     .constant('currency', '$')
 
+    .constant('canCustomerPurchase', true)
+
     .constant('administrator', {
         'firstname': 'John',
         'lastname': 'Doe',
