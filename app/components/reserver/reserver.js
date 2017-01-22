@@ -5,7 +5,7 @@ angular.module('ticketbox.components.reserver', [
     'ticketbox.components.basket',
     'ticketbox.components.api'])
 
-    .service('reserver', function($translate, Reservation, basket) {
+    .service('reserver', function($window, $translate, Reservation, basket) {
         return {
             reserve: function(eventId, categoryId, seat) {
                 var reservation = {
@@ -22,9 +22,9 @@ angular.module('ticketbox.components.reserver', [
                         if (response.status === 409) {
                             seat.state = 'reserved';
                             $translate('SEAT IS ALREADY RESERVED').then(function (message) {
-                                alert(message);
+                                $window.alert(message);
                             }, function (translationId) {
-                                alert(translationId);
+                                $window.alert(translationId);
                             });
                         }
                     });

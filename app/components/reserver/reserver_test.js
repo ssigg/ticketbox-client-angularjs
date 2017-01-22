@@ -1,40 +1,68 @@
 'use strict';
 
-describe('ticketbox.components.reserver', function () {
-    describe('reserver', function () {
-        var translateUseSpy, reserver, saveSpy, deleteSpy;
+describe('ticketbox.components.reserver', function() {
+    describe('reserver', function() {
+        var windowAlertSpy,
+            translateStubSuccess,
+            translateStubError,
+            reserver,
+            promiseContainerStubSuccess,
+            promiseContainerStubError,
+            reservationSaveSpy,
+            reservationDeleteSpy,
+            basketAddReservationSpy,
+            basketRemoveReservationSpy;
 
         angular.module('pascalprecht.translate',[]);
-        beforeEach(module('ticketbox.components.reserver', function ($provide) {
-            var translate = {
-                use: function() { }
+        beforeEach(module('ticketbox.components.reserver', function($provide) {
+            var windowStub = {
+                alert: function() { }
             };
-            translateUseSpy = spyOn(translate, 'use').and.returnValue('en');
-            $provide.value('$translate', translate);
+            windowAlertSpy = spyOn(windowStub, 'alert');
+            $provide.value('$window', windowStub);
 
-            var reservation = {
-                save: function() { },
-                delete: function () { }
-            };
-            var promiseContainer = {
-                '$promise':  {
-                    'then': function() { }
+            var translateStub = function() {
+                return {
+                    then: function(success, error) {
+                        translateStubSuccess = success;
+                        translateStubError = error;
+                    }
                 }
             };
-            saveSpy = spyOn(reservation, 'save').and.returnValue(promiseContainer);
-            deleteSpy = spyOn(reservation, 'delete').and.returnValue(promiseContainer);
-            $provide.value('Reservation', reservation);
+            $provide.value('$translate', translateStub);
+
+            var reservationStub = {
+                save: function() { },
+                delete: function() { }
+            };
             
-            var basket = {};
-            $provide.value('basket', basket);
+            var promiseContainerStub = {
+                '$promise':  {
+                    'then': function(success, error) {
+                        promiseContainerStubSuccess = success;
+                        promiseContainerStubError = error;
+                    }
+                }
+            };
+            reservationSaveSpy = spyOn(reservationStub, 'save').and.returnValue(promiseContainerStub);
+            reservationDeleteSpy = spyOn(reservationStub, 'delete').and.returnValue(promiseContainerStub);
+            $provide.value('Reservation', reservationStub);
+            
+            var basketStub = {
+                addReservation: function() { },
+                removeReservation: function() { }
+            };
+            basketAddReservationSpy = spyOn(basketStub, 'addReservation');
+            basketRemoveReservationSpy = spyOn(basketStub, 'removeReservation');
+            $provide.value('basket', basketStub);
         }));
 
-        beforeEach(inject(function (_reserver_) {
+        beforeEach(inject(function(_reserver_) {
             reserver = _reserver_;
         }));
 
-        describe('reserve()', function () {
-            it('should create a reservation', function () {
+        describe('reserve()', function() {
+            it('should create a reservation', function() {
                 var eventId = 'e1';
                 var categoryId = 'c1';
                 var seatId = 's1';
@@ -46,38 +74,193 @@ describe('ticketbox.components.reserver', function () {
                     category_id: categoryId,
                     seat_id: seatId
                 };                
-                expect(saveSpy).not.toHaveBeenCalled();
+                expect(reservationSaveSpy).not.toHaveBeenCalled();
                 reserver.reserve(eventId, categoryId, seat);
-                expect(saveSpy).toHaveBeenCalledWith(expectedReservation);
+                expect(reservationSaveSpy).toHaveBeenCalledWith(expectedReservation);
             });
 
-            it('should update the seat', function () {
+            it('should update the seat when reservation was created successfully', function() {
                 var eventId = 'e1';
                 var categoryId = 'c1';
                 var seatId = 's1';
-                var seat = {
+                var seatStub = {
                     'seat': { 'id': seatId }
                 };
-                var expectedReservation = {
-                    event_id: eventId,
-                    category_id: categoryId,
-                    seat_id: seatId
-                };                
-                expect(saveSpy).not.toHaveBeenCalled();
-                reserver.reserve(eventId, categoryId, seat);
-                expect(saveSpy).toHaveBeenCalledWith(expectedReservation);
+                reserver.reserve(eventId, categoryId, seatStub);
+
+                var reservationId = 'r1';
+                var reservationSaveDataStub = {
+                    id: reservationId
+                };
+
+                expect(seatStub.state).toEqual(undefined);
+                expect(seatStub.reservation_id).toEqual(undefined);
+                promiseContainerStubSuccess(reservationSaveDataStub);
+                expect(seatStub.state).toEqual('reservedbymyself');
+                expect(seatStub.reservation_id).toEqual(reservationId);
+            });
+
+            it('should add the reservation to the basket when reservation was created successfully', function() {
+                var eventId = 'e1';
+                var categoryId = 'c1';
+                var seatId = 's1';
+                var seatStub = {
+                    'seat': { 'id': seatId }
+                };
+                reserver.reserve(eventId, categoryId, seatStub);
+                
+                var reservationId = 'r1';
+                var reservationSaveDataStub = {
+                    id: reservationId
+                };
+
+                expect(basketAddReservationSpy).not.toHaveBeenCalled();
+                promiseContainerStubSuccess(reservationSaveDataStub);
+                expect(basketAddReservationSpy).toHaveBeenCalledWith(reservationSaveDataStub);
+            });
+
+            it('should not add the reservation to the basket when reservation was not created successfully', function() {
+                var eventId = 'e1';
+                var categoryId = 'c1';
+                var seatId = 's1';
+                var seatStub = {
+                    'seat': { 'id': seatId }
+                };
+                reserver.reserve(eventId, categoryId, seatStub);
+
+                var reservationSaveErrorResponseStub = {
+                    status: 409
+                };
+
+                expect(basketAddReservationSpy).not.toHaveBeenCalled();
+                promiseContainerStubError(reservationSaveErrorResponseStub);
+                expect(basketAddReservationSpy).not.toHaveBeenCalled();
+            });
+
+            it('should inform the user with a translated alert message when reservation was not created successfully', function() {
+                var eventId = 'e1';
+                var categoryId = 'c1';
+                var seatId = 's1';
+                var seatStub = {
+                    'seat': { 'id': seatId }
+                };
+                reserver.reserve(eventId, categoryId, seatStub);
+
+                var reservationSaveErrorResponseStub = {
+                    status: 409
+                };
+
+                var translatedErrorMessage = 'translated error';
+                expect(windowAlertSpy).not.toHaveBeenCalled();
+                promiseContainerStubError(reservationSaveErrorResponseStub);
+                expect(windowAlertSpy).not.toHaveBeenCalled();
+                translateStubSuccess(translatedErrorMessage);
+                expect(windowAlertSpy).toHaveBeenCalledWith(translatedErrorMessage);
+            });
+
+            it('should inform the user with the error message id when reservation was not created successfully and translation failed', function() {
+                var eventId = 'e1';
+                var categoryId = 'c1';
+                var seatId = 's1';
+                var seatStub = {
+                    'seat': { 'id': seatId }
+                };
+                reserver.reserve(eventId, categoryId, seatStub);
+
+                var reservationSaveErrorResponseStub = {
+                    status: 409
+                };
+
+                var errorMessageId = 'error message id';
+                expect(windowAlertSpy).not.toHaveBeenCalled();
+                promiseContainerStubError(reservationSaveErrorResponseStub);
+                expect(windowAlertSpy).not.toHaveBeenCalled();
+                translateStubError(errorMessageId);
+                expect(windowAlertSpy).toHaveBeenCalledWith(errorMessageId);
+            });
+
+            it('should not inform the user when reservation was not created successfully and the status is not 409', function() {
+                var eventId = 'e1';
+                var categoryId = 'c1';
+                var seatId = 's1';
+                var seatStub = {
+                    'seat': { 'id': seatId }
+                };
+                reserver.reserve(eventId, categoryId, seatStub);
+
+                var reservationSaveErrorResponseStub = {
+                    status: 42
+                };
+
+                var errorMessageId = 'error message id';
+                expect(windowAlertSpy).not.toHaveBeenCalled();
+                promiseContainerStubError(reservationSaveErrorResponseStub);
+                expect(windowAlertSpy).not.toHaveBeenCalled();
+                translateStubError(errorMessageId);
+                expect(windowAlertSpy).not.toHaveBeenCalled();
             });
         });
 
-        describe('release()', function () {
-            it('should delete a reservation', function () {
+        describe('release()', function() {
+            it('should delete a reservation', function() {
                 var reservationId = 'r1';
-                var seat = {
+                var seatStub = {
                     'reservation_id': reservationId
                 }
-                expect(deleteSpy).not.toHaveBeenCalled();
-                reserver.release(seat);
-                expect(deleteSpy).toHaveBeenCalledWith({ 'id': reservationId });
+                expect(reservationDeleteSpy).not.toHaveBeenCalled();
+                reserver.release(seatStub);
+                expect(reservationDeleteSpy).toHaveBeenCalledWith({ 'id': reservationId });
+            });
+
+            it('should update the seat when the reservation is released', function() {
+                var reservationId = 'r1';
+                var seatStub = {
+                    reservation_id: reservationId
+                };
+                reserver.release(seatStub);
+
+                expect(seatStub.state).toEqual(undefined);
+                expect(seatStub.reservation_id).toEqual(reservationId);
+                promiseContainerStubSuccess();
+                expect(seatStub.state).toEqual('free');
+                expect(seatStub.reservation_id).toEqual(null);
+            });
+
+            it('should remove the reservationId from the basket when the reservation is released', function() {
+                var reservationId = 'r1';
+                var seatStub = {
+                    reservation_id: reservationId
+                };
+                reserver.release(seatStub);
+
+                expect(basketRemoveReservationSpy).not.toHaveBeenCalled();
+                promiseContainerStubSuccess();
+                expect(basketRemoveReservationSpy).toHaveBeenCalledWith(reservationId);
+            });
+        });
+
+        describe('releaseReservation()', function() {
+            it('should delete a reservation', function() {
+                var reservationId = 'r1';
+                var reservationStub = {
+                    id: reservationId
+                }
+
+                expect(reservationDeleteSpy).not.toHaveBeenCalled();
+                reserver.releaseReservation(reservationStub);
+                expect(reservationDeleteSpy).toHaveBeenCalledWith({ 'id': reservationId });
+            });
+
+            it('should remove the reservationId from the basket when the reservation is released', function() {
+                var reservationId = 'r1';
+                var reservationStub = {
+                    id: reservationId
+                }
+                reserver.releaseReservation(reservationStub);
+
+                expect(basketRemoveReservationSpy).not.toHaveBeenCalled();
+                promiseContainerStubSuccess();
+                expect(basketRemoveReservationSpy).toHaveBeenCalledWith(reservationId);
             });
         });
     });
