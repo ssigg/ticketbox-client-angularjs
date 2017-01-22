@@ -9,7 +9,7 @@ angular.module('ticketbox.components.itemlist', [ ])
                 var _persistedList = _.map(list, _.clone);
 
                 return {
-                    save: function(data, item, resource) {
+                    save: function(data, item) {
                         if (item.isTransient) {
                             _resource.save(data)
                                 .$promise.then(function(savedItem) {
@@ -29,8 +29,8 @@ angular.module('ticketbox.components.itemlist', [ ])
 
                     cancel: function() {
                         _list.length = 0;
-                        _.each(_persistedList, function(pi) {
-                            _list.push(_.clone(pi));
+                        _.each(_persistedList, function(persistedItem) {
+                            _list.push(_.clone(persistedItem));
                         });
                     },
 
@@ -40,7 +40,7 @@ angular.module('ticketbox.components.itemlist', [ ])
                         _list.push(data);
                     },
 
-                    delete: function(item, resource) {
+                    delete: function(item) {
                         _resource.delete({ 'id': item.id })
                             .$promise.then(function() {
                                 var indexOfItemToBeRemoved = _list.indexOf(item);
