@@ -5,6 +5,7 @@ angular.module('ticketbox.boxoffice', [
     'pascalprecht.translate',
     'ticketbox.components.progressInterceptor',
     'ticketbox.boxoffice.events',
+    'ticketbox.boxoffice.event.orders',
     'ticketbox.common.event',
     'ticketbox.common.block',
     'ticketbox.boxoffice.checkout'])

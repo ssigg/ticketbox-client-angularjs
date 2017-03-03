@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="twelve columns">
+        <toolbar/>
+    </div>
+</div>
+<div class="row item-list-row" ng-repeat="order in orders | orderBy: ['firstname', 'lastname']">
+    <div class="four columns">
+        <a href="#/order/{{order.id}}">{{order.firstname}} {{order.lastname}}</a>
+    </div>
+    <div class="four columns">
+        <a href="#/order/{{order.id}}">{{order.reservations.length}} <span translate>SEATS</span> ({{order.reservations | totalPrice}} {{currency}})</a>
+    </div>
+    <div class="four columns">
+        <a href="#/order/{{order.id}}">{{order.timestamp * 1000 | date:'dd.MM.yyyy, HH:mm'}}</a>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+        <p><translate>PROBLEMS CONTACT TEXT</translate> {{administrator.firstname}} {{administrator.lastname}}: <a href="mailto:{{administrator.email}}">{{administrator.email}}</a>.</p>
+    </div>
+</div>

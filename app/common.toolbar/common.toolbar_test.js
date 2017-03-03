@@ -69,32 +69,3 @@ describe('ticketbox.common.toolbar', function () {
         });
     });
 });
-
-describe('ticketbox.common.toolbar', function() {
-    describe('totalPrice', function () {
-        var totalPrice;
-
-        beforeEach(function () {
-            angular.mock.module('ticketbox.common.toolbar');
-
-            inject(function ($filter) {
-                totalPrice = $filter('totalPrice', {});
-            });
-        });
-
-        it('should return 0 if reservations is undefined', function() {
-            var reservations = undefined;
-            var price = totalPrice(reservations);
-            expect(price).toEqual(0);
-        });
-
-        it('should return the sum of all prices if reservations is defined', function() {
-            var reservations = [
-                { price: 10 },
-                { price: 5 }
-            ];
-            var price = totalPrice(reservations);
-            expect(price).toEqual(10 + 5);
-        });
-    });
-});
