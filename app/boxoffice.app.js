@@ -4,7 +4,7 @@ angular.module('ticketbox.boxoffice', [
     'ngRoute',
     'pascalprecht.translate',
     'ticketbox.components.progressInterceptor',
-    'ticketbox.common.events',
+    'ticketbox.boxoffice.events',
     'ticketbox.common.event',
     'ticketbox.common.block',
     'ticketbox.boxoffice.checkout'])
