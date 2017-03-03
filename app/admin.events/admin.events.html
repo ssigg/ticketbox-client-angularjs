@@ -6,7 +6,7 @@
 <div class="row dashboard-content-row" ng-repeat="event in events">
     <!-- view mode -->
     <div class="eight columns" ng-show="!event.isInEditMode">
-        {{event.name}} - {{event.dateandtime}}
+        <span ng-class="{ 'hidden-item': !event.visible }">{{event.name}} - {{event.dateandtime}}</span>
     </div>
     <div class="four columns" ng-show="!event.isInEditMode">
         <a class="button button-primary" href="#/event/{{event.id}}/blocks">blocks</a>
@@ -24,6 +24,7 @@
             <input type="text" ng-model="event.location" id="event-location-{{event.id}}">
             <label for="event-dateandtime-{{event.id}}">Date and Time</label>
             <input type="text" ng-model="event.dateandtime" id="event-dateandtime-{{event.id}}">
+            <label for="event-visible-{{event.id}}"><input type="checkbox" ng-model="event.visible" id="event-visible-{{event.id}}"> Visible</label>
         </div>
         <div class="four columns">
             <a class="button button-primary" ng-click="cancel()">cancel</a>

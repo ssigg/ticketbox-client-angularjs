@@ -82,3 +82,7 @@ div.dashboard-content-row input[type=number], div.dashboard-content-row input[ty
 div.admin-toolbar {
     padding:1em 0;
 }
+
+span.hidden-item {
+    text-decoration: line-through;
+}
