@@ -24,7 +24,8 @@ angular.module('ticketbox.admin.events', [
             var eventData = {
                 'name': event.name,
                 'location': event.location,
-                'dateandtime': event.dateandtime
+                'dateandtime': event.dateandtime,
+                'visible': event.visible
             };
             list.save(eventData, event);
         }
@@ -37,7 +38,8 @@ angular.module('ticketbox.admin.events', [
             var newEvent = {
                 'name': '',
                 'location': '',
-                'dateandtime': ''
+                'dateandtime': '',
+                'visible': false
             };
             list.create(newEvent);
         }
