@@ -4,14 +4,21 @@
     </div>
 </div>
 <div class="row item-list-row" ng-repeat="order in orders | orderBy: ['firstname', 'lastname']">
-    <div class="four columns">
-        <a href="#/order/{{order.id}}">{{order.firstname}} {{order.lastname}}</a>
+    <div class="eight columns text">
+        <div ng-class="{ 'selected-item-list-row-summary': selectedOrder === order }">
+            {{order.firstname}} {{order.lastname}} |
+            {{order.reservations.length}} <span translate>SEATS</span> ({{order.reservations | totalPrice}} {{currency}}) |
+            {{order.timestamp * 1000 | date:'dd.MM.yyyy, HH:mm'}}
+        </div>
+        <div class="item-list-row-details" ng-show="selectedOrder === order">
+            <div ng-repeat="reservation in order.reservations">
+                {{reservation.event.name}}, {{reservation.event.dateandtime}} - {{reservation.seat.name}}: {{reservation.price}} {{currency}} <span ng-show="reservation.isReduced">(REDUCED)</span>
+            </div>
+        </div>
     </div>
-    <div class="four columns">
-        <a href="#/order/{{order.id}}">{{order.reservations.length}} <span translate>SEATS</span> ({{order.reservations | totalPrice}} {{currency}})</a>
-    </div>
-    <div class="four columns">
-        <a href="#/order/{{order.id}}">{{order.timestamp * 1000 | date:'dd.MM.yyyy, HH:mm'}}</a>
+    <div class="four columns buttons">
+        <a ng-click="toggleOrderSelection(order)" class="button button-primary">DETAILS</a>
+        <a ng-click="sell(order)" class="button button-primary">SELL</a>
     </div>
 </div>
 <div class="row">

@@ -54,6 +54,12 @@ angular.module('ticketbox.components.api', [
     .factory('BoxofficePurchase', function($resource, api) {
         return $resource(api + '/boxoffice-purchases');
     })
+
+    .factory('OrderUpgrade', function($resource, api) {
+        return $resource(api + '/upgrade-order/:id', { id: '@id' }, {
+            update: { method: 'PUT' }
+        });
+    })
     
     .factory('CustomerPurchase', function($resource, api) {
         return $resource(api + '/customer-purchases');
