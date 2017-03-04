@@ -22,6 +22,25 @@
     text-decoration:none;
 }
 
+.item-list-row {
+    padding:0.25em 0;
+    list-style:none;
+    font-size:1.2em;
+    border-bottom:1px solid #333;
+}
+
+.item-list-row .text {
+    margin-top:0.5em;
+}
+
+.selected-item-list-row-summary {
+    font-weight:bold;
+}
+
+.item-list-row-details {
+    padding-left:0.5em;
+}
+
 .checkout-reservations li {
     list-style: none;
     line-height: 1em;

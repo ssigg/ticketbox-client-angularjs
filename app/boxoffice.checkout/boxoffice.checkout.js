@@ -2,6 +2,7 @@
 
 angular.module('ticketbox.boxoffice.checkout', [
     'ngRoute',
+    'pascalprecht.translate',
     'ticketbox.components.api',
     'ticketbox.components.reserver',
     'ticketbox.common.toolbar',

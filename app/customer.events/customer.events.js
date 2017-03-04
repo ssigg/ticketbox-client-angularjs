@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ticketbox.common.events', [
+angular.module('ticketbox.customer.events', [
     'ngRoute',
     'ticketbox.config',
     'ticketbox.components.api',
@@ -9,7 +9,7 @@ angular.module('ticketbox.common.events', [
     .config(function($routeProvider) {
         $routeProvider.when('/events', {
             controller: 'EventsCtrl',
-            templateUrl: 'common.events/common.events.html'
+            templateUrl: 'customer.events/customer.events.html'
         });
     })
 

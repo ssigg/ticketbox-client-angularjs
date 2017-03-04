@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="twelve columns">
+        <toolbar/>
+    </div>
+</div>
+<div class="row item-list-row" ng-repeat="event in events">
+    <div class="eight columns">
+        {{event.name}} - {{event.dateandtime}}
+    </div>
+    <div class="four columns">
+        <a class="button button-primary" href="#/event/{{event.id}}" translate>SELL TICKETS</a>
+        <a class="button button-primary" href="#/event/orders/{{event.id}}" translate>SELL ORDERS</a>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+        <p><translate>PROBLEMS CONTACT TEXT</translate> {{administrator.firstname}} {{administrator.lastname}}: <a href="mailto:{{administrator.email}}">{{administrator.email}}</a>.</p>
+    </div>
+</div>
