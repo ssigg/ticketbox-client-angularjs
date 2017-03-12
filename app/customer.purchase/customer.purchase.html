@@ -31,6 +31,7 @@
             <div class="hint" ng-show="checkoutForm.lastname.$touched && checkoutForm.lastname.$error.required" translate>PLEASE ENTER A LASTNAME</div>
             <input type="email" ng-model="data.email" name="email" translate-attr="{ placeholder: 'EMAIL' }" class="u-full-width" required>
             <div class="hint" ng-show="checkoutForm.email.$touched && checkoutForm.email.$error.required" translate>PLEASE ENTER A VALID EMAIL ADDRESS</div>
+            <p class="cc-payment-title"><span translate>CC PAYMENT TITLE PREFIX</span> <strong>{{reservations | totalPrice}} {{currency}}</strong> <span translate>CC PAYMENT TITLE SUFFIX</span></p>
             <div id="dropin-container"></div>
             <input type="submit" ng-disabled="!checkoutForm.$valid" title="{{!checkoutForm.$valid ? 'PLEASE FILL IN ALL FIELDS' : '' | translate}}" translate-attr="{ value: 'PURCHASE DEFINITELY' }" class="checkout button button-primary">
         </form>

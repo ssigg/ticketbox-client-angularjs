@@ -68,6 +68,9 @@
     }
 }
 
+.cc-payment-title {
+    font-size:1.3em;
+}
 .checkout-form {
     margin-top:2em;
 }
