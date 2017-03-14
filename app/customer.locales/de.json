@@ -24,5 +24,16 @@
   "PLEASE ENTER A VALID EMAIL ADDRESS": "Bitte geben Sie eine gültige Email-Adresse an",
   "PLEASE FILL IN ALL FIELDS": "Bitte füllen Sie alle Felder aus",
   "SEAT IS ALREADY RESERVED": "Dieser Platz wurde soeben von einem anderen Benutzer reserviert",
-  "EXPIRATION TIME": "Die Reservationen sind gültig bis"
+  "EXPIRATION TIME": "Die Reservationen sind gültig bis",
+  "THANK YOU PURCHASE TITLE": "Vielen Dank für Ihren Kauf",
+  "THANK YOU PURCHASE ADDRESS F": "Sehr geehrte Frau {{lastname}}",
+  "THANK YOU PURCHASE ADDRESS M": "Sehr geehrter Herr {{lastname}}",
+  "THANK YOU PURCHASE TEXT": "Dies ist die Zusammenfassung Ihrer Bestellung. Die aufgelisteten Tickets wurden mit Kreditkarte bezahlt und wir werden sie an folgende Email-Adresse zustellen: {{email}}. Diese Tickets können Sie ausdrucken oder direkt mit Ihrem Smartphone am Eingang vorweisen.",
+  "THANK YOU PURCHASE CLOSING": "Freundliche Grüsse",
+  "THANK YOU ORDER TITLE": "Vielen Dank für Ihre Reservation",
+  "THANK YOU ORDER ADDRESS F": "Sehr geehrte Frau {{lastname}}",
+  "THANK YOU ORDER ADDRESS M": "Sehr geehrter Herr {{lastname}}",
+  "THANK YOU ORDER TEXT": "Dies ist die Zusammenfassung Ihrer Reservation. Wir haben sie auch an ihre Email-Adresse geschickt: {{email}}. Die Tickets werden unter Ihrem Nachnamen an der Abendkasse hinterlegt. Wir möchten Sie bitten, die Tickets 30 Minuten vor Konzertbeginn dort abzuholen und möglichst passend zu  bezahlen. Wir behalten uns vor, reservierte Plätze 15 Minuten vor Konzertbeginn wieder freizugeben.",
+  "THANK YOU ORDER CLOSING": "Freundliche Grüsse",
+  "CLOSE": "Schliessen"
 }

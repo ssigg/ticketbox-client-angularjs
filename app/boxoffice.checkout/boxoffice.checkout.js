@@ -15,10 +15,24 @@ angular.module('ticketbox.boxoffice.checkout', [
         });
     })
 
-    .controller('CheckoutCtrl', function($scope, $location, $translate, Reservation, BoxofficePurchase, basket, reserver, currency, boxoffice) {
+    .controller('CheckoutCtrl', function($scope, $timeout, $location, $translate, Reservation, BoxofficePurchase, ReservationsExpirationTimestamp, basket, reserver, currency, boxoffice) {
         $scope.reservations = basket.getReservations();
         $scope.currency = currency;
         $scope.boxoffice = boxoffice;
+
+        $scope.expirationTimestamp = ReservationsExpirationTimestamp.query(function() {
+            if ($scope.expirationTimestamp.value === null) {
+                _cancel();
+            }
+
+            var epsilon = 1000;
+            var expirationDurationInMs = ($scope.expirationTimestamp.value * 1000) - Date.now() + epsilon;
+            if (expirationDurationInMs < 0) {
+                _cancel();
+            } else {
+                $timeout(_cancel, expirationDurationInMs);
+            }
+        });
 
         $scope.toggleReduction = function(reservation) {
             var newReductionValue = !reservation.isReduced;
@@ -41,9 +55,20 @@ angular.module('ticketbox.boxoffice.checkout', [
                 email: email
             };
             BoxofficePurchase.save(purchase)
-                .$promise.then(function() {
-                    basket.refreshReservations();
-                    $location.path('/summary');
-                });
+                .$promise.then(_success, _failure);
+        }
+
+        function _success(response) {
+            basket.refreshReservations();
+            $location.path('/summary/checkout/' + response.unique_id);
+        }
+
+        function _failure(response) {
+            // TODO: push error to logging endpoint and inform user about failure
+        }
+
+        function _cancel() {
+            basket.refreshReservations();
+            $location.path('/');
         }
     });

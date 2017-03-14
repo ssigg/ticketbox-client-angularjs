@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="twelve columns">
+        <h2 translate="THANK YOU PURCHASE TITLE"></h2>
+    </div>
+</div>
+<div class="row">
+    <div class="six columns summary">
+        <p ng-show="customerPurchase.title == 'f'" translate="THANK YOU PURCHASE ADDRESS F" translate-values="{{customerPurchase | translationValues}}"></p>
+        <p ng-show="customerPurchase.title == 'm'" translate="THANK YOU PURCHASE ADDRESS M" translate-values="{{customerPurchase | translationValues}}"></p>
+        <p translate="THANK YOU PURCHASE TEXT" translate-values="{{customerPurchase | translationValues}}"></p>
+        <p><translate>THANK YOU PURCHASE CLOSING</translate><br>{{hostName}}</p>
+        <a class="button button-primary" href="#/" translate>CLOSE</a>
+    </div>
+    <div class="six columns">
+        <ul class="checkout-reservations">
+            <li ng-repeat="reservation in customerPurchase.reservations">
+                <h2>{{reservation.seat.name}}</h2>
+                <p>{{reservation.category.name}}</p>
+                <p>{{reservation.event.name}}, {{reservation.event.dateandtime}}</p>
+                <p style="font-weight:bold;" ng-show="{{reservation.isReduced}}" translate>REDUCED</p>
+                <p class="reservation-price">{{reservation.price}} {{currency}}</p>
+                <div class="clear"></div>
+            </li>
+        </ul>
+    </div>
+</div>

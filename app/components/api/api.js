@@ -48,11 +48,11 @@ angular.module('ticketbox.components.api', [
     })
 
     .factory('Order', function($resource, api) {
-        return $resource(api + '/orders');
+        return $resource(api + '/orders/:unique_id', { unique_id: '@unique_id' });
     })
     
     .factory('BoxofficePurchase', function($resource, api) {
-        return $resource(api + '/boxoffice-purchases');
+        return $resource(api + '/boxoffice-purchases/:unique_id', { unique_id: '@unique_id' });
     })
 
     .factory('OrderUpgrade', function($resource, api) {
@@ -62,7 +62,7 @@ angular.module('ticketbox.components.api', [
     })
     
     .factory('CustomerPurchase', function($resource, api) {
-        return $resource(api + '/customer-purchases');
+        return $resource(api + '/customer-purchases/:unique_id', { unique_id: '@unique_id' });
     })
     
     .factory('Token', function($resource, api) {
