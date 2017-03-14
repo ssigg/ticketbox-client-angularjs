@@ -8,7 +8,8 @@ angular.module('ticketbox.boxoffice', [
     'ticketbox.boxoffice.event.orders',
     'ticketbox.common.event',
     'ticketbox.common.block',
-    'ticketbox.boxoffice.checkout'])
+    'ticketbox.boxoffice.checkout',
+    'ticketbox.boxoffice.checkout.summary'])
 
     .constant('canCustomerPurchase', false)
 

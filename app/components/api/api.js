@@ -52,7 +52,7 @@ angular.module('ticketbox.components.api', [
     })
     
     .factory('BoxofficePurchase', function($resource, api) {
-        return $resource(api + '/boxoffice-purchases');
+        return $resource(api + '/boxoffice-purchases/:unique_id', { unique_id: '@unique_id' });
     })
 
     .factory('OrderUpgrade', function($resource, api) {

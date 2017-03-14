@@ -26,5 +26,9 @@
   "PLEASE ENTER A VALID EMAIL ADDRESS": "Bitte geben Sie eine gültige Email-Adresse an",
   "PLEASE FILL IN ALL FIELDS": "Bitte füllen Sie alle Felder aus",
   "SEAT IS ALREADY RESERVED": "Dieser Platz wurde soeben von einem anderen Benutzer reserviert",
-  "EXPIRATION TIME": "Die Reservationen sind gültig bis"
+  "EXPIRATION TIME": "Die Reservationen sind gültig bis",
+  "THANK YOU PURCHASE TITLE": "Vielen Dank für Ihren Ticketkauf",
+  "THANK YOU PURCHASE TEXT EMAIL": "Dies ist die Zusammenfassung Ihres Kaufes. Die Tickets wurden bei der Vorverkaufsstelle bezahlt und werden an Ihre Email-Adresse geschickt.",
+  "THANK YOU PURCHASE TEXT PAPER": "Dies ist die Zusammenfassung Ihres Kaufes. Die Tickets wurden bei der Vorverkaufsstelle bezahlt und in Papierform übergeben.",
+  "CLOSE": "Schliessen"
 }
