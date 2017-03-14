@@ -10,7 +10,7 @@ describe('ticketbox.customer.checkout.summary', function () {
         inject(function (_$rootScope_, $controller) {
             scope = _$rootScope_.$new();
             var order = {
-                query: function() { }
+                get: function() { }
             };
             orderGetSpy = spyOn(order, 'get');
 
@@ -18,11 +18,11 @@ describe('ticketbox.customer.checkout.summary', function () {
             var routeParams = {
                 uniqueId: uniqueId
             }
-            $controller('EventsCtrl', {$scope: scope, $routeParams: routeParams, Order: order, summary: '$', hostName: 'Host'});
+            $controller('CustomerCheckoutSummaryCtrl', {$scope: scope, $routeParams: routeParams, Order: order, summary: '$', hostName: 'Host'});
         });
     });
 
-    describe('EventsCtrl', function () {
+    describe('CustomerCheckoutSummaryCtrl', function () {
         describe('$scope.order', function () {
             it('should fetch order with unique id', function () {
                 expect(orderGetSpy).toHaveBeenCalledWith({'unique_id': uniqueId});
