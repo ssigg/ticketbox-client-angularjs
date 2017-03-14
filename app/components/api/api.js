@@ -62,7 +62,7 @@ angular.module('ticketbox.components.api', [
     })
     
     .factory('CustomerPurchase', function($resource, api) {
-        return $resource(api + '/customer-purchases');
+        return $resource(api + '/customer-purchases/:unique_id', { unique_id: '@unique_id' });
     })
     
     .factory('Token', function($resource, api) {

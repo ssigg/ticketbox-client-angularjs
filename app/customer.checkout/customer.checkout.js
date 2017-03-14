@@ -21,15 +21,15 @@ angular.module('ticketbox.customer.checkout', [
 
         $scope.expirationTimestamp = ReservationsExpirationTimestamp.query(function() {
             if ($scope.expirationTimestamp.value === null) {
-                _close();
+                _cancel();
             }
 
             var epsilon = 1000;
             var expirationDurationInMs = ($scope.expirationTimestamp.value * 1000) - Date.now() + epsilon;
             if (expirationDurationInMs < 0) {
-                _close();
+                _cancel();
             } else {
-                $timeout(_close, expirationDurationInMs);
+                $timeout(_cancel, expirationDurationInMs);
             }
         });
 
@@ -55,11 +55,20 @@ angular.module('ticketbox.customer.checkout', [
                 locale: $translate.use()
             };
             Order.save(order)
-                .$promise.then(_close);
+                .$promise.then(_success, _failure);
         }
 
-        function _close() {
+        function _success(response) {
             basket.refreshReservations();
-            $location.path('/summary');
+            $location.path('/summary/' + response.unique_id);
+        }
+
+        function _failure(response) {
+            // TODO: push error to logging endpoint and inform user about failure
+        }
+
+        function _cancel() {
+            basket.refreshReservations();
+            $location.path('/');
         }
     });

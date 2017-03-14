@@ -46,13 +46,7 @@ angular.module('ticketbox.customer.purchase', [
                         locale: $translate.use()
                     };
                     CustomerPurchase.save(purchaseData)
-                        .$promise.then(function(response) {
-                            basket.refreshReservations();
-                            $location.path('/summary');
-                        }, function(response) {
-                            console.log(response);
-                            alert('failure! See log.'); // TODO: add better error handling.
-                        });
+                        .$promise.then(_success, _failure);
                 }
             });
         });
@@ -70,8 +64,17 @@ angular.module('ticketbox.customer.purchase', [
             reserver.releaseReservation(reservation);
         };
 
+        function _success(response) {
+            basket.refreshReservations();
+            $location.path('/summary/' + response.unique_id);
+        }
+
+        function _failure(response) {
+            // TODO: push error to logging endpoint and inform user about failure
+        }
+
         function _close() {
             basket.refreshReservations();
-            $location.path('/summary');
+            $location.path('/');
         }
     });
