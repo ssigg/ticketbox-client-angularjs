@@ -7,7 +7,7 @@ angular.module('ticketbox.customer.purchase.summary', [
     'ticketbox.config'])
 
     .config(function($routeProvider) {
-        $routeProvider.when('/summary/:uniqueId', {
+        $routeProvider.when('/summary/purchase/:uniqueId', {
             controller: 'CustomerPurchaseSummaryCtrl',
             templateUrl: 'customer.purchase.summary/customer.purchase.summary.html'
         });

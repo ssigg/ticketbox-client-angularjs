@@ -60,7 +60,7 @@ angular.module('ticketbox.customer.checkout', [
 
         function _success(response) {
             basket.refreshReservations();
-            $location.path('/summary/' + response.unique_id);
+            $location.path('/summary/checkout/' + response.unique_id);
         }
 
         function _failure(response) {

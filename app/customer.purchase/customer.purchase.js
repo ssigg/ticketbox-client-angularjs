@@ -66,7 +66,7 @@ angular.module('ticketbox.customer.purchase', [
 
         function _success(response) {
             basket.refreshReservations();
-            $location.path('/summary/' + response.unique_id);
+            $location.path('/summary/purchase/' + response.unique_id);
         }
 
         function _failure(response) {

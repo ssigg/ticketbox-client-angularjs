@@ -30,5 +30,10 @@
   "THANK YOU PURCHASE ADDRESS M": "Dear {{firstname}}",
   "THANK YOU PURCHASE TEXT": "This is the summary of your purchase. The tickets are paid with credit card and we will send the listed tickets to your email address: {{email}}.",
   "THANK YOU PURCHASE CLOSING": "Kind Regards",
+  "THANK YOU ORDER TITLE": "Thank you for your reservation",
+  "THANK YOU ORDER ADDRESS F": "Dear {{firstname}}",
+  "THANK YOU ORDER ADDRESS M": "Dear {{firstname}}",
+  "THANK YOU ORDER TEXT": "This is the summary of your order. We also sent it to your mail address: {{email}}. The tickets will be ready at the box office for you. Please fetch and pay the tickets at least 30 minutes before the concert starts. We will release the reservations 15 minutes before the concert starts.",
+  "THANK YOU ORDER CLOSING": "Kind Regards",
   "CLOSE": "Close"
 }

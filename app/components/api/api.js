@@ -48,7 +48,7 @@ angular.module('ticketbox.components.api', [
     })
 
     .factory('Order', function($resource, api) {
-        return $resource(api + '/orders');
+        return $resource(api + '/orders/:unique_id', { unique_id: '@unique_id' });
     })
     
     .factory('BoxofficePurchase', function($resource, api) {
