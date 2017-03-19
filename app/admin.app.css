@@ -75,7 +75,7 @@ div.dashboard-button-row {
     }
 }
 
-div.dashboard-content-row input[type=number], div.dashboard-content-row input[type=text] {
+div.dashboard-content-row input[type=number], div.dashboard-content-row input[type=text], div.dashboard-content-row textarea {
     width:100%;
 }
 

@@ -20,8 +20,14 @@
         <div class="eight columns">
             <label for="event-name-{{event.id}}">Name</label>
             <input type="text" ng-model="event.name" id="event-name-{{event.id}}">
-            <label for="event-location-{{event.id}}">Location</label>
+            <label for="event-location-{{event.id}}">Location name</label>
             <input type="text" ng-model="event.location" id="event-location-{{event.id}}">
+            <label for="event-location_address-{{event.id}}">Location address</label>
+            <textarea ng-model="event.location_address" id="event-location_address-{{event.id}}"></textarea>
+            <label for="event-location_directions_public_transport-{{event.id}}">Directions public transports</label>
+            <textarea ng-model="event.location_directions_public_transport" id="event-location_directions_public_transport-{{event.id}}"></textarea>
+            <label for="event-location_directions_car-{{event.id}}">Directions car</label>
+            <textarea ng-model="event.location_directions_car" id="event-location_directions_car-{{event.id}}"></textarea>
             <label for="event-dateandtime-{{event.id}}">Date and Time</label>
             <input type="text" ng-model="event.dateandtime" id="event-dateandtime-{{event.id}}">
             <label for="event-visible-{{event.id}}"><input type="checkbox" ng-model="event.visible" id="event-visible-{{event.id}}"> Visible</label>

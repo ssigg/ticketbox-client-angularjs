@@ -24,6 +24,9 @@ angular.module('ticketbox.admin.events', [
             var eventData = {
                 'name': event.name,
                 'location': event.location,
+                'location_address': event.location_address,
+                'location_directions_public_transport': event.location_directions_public_transport,
+                'location_directions_car': event.location_directions_car,
                 'dateandtime': event.dateandtime,
                 'visible': event.visible
             };
@@ -38,6 +41,9 @@ angular.module('ticketbox.admin.events', [
             var newEvent = {
                 'name': '',
                 'location': '',
+                'location_address': '',
+                'location_directions_public_transport': '',
+                'location_directions_car': '',
                 'dateandtime': '',
                 'visible': false
             };
