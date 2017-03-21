@@ -11,9 +11,12 @@ describe('ticketbox.boxoffice.checkout', function () {
         inject(function (_$rootScope_, $controller) {
             scope = _$rootScope_.$new();
 
-            var translate = {
-                use: function() { }
+            var translate = function() {
+                return {
+                    then: function() { }
+                }
             };
+            translate.use = function() { };
             translateUseSpy = spyOn(translate, 'use').and.returnValue('en');
             
             var reservation = {

@@ -44,21 +44,27 @@ angular.module('ticketbox.customer', [
             _displayContent();
         });
 
-        $rootScope.$on('loading:progress', function() {
-            _displayLoader();
+        $rootScope.$on('loading:progress', function(event, message) {
+            _displayLoader(message);
         })
 
         $rootScope.$on('loading:finish', function() {
             _displayContent();
         })
 
-        function _displayLoader() {
+        function _displayLoader(message) {
             angular.element(document.getElementById('content')).addClass('hide');
-            angular.element(document.getElementById('loading')).removeClass('hide');
+            if (message) {
+                $rootScope.progressMessage = message;
+                angular.element(document.getElementById('loading-with-message')).removeClass('hide');
+            } else {
+                angular.element(document.getElementById('loading')).removeClass('hide');
+            }
         };
 
         function _displayContent() {
             angular.element(document.getElementById('loading')).addClass('hide');
+            angular.element(document.getElementById('loading-with-message')).addClass('hide');
             angular.element(document.getElementById('content')).removeClass('hide');
         };
     });

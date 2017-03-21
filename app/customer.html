@@ -24,6 +24,10 @@
 <body>
 <div class="container">
     <div id="loading" class="uil-ripple-css" style="transform:scale(0.6);"><div></div><div></div></div>
+    <div id="loading-with-message" class="hide">
+        <div class="uil-ripple-css" style="transform:scale(0.6);"><div></div><div></div></div>
+        {{progressMessage}}
+    </div>
     <div id="content" class="hide">
         <ng-view>
     </div>

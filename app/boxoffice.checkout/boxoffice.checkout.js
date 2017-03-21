@@ -15,7 +15,7 @@ angular.module('ticketbox.boxoffice.checkout', [
         });
     })
 
-    .controller('CheckoutCtrl', function($scope, $timeout, $location, $translate, Reservation, BoxofficePurchase, ReservationsExpirationTimestamp, basket, reserver, currency, boxoffice) {
+    .controller('CheckoutCtrl', function($scope, $rootScope, $timeout, $location, $translate, Reservation, BoxofficePurchase, ReservationsExpirationTimestamp, basket, reserver, currency, boxoffice) {
         $scope.reservations = basket.getReservations();
         $scope.currency = currency;
         $scope.boxoffice = boxoffice;
@@ -54,16 +54,23 @@ angular.module('ticketbox.boxoffice.checkout', [
                 boxofficeType: boxoffice.type,
                 email: email
             };
+            $translate('PROCESSING PURCHASE...').then(function (processingPurchaseMessage) {
+                $rootScope.$broadcast('loading:progress', processingPurchaseMessage);
+            }, function (translationId) {
+                $rootScope.$broadcast('loading:progress', translationId);
+            });
             BoxofficePurchase.save(purchase)
                 .$promise.then(_success, _failure);
         }
 
         function _success(response) {
+            $rootScope.$broadcast('loading:finish');
             basket.refreshReservations();
             $location.path('/summary/checkout/' + response.unique_id);
         }
 
         function _failure(response) {
+            $rootScope.$broadcast('loading:finish');
             // TODO: push error to logging endpoint and inform user about failure
         }
 

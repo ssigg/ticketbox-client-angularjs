@@ -6,9 +6,13 @@ body {
     display: none;
 }
 
-#loading {
+#loading, #loading-with-message div {
     margin-left:auto;
     margin-right:auto;
+}
+
+#loading-with-message {
+    text-align:center;
 }
 
 .item-list {

@@ -37,5 +37,6 @@
   "THANK YOU ORDER ADDRESS M": "Sehr geehrter Herr {{lastname}}",
   "THANK YOU ORDER TEXT": "Dies ist die Zusammenfassung Ihrer Reservation. Wir haben sie auch an ihre Email-Adresse geschickt: {{email}}. Die Tickets werden unter Ihrem Nachnamen an der Abendkasse hinterlegt. Wir möchten Sie bitten, die Tickets 30 Minuten vor Konzertbeginn dort abzuholen und möglichst passend zu  bezahlen. Wir behalten uns vor, reservierte Plätze 15 Minuten vor Konzertbeginn wieder freizugeben.",
   "THANK YOU ORDER CLOSING": "Freundliche Grüsse",
-  "CLOSE": "Schliessen"
+  "CLOSE": "Schliessen",
+  "PROCESSING PURCHASE...": "Ihre Bestellung wird verarbeitet..."
 }
