@@ -15,7 +15,7 @@ angular.module('ticketbox.boxoffice.checkout', [
         });
     })
 
-    .controller('CheckoutCtrl', function($scope, $rootScope, $timeout, $location, $translate, Reservation, BoxofficePurchase, ReservationsExpirationTimestamp, basket, reserver, currency, boxoffice) {
+    .controller('CheckoutCtrl', function($scope, $rootScope, $timeout, $location, $translate, Reservation, BoxofficePurchase, ReservationsExpirationTimestamp, Log, basket, reserver, currency, boxoffice) {
         $scope.reservations = basket.getReservations();
         $scope.currency = currency;
         $scope.boxoffice = boxoffice;
@@ -60,7 +60,7 @@ angular.module('ticketbox.boxoffice.checkout', [
                 $rootScope.$broadcast('loading:progress', translationId);
             });
             BoxofficePurchase.save(purchase)
-                .$promise.then(_success, _failure);
+                .$promise.then(_success, function(response) { _failure(response, $scope.data); });
         }
 
         function _success(response) {
@@ -69,9 +69,15 @@ angular.module('ticketbox.boxoffice.checkout', [
             $location.path('/summary/checkout/' + response.unique_id);
         }
 
-        function _failure(response) {
+        function _failure(response, data) {
             $rootScope.$broadcast('loading:finish');
-            // TODO: push error to logging endpoint and inform user about failure
+            var logEntry = {
+                severity: 'error',
+                message: angular.toJson(response),
+                userData: data
+            };
+            Log.save(logEntry);
+            // TODO: inform user about failure and that the admin is informed.
         }
 
         function _cancel() {

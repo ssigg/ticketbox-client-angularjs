@@ -34,6 +34,10 @@ describe('ticketbox.boxoffice.checkout', function () {
             };
             boxofficePurchaseSaveSpy = spyOn(boxofficePurchase, 'save').and.returnValue({ '$promise': { then: function() {}} });
 
+            var log = {
+                save: function() { }
+            };
+
             var basket = {
                 getReservations: function() { }
             };
@@ -52,7 +56,7 @@ describe('ticketbox.boxoffice.checkout', function () {
             var routeParams = {
                 'blockId': 42
             };
-            $controller('CheckoutCtrl', {$scope: scope, $translate: translate, Reservation: reservation,  ReservationsExpirationTimestamp: reservationsExpirationTimestamp, BoxofficePurchase: boxofficePurchase, basket: basket, reserver: reserver, currency: '$', boxoffice: boxoffice});
+            $controller('CheckoutCtrl', {$scope: scope, $translate: translate, Reservation: reservation,  ReservationsExpirationTimestamp: reservationsExpirationTimestamp, BoxofficePurchase: boxofficePurchase, Log: log, basket: basket, reserver: reserver, currency: '$', boxoffice: boxoffice});
         });
     });
 

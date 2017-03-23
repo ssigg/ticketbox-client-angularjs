@@ -72,4 +72,8 @@ angular.module('ticketbox.components.api', [
                 isArray: false
             }
         });
+    })
+    
+    .factory('Log', function($resource, api) {
+        return $resource(api + '/log');
     });

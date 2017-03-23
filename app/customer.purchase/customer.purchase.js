@@ -15,7 +15,7 @@ angular.module('ticketbox.customer.purchase', [
         });
     })
 
-    .controller('PurchaseCtrl', function($scope, $rootScope, $location, $timeout, $translate, Reservation, ReservationsExpirationTimestamp, Token, CustomerPurchase, basket, reserver, currency) {
+    .controller('PurchaseCtrl', function($scope, $rootScope, $location, $timeout, $translate, Reservation, ReservationsExpirationTimestamp, Token, CustomerPurchase, Log, basket, reserver, currency) {
         $scope.reservations = basket.getReservations();
         $scope.currency = currency;
 
@@ -51,7 +51,7 @@ angular.module('ticketbox.customer.purchase', [
                         $rootScope.$broadcast('loading:progress', translationId);
                     });
                     CustomerPurchase.save(purchaseData)
-                        .$promise.then(_success, _failure);
+                        .$promise.then(_success, function(response) { _failure(response, $scope.data); });
                 }
             });
         });
@@ -75,9 +75,15 @@ angular.module('ticketbox.customer.purchase', [
             $location.path('/summary/purchase/' + response.unique_id);
         }
 
-        function _failure(response) {
+        function _failure(response, data) {
             $rootScope.$broadcast('loading:finish');
-            // TODO: push error to logging endpoint and inform user about failure
+            var logEntry = {
+                severity: 'error',
+                message: angular.toJson(response),
+                userData: data
+            };
+            Log.save(logEntry);
+            // TODO: inform user about failure and that the admin is informed.
         }
 
         function _close() {
