@@ -38,5 +38,7 @@
   "THANK YOU ORDER TEXT": "Dies ist die Zusammenfassung Ihrer Reservation. Wir haben sie auch an ihre Email-Adresse geschickt: {{email}}. Die Tickets werden unter Ihrem Nachnamen an der Abendkasse hinterlegt. Wir möchten Sie bitten, die Tickets 30 Minuten vor Konzertbeginn dort abzuholen und möglichst passend zu  bezahlen. Wir behalten uns vor, reservierte Plätze 15 Minuten vor Konzertbeginn wieder freizugeben.",
   "THANK YOU ORDER CLOSING": "Freundliche Grüsse",
   "CLOSE": "Schliessen",
-  "PROCESSING PURCHASE...": "Ihre Bestellung wird verarbeitet..."
+  "PROCESSING PURCHASE...": "Ihre Bestellung wird verarbeitet...",
+  "ERROR DURING PAYMENT - CREDIT CARD HAS NOT BEEN CHARCHED. PLEASE TRY AGAIN.": "Fehler bei der Verarbeitung Ihrer Zahlung - Die Kreditkarte wurde nicht belastet. Bitte versuchen Sie es noch einmal.",
+  "ERROR - WE WILL CONTACT YOU SOON.": "Fehler - Wir werden Sie bald kontaktieren."
 }

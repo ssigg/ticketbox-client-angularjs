@@ -6,6 +6,16 @@ body {
     display: none;
 }
 
+.error {
+    margin-top:2em;
+    background-color: #faa;
+    padding:.2em;
+    border-radius: .2em;
+    font-weight: bold;
+    font-size:1.5em;
+    margin-bottom: 1em;
+}
+
 #loading, #loading-with-message div {
     margin-left:auto;
     margin-right:auto;

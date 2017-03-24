@@ -16,6 +16,7 @@ angular.module('ticketbox.customer.purchase', [
     })
 
     .controller('PurchaseCtrl', function($scope, $rootScope, $location, $timeout, $translate, Reservation, ReservationsExpirationTimestamp, Token, CustomerPurchase, Log, basket, reserver, currency) {
+        $scope.errorMessage = '';
         $scope.reservations = basket.getReservations();
         $scope.currency = currency;
 
@@ -77,13 +78,23 @@ angular.module('ticketbox.customer.purchase', [
 
         function _failure(response, data) {
             $rootScope.$broadcast('loading:finish');
-            var logEntry = {
-                severity: 'error',
-                message: angular.toJson(response),
-                userData: data
-            };
-            Log.save(logEntry);
-            // TODO: inform user about failure and that the admin is informed.
+            if (response.status === 400) {
+                // Credit card error - customer has to handle that
+                $translate('ERROR DURING PAYMENT - CREDIT CARD HAS NOT BEEN CHARCHED. PLEASE TRY AGAIN.').then(function (errorMessage) {
+                    $scope.errorMessage = errorMessage;
+                }, function (translationId) {
+                    $scope.errorMessage = translationId;
+                });
+            } else {
+                // This is the critical point - user paid, tickets are not sent.
+                var logEntry = {
+                    severity: 'error',
+                    message: angular.toJson(response),
+                    userData: data
+                };
+                Log.save(logEntry);
+                $location.path('/error/c');
+            }
         }
 
         function _close() {

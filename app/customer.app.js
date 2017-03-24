@@ -10,7 +10,8 @@ angular.module('ticketbox.customer', [
     'ticketbox.customer.checkout',
     'ticketbox.customer.checkout.summary',
     'ticketbox.customer.purchase',
-    'ticketbox.customer.purchase.summary'])
+    'ticketbox.customer.purchase.summary',
+    'ticketbox.customer.purchase.error'])
 
     .config(function ($routeProvider, $httpProvider, $translateProvider) {
         $routeProvider.otherwise({

@@ -38,5 +38,7 @@
   "THANK YOU ORDER TEXT": "This is the summary of your order. We also sent it to your mail address: {{email}}. The tickets will be ready at the box office for you. Please fetch and pay the tickets at least 30 minutes before the concert starts. We will release the reservations 15 minutes before the concert starts.",
   "THANK YOU ORDER CLOSING": "Kind Regards",
   "CLOSE": "Close",
-  "PROCESSING PURCHASE...": "Processing purchase..."
+  "PROCESSING PURCHASE...": "Processing purchase...",
+  "ERROR DURING PAYMENT - CREDIT CARD HAS NOT BEEN CHARCHED. PLEASE TRY AGAIN.": "Error during payment process - Your credit card has not beed charged. Please try again.",
+  "ERROR - WE WILL CONTACT YOU SOON.": "Error -  We will contact you soon."
 }
