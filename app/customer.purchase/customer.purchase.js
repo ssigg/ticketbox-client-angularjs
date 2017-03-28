@@ -67,7 +67,11 @@ angular.module('ticketbox.customer.purchase', [
         };
 
         $scope.release = function(reservation) {
+            var isLastReservation = $scope.reservations.length === 1;
             reserver.releaseReservation(reservation);
+            if (isLastReservation) {
+                $location.path('/');
+            }
         };
 
         function _success(response) {
