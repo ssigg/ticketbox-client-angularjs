@@ -1,6 +1,7 @@
 <div class="row header-top">
     <div class="twelve columns">
-        <p class="reservations-count">{{reservations.length}} <translate>SEATS</translate> - <strong>{{reservations | totalPrice}} {{currency}}</strong></p>
+        <p ng-show="reservations.length !== 1" class="reservations-count">{{reservations.length}} <translate>SEATS</translate> - <strong>{{reservations | totalPrice}} {{currency}}</strong></p>
+        <p ng-show="reservations.length === 1" class="reservations-count">{{reservations.length}} <translate>SEAT</translate> - <strong>{{reservations | totalPrice}} {{currency}}</strong></p>
     </div>
 </div>
 <div class="row header-bottom">
@@ -16,10 +17,13 @@
 <div class="row toolbar">
     <div class="twelve columns">
         <p>
-            <div class="reservations-count">
+            <div ng-show="reservations.length !== 1" class="reservations-count">
                 {{reservations.length}} <translate>SEATS</translate> - <strong>{{reservations | totalPrice}} {{currency}}</strong>
             </div>
-            <a class="button mobile-toggle-button" ng-show="!areButtonsVisible" ng-click="toggleButtonsVisibility()">+</a>
+            <div ng-show="reservations.length === 1" class="reservations-count">
+                {{reservations.length}} <translate>SEAT</translate> - <strong>{{reservations | totalPrice}} {{currency}}</strong>
+            </div>
+            <a class="button mobile-toggle-button" ng-show="(controller !== 'EventsCtrl' || reservations.length > 0) && !areButtonsVisible" ng-click="toggleButtonsVisibility()">+</a>
             <a class="button mobile-toggle-button" ng-show="areButtonsVisible" ng-click="toggleButtonsVisibility()">–</a>
             <div class="buttons">
                 <a class="button button-primary action-button" ng-show="controller !== 'EventsCtrl'" href="#/events" translate>SELECT MORE SEATS (TOOLBAR)</a>

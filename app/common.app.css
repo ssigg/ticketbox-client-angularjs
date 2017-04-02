@@ -30,6 +30,18 @@
     border-bottom:3px solid #333;
 }
 
+@media all and (max-width: 1024px) {
+    .toolbar {
+        display:block;
+    }
+    .header-top, .header-bottom {
+        display:none;
+    }
+    body {
+        margin-top:6em;
+    }
+}
+
 .toolbar.visible {
     display:block;
 }
