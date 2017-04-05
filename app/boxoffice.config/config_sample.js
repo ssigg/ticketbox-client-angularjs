@@ -16,6 +16,7 @@ angular.module('ticketbox.config', [])
         'name': 'Box Office Name',
         'type': 'paper' // paper: Hardware tickets. Only a notification is sent and the seats are reserved.
                         // pdf: PDF tickets. Additionally to the notification, a confirmation with PDF tickets is sent to the customer.
+                        // printout: Tickets to be printed at the box office. A PDF ticket will be generated but it will not be distributed by email.
     })
     
     .factory('styles', function() {

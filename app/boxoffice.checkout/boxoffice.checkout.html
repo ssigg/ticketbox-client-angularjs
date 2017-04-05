@@ -17,7 +17,7 @@
             </li>
         </ul>
     </div>
-    <div ng-show="boxoffice.type == 'pdf'" class="six columns">
+    <div ng-show="boxoffice.type === 'pdf'" class="six columns">
         <p class="expiration-time"><span translate>EXPIRATION TIME</span> {{expirationTimestamp.value * 1000 | date:'HH:mm'}}</p>
         <form class="checkout-form" name="checkoutForm" ng-submit="createBoxofficePurchase(data.email)">
             <input type="email" ng-model="data.email" name="email" translate-attr="{ placeholder: 'EMAIL' }" class="u-full-width" required>
@@ -25,8 +25,12 @@
             <input type="submit" ng-disabled="!checkoutForm.$valid" title="{{!checkoutForm.$valid ? 'PLEASE FILL IN ALL FIELDS' : '' | translate}}" translate-attr="{ value: 'SELL' }" class="checkout button button-primary">
         </form>
     </div>
-    <div ng-show="boxoffice.type == 'paper'" class="six columns">
+    <div ng-show="boxoffice.type === 'paper'" class="six columns">
         <p class="expiration-time"><span translate>EXPIRATION TIME</span> {{expirationTimestamp.value * 1000 | date:'HH:mm'}}</p>
         <a class="checkout button button-primary" ng-click="createBoxofficePurchase()" translate>SELL</a>
+    </div>
+    <div ng-show="boxoffice.type === 'printout'" class="six columns">
+        <p class="expiration-time"><span translate>EXPIRATION TIME</span> {{expirationTimestamp.value * 1000 | date:'HH:mm'}}</p>
+        <a class="checkout button button-primary" ng-click="createBoxofficePurchase()" translate>PRINT</a>
     </div>
 </div>

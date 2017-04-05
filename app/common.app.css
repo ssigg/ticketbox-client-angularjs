@@ -96,3 +96,12 @@
 .summary {
     margin-top:2em;
 }
+
+.ticket-number span {
+    font-size:6em;
+    font-family: "Courier New", Courier, monospace;
+    border-radius:.05em;
+    border:3px solid #333;
+    padding:.2em;
+    color:#000;
+}

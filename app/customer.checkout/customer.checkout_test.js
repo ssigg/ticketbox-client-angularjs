@@ -86,6 +86,7 @@ describe('ticketbox.customer.checkout', function () {
         describe('$scope.release()', function() {
             it('should use the reserver to release the reservation', function() {
                 var reservation = { };
+                scope.reservations = [ 'reservation 1', 'reservation 2' ];
                 expect(reserverReleaseReservationSpy).not.toHaveBeenCalled();
                 scope.release(reservation);
                 expect(reserverReleaseReservationSpy).toHaveBeenCalledWith(reservation);

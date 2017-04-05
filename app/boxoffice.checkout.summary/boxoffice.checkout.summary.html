@@ -1,12 +1,13 @@
 <div class="row">
     <div class="twelve columns">
-        <h2 translate="THANK YOU PURCHASE TITLE"></h2>
+        <h2 ng-show="boxoffice.type !== 'printout'" translate="THANK YOU PURCHASE TITLE"></h2>
     </div>
 </div>
 <div class="row">
     <div class="six columns summary">
-        <p ng-show="boxoffice.type == 'pdf'" translate="THANK YOU PURCHASE TEXT EMAIL"></p>
-        <p ng-show="boxoffice.type == 'paper'" translate="THANK YOU PURCHASE TEXT PAPER"></p>
+        <p ng-show="boxoffice.type === 'pdf'" translate="THANK YOU PURCHASE TEXT EMAIL"></p>
+        <p ng-show="boxoffice.type === 'paper'" translate="THANK YOU PURCHASE TEXT PAPER"></p>
+        <p class="ticket-number" ng-show="boxoffice.type === 'printout'"><span>{{boxofficePurchase.id | padWithZeros : 4}}</span></p>
         <a class="button button-primary" href="#/" translate>CLOSE</a>
     </div>
     <div class="six columns">

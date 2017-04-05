@@ -44,7 +44,11 @@ angular.module('ticketbox.boxoffice.checkout', [
         };
 
         $scope.release = function(reservation) {
+            var isLastReservation = $scope.reservations.length === 1;
             reserver.releaseReservation(reservation);
+            if (isLastReservation) {
+                $location.path('/');
+            }
         };
 
         $scope.createBoxofficePurchase = function(email) {
