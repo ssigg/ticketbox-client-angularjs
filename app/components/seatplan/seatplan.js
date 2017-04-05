@@ -59,11 +59,11 @@ angular.module('ticketbox.components.seatplan', [
         function _create(scope, element, attrs) {
             var canvas = null;
             var seats = null;
-            var canvasId = 'ngSelectableImageCanvas';
+            var canvas = element.children()[0];
 
             scope.$watch('src', function (newSrc, oldSrc) {
                 if (newSrc !== undefined) {
-                    canvas = canvasImage.createCanvasObject(newSrc, canvasId);
+                    canvas = canvasImage.createCanvasObject(newSrc, canvas);
                     if (seats !== null) {
                         _refreshSeats(scope, canvas, seats);
                     }
@@ -88,7 +88,7 @@ angular.module('ticketbox.components.seatplan', [
                 categoryid: '=',
                 seats: '='
             },
-            template: '<canvas id="ngSelectableImageCanvas"></canvas>',
+            template: '<canvas></canvas>',
             link: _create
         }
     });

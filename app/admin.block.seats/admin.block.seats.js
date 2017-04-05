@@ -130,11 +130,11 @@ angular.module('ticketbox.admin.block.seats', [
         function _create(scope, element, attrs) {
             selectedCoordinates = scope.coordinates;
             var canvas = null;
-            var canvasId = 'ngClickableImageCanvas';
+            var canvas = element.children()[0];
 
             scope.$watch('src', function (newSrc, oldSrc) {
                 if (newSrc !== undefined) {
-                    canvas = canvasImage.createCanvasObject(newSrc, canvasId);
+                    canvas = canvasImage.createCanvasObject(newSrc, canvas);
                     _bindClick(canvas);
                 }
             }, true);

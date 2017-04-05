@@ -32,7 +32,7 @@ describe('ticketbox.components.canvas', function() {
                 var src = 'src';
                 var id = 'id';
                 var canvas = canvasImage.createCanvasObject(src, id);
-                expect(oCanvasCreateSpy).toHaveBeenCalledWith({ canvas: '#' + id });
+                expect(oCanvasCreateSpy).toHaveBeenCalledWith({ canvas: id });
                 expect(canvasDisplayImageSpy).toHaveBeenCalled();
                 expect(canvasAddChildSpy).toHaveBeenCalledWith(imageStub);
                 expect(canvas).toEqual(canvasStub);

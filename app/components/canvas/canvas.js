@@ -2,9 +2,9 @@ angular.module('ticketbox.components.canvas', [])
 
     .service('canvasImage', function () {
         return {
-            createCanvasObject: function (src, id) {
+            createCanvasObject: function (src, element) {
                 var canvas = oCanvas.create({
-                    canvas: "#" + id
+                    canvas: element
                 });
                 var img = new Image();
                 img.onload = function () {
