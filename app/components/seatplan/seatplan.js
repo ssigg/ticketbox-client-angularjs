@@ -91,4 +91,81 @@ angular.module('ticketbox.components.seatplan', [
             template: '<canvas></canvas>',
             link: _create
         }
+    })
+    
+    .directive('ngMergedSeatSelection', function (canvasImage, $rootScope, coordinates, handlers) {
+        var currentPolygons = [];
+
+        function _refreshParts(scope, canvas, parts) {
+            _.each(currentPolygons, function (p) {
+                canvas.removeChild(p, false);
+            });
+            currentPolygons = [];
+
+            _.each(parts, function(part) {
+                _.each(part.seats, function(seat) {
+                    var polygon = _drawSeat(scope, canvas, seat, part.category);
+                    currentPolygons.push(polygon);
+                });
+            });
+
+            canvas.redraw();
+        }
+
+        function _drawSeat(scope, canvas, seat, category) {
+            var polygon = canvasImage.drawPolygon(canvas, coordinates.seatToCoordinates(seat.seat), '#333', '2px #000');
+            handlers.draw(scope.eventid, category, seat, polygon);
+            _bind(scope, polygon, seat, category);
+            return polygon;
+        }
+
+        function _bind(scope, element, seat, category) {
+            element.bind("click tap", function () {
+                handlers.click(scope.eventid, category, seat, element);
+                element.redraw();
+            });
+            element.bind("mouseenter", function () {
+                handlers.mouseenter(scope.eventid, category, seat, element);
+                element.redraw();
+            });
+            element.bind("mouseleave", function () {
+                handlers.mouseleave(scope.eventid, category, seat, element);
+                element.redraw();
+            });
+        }
+
+        function _create(scope, element, attrs) {
+            var canvas = null;
+            var parts = null;
+            var canvas = element.children()[0];
+
+            scope.$watch('src', function (newSrc, oldSrc) {
+                if (newSrc !== undefined) {
+                    canvas = canvasImage.createCanvasObject(newSrc, canvas);
+                    if (parts !== null) {
+                        _refreshParts(scope, canvas, parts);
+                    }
+                }
+            }, true);
+
+            scope.$watch('parts', function (newParts, oldParts) {
+                if (newParts !== undefined) {
+                    parts = newParts;
+                    if (canvas !== null) {
+                        _refreshParts(scope, canvas, newParts);
+                    }
+                }
+            }, true);
+        }
+
+        return {
+            restrict: 'E',
+            scope: {
+                src: '=',
+                eventid: '=',
+                parts: '='
+            },
+            template: '<canvas></canvas>',
+            link: _create
+        }
     });
