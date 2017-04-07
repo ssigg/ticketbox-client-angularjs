@@ -16,6 +16,15 @@
     -webkit-overflow-scrolling: touch;
 }
 
+@media all and (max-width: 1024px) {
+    .overflow-wrapper {
+        position:absolute;
+        left:-20px;
+        right:-20px;
+        padding:0;
+    }
+}
+
 @media all and (max-width: 660px) {
     .header-bottom a.action-button, .toolbar a.action-button {
         display:block;
@@ -60,13 +69,13 @@
     display:none;
 }
 
-@media all and (min-width: 661px) {
+@media all and (min-width: 901px) {
     .toolbar .buttons {
         float:right;
     }
 }
 
-@media all and (max-width: 660px) {
+@media all and (max-width: 900px) {
     .toolbar .buttons {
         clear:both;
         display:none;
