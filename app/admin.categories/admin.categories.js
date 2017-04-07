@@ -25,6 +25,7 @@ angular.module('ticketbox.admin.categories', [
         $scope.save = function(category) {
             var categoryData = {
                 'name': category.name,
+                'color': category.color,
                 'price': category.price,
                 'price_reduced': category.price_reduced
             };
@@ -38,6 +39,7 @@ angular.module('ticketbox.admin.categories', [
         $scope.create = function() {
             var newCategory = {
                 'name': '',
+                'color': '',
                 'price': '',
                 'price_reduced': ''
             };

@@ -59,6 +59,7 @@ describe('ticketbox.admin.categories', function () {
             it('should use the itemList to save the category', function () {
                 var categoryObject = {
                     'name': 'name',
+                    'color': 'color',
                     'price': 'price',
                     'price_reduced': 'price_reduced',
                     'foo': 'foo',
@@ -66,6 +67,7 @@ describe('ticketbox.admin.categories', function () {
                 };
                 var categoryData = {
                     'name': categoryObject.name,
+                    'color': categoryObject.color,
                     'price': categoryObject.price,
                     'price_reduced': categoryObject.price_reduced
                 };
@@ -97,6 +99,7 @@ describe('ticketbox.admin.categories', function () {
 
                 var categoryData = {
                     'name': '',
+                    'color': '',
                     'price': '',
                     'price_reduced': ''
                 };
