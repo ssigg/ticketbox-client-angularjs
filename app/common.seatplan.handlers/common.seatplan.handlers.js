@@ -6,13 +6,15 @@ angular.module('ticketbox.common.seatplan.handlers', [
 
     .service('draw', function (styles) {
         return {
-            applySeatStyle: function (element, reservationState, isHovered) {
+            applySeatStyle: function (element, reservationState, category, isHovered) {
                 var style = {};
                 if (reservationState === 'free') {
                     if (isHovered) {
                         style = styles.freeHover;
+                        style.background = category.color;
                     } else {
                         style = styles.free;
+                        style.background = category.color;
                     }
                 } else if (reservationState === 'reservedbymyself') {
                     style = styles.reservedbymyself;
@@ -32,21 +34,21 @@ angular.module('ticketbox.common.seatplan.handlers', [
 
     .service('handlers', function (draw, reserver) {
         return {
-            draw: function (eventid, categoryid, seat, element) {
-                draw.applySeatStyle(element, seat.state, false);
+            draw: function (eventid, category, seat, element) {
+                draw.applySeatStyle(element, seat.state, category, false);
             },
-            click: function (eventid, categoryid, seat, element) {
+            click: function (eventid, category, seat, element) {
                 if (seat.state === 'free') {
-                    reserver.reserve(eventid, categoryid, seat);
+                    reserver.reserve(eventid, category.id, seat);
                 } else if (seat.state === 'reservedbymyself') {
                     reserver.release(seat);
                 }
             },
-            mouseenter: function (eventid, categoryid, seat, element) {
-                draw.applySeatStyle(element, seat.state, true);
+            mouseenter: function (eventid, category, seat, element) {
+                draw.applySeatStyle(element, seat.state, category, true);
             },
-            mouseleave: function (eventid, categoryid, seat, element) {
-                draw.applySeatStyle(element, seat.state, false);
+            mouseleave: function (eventid, category, seat, element) {
+                draw.applySeatStyle(element, seat.state, category, false);
             }
         };
     });

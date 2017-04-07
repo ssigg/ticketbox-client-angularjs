@@ -27,7 +27,7 @@ describe('ticketbox.common.seatplan.handlers', function () {
         describe('draw()', function () {
             it('should use draw.applySeatStyle()', function () {
                 var eventId = 'e1';
-                var categoryId = 'c1';
+                var category = 'c1';
                 var reservationState = 'free';
                 var seat = {
                     'seat': { 'id': 's1' },
@@ -37,15 +37,15 @@ describe('ticketbox.common.seatplan.handlers', function () {
                 var element = {};
                 
                 expect(applySeatStyleSpy).not.toHaveBeenCalled();
-                handlers.draw(eventId, categoryId, seat, element);
-                expect(applySeatStyleSpy).toHaveBeenCalledWith(element, reservationState, false);
+                handlers.draw(eventId, category, seat, element);
+                expect(applySeatStyleSpy).toHaveBeenCalledWith(element, reservationState, category, false);
             });
         });
 
         describe('click()', function () {
             it('should reserve seat if the seat is free', function () {
                 var eventId = 'e1';
-                var categoryId = 'c1';
+                var category = { id: 'c1' };
                 var reservationState = 'free';
                 var seat = {
                     'seat': { 'id': 's1' },
@@ -56,8 +56,8 @@ describe('ticketbox.common.seatplan.handlers', function () {
 
                 expect(reserveSpy).not.toHaveBeenCalled();
                 expect(releaseSpy).not.toHaveBeenCalled();
-                handlers.click(eventId, categoryId, seat, element, reservationState);
-                expect(reserveSpy).toHaveBeenCalledWith(eventId, categoryId, seat);
+                handlers.click(eventId, category, seat, element, reservationState);
+                expect(reserveSpy).toHaveBeenCalledWith(eventId, category.id, seat);
                 expect(releaseSpy).not.toHaveBeenCalled();
             });
 
@@ -101,7 +101,7 @@ describe('ticketbox.common.seatplan.handlers', function () {
         describe('mouseenter()', function () {
             it('should use draw.applySeatStyle()', function () {
                 var eventId = 'e1';
-                var categoryId = 'c1';
+                var category = 'c1';
                 var reservationState = 'free';
                 var seat = {
                     'seat': { 'id': 's1' },
@@ -111,15 +111,15 @@ describe('ticketbox.common.seatplan.handlers', function () {
                 var element = {};
 
                 expect(applySeatStyleSpy).not.toHaveBeenCalled();
-                handlers.mouseenter(eventId, categoryId, seat, element);
-                expect(applySeatStyleSpy).toHaveBeenCalledWith(element, reservationState, true);
+                handlers.mouseenter(eventId, category, seat, element);
+                expect(applySeatStyleSpy).toHaveBeenCalledWith(element, reservationState, category, true);
             });
         });
 
         describe('mouseleave()', function () {
             it('should use draw.applySeatStyle()', function () {
                 var eventId = 'e1';
-                var categoryId = 'c1';
+                var category = 'c1';
                 var reservationState = 'free';
                 var seat = {
                     'seat': { 'id': 's1' },
@@ -129,8 +129,8 @@ describe('ticketbox.common.seatplan.handlers', function () {
                 var element = {};
 
                 expect(applySeatStyleSpy).not.toHaveBeenCalled();
-                handlers.mouseleave(eventId, categoryId, seat, element);
-                expect(applySeatStyleSpy).toHaveBeenCalledWith(element, reservationState, false);
+                handlers.mouseleave(eventId, category, seat, element);
+                expect(applySeatStyleSpy).toHaveBeenCalledWith(element, reservationState, category, false);
             });
         });
     });
@@ -158,8 +158,11 @@ describe('ticketbox.common.seatplan.handlers', function () {
             it('should apply free style if state is free and it is not hovered', function () {
                 var element = {};
                 var reservationState = 'free';
+                var category = {
+                    color: 'fb'
+                };
                 var isHovered = false;
-                draw.applySeatStyle(element, reservationState, isHovered);
+                draw.applySeatStyle(element, reservationState, category, isHovered);
                 expect(element.fill).toEqual('fb');
                 expect(element.stroke).toEqual('fs');
                 expect(element.opacity).toEqual(0.0);
@@ -168,8 +171,11 @@ describe('ticketbox.common.seatplan.handlers', function () {
             it('should apply freeHover style if state is free and it is hovered', function () {
                 var element = {};
                 var reservationState = 'free';
+                var category = {
+                    color: 'fhb'
+                };
                 var isHovered = true;
-                draw.applySeatStyle(element, reservationState, isHovered);
+                draw.applySeatStyle(element, reservationState, category, isHovered);
                 expect(element.fill).toEqual('fhb');
                 expect(element.stroke).toEqual('fhs');
                 expect(element.opacity).toEqual(0.1);
