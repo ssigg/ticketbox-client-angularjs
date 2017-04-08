@@ -19,8 +19,8 @@
 @media all and (max-width: 1024px) {
     .overflow-wrapper {
         position:absolute;
-        left:-20px;
-        right:-20px;
+        left:0;
+        right:0;
         padding:0;
     }
 }
