@@ -116,6 +116,10 @@
 }
 
 .actions-title {
-    margin-top:2em;
+    margin-top:10em;
     text-align:center;
+}
+
+.actions-title h2 {
+    font-size:4em;
 }

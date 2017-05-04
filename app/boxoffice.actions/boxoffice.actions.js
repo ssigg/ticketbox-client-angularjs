@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('ticketbox.boxoffice.actions', [
-    'ngRoute'])
+    'ngRoute',
+    'ticketbox.components.api',])
 
     .config(function($routeProvider) {
         $routeProvider.when('/actions/:eventId', {
@@ -10,6 +11,7 @@ angular.module('ticketbox.boxoffice.actions', [
         });
     })
 
-    .controller('ActionsCtrl', function($scope, $routeParams) {
+    .controller('ActionsCtrl', function($scope, $routeParams, Event) {
+        $scope.event = Event.get({ id: $routeParams.eventId });
         $scope.eventId = $routeParams.eventId;
     });
