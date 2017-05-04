@@ -10,7 +10,7 @@
                 <p class="reservation-release"><a class="button button-primary" ng-click="release(reservation)">✕</a></p>
                 <h2>{{reservation.seat.name}}</h2>
                 <p>{{reservation.category.name}}</p>
-                <p>{{reservation.event.name}}, {{reservation.event.dateandtime}}</p>
+                <p>{{reservation.event.name}} - {{reservation.event.location}}, {{reservation.event.dateandtime}}</p>
                 <p><label><input type="checkbox" ng-checked="{{reservation.isReduced}}" ng-click="toggleReduction(reservation)"> <translate>REDUCED</translate></label></p>
                 <p class="reservation-price">{{reservation.price}} {{currency}}</p>
                 <div class="clear"></div>
@@ -25,7 +25,7 @@
             <input type="submit" ng-disabled="!checkoutForm.$valid" title="{{!checkoutForm.$valid ? 'PLEASE FILL IN ALL FIELDS' : '' | translate}}" translate-attr="{ value: 'SELL' }" class="checkout button button-primary">
         </form>
     </div>
-    <div ng-show="boxoffice.type === 'paper'" class="six columns">
+    <div ng-show="boxoffice.type === 'paper' || boxoffice.type === 'download'" class="six columns">
         <p class="expiration-time"><span translate>EXPIRATION TIME</span> {{expirationTimestamp.value * 1000 | date:'HH:mm'}}</p>
         <a class="checkout button button-primary" ng-click="createBoxofficePurchase()" translate>SELL</a>
     </div>
