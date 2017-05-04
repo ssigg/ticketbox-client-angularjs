@@ -5,7 +5,7 @@ angular.module('ticketbox.customer.checkout', [
     'pascalprecht.translate',
     'ticketbox.components.api',
     'ticketbox.components.reserver',
-    'ticketbox.common.toolbar',
+    'ticketbox.customer.toolbar',
     'ticketbox.config'])
 
     .config(function($routeProvider) {

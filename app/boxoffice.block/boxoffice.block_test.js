@@ -1,11 +1,11 @@
 'use strict';
 
-describe('ticketbox.common.block', function () {
+describe('ticketbox.boxoffice.block', function () {
     var scope, getSpy;
     
     beforeEach(function () {
         angular.module('ticketbox.components.api',[]);
-        module('ticketbox.common.block');
+        module('ticketbox.boxoffice.block');
 
         inject(function (_$rootScope_, $controller) {
             scope = _$rootScope_.$new();

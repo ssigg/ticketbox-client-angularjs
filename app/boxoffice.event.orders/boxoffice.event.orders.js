@@ -5,7 +5,7 @@ angular.module('ticketbox.boxoffice.event.orders', [
     'pascalprecht.translate',
     'ticketbox.config',
     'ticketbox.components.api',
-    'ticketbox.common.toolbar',
+    'ticketbox.boxoffice.toolbar',
     'ticketbox.components.price'])
 
     .config(function($routeProvider) {

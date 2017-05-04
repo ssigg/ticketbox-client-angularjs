@@ -7,8 +7,8 @@ angular.module('ticketbox.boxoffice', [
     'ticketbox.boxoffice.events',
     'ticketbox.boxoffice.actions',
     'ticketbox.boxoffice.event.orders',
-    'ticketbox.common.event',
-    'ticketbox.common.block',
+    'ticketbox.boxoffice.event',
+    'ticketbox.boxoffice.block',
     'ticketbox.boxoffice.checkout',
     'ticketbox.boxoffice.checkout.summary'])
 

@@ -1,16 +1,16 @@
 'use strict';
 
-angular.module('ticketbox.common.block', [
+angular.module('ticketbox.boxoffice.block', [
     'ngRoute',
     'ticketbox.components.api',
     'ticketbox.common.seatplan.handlers',
     'ticketbox.components.seatplan',
-    'ticketbox.common.toolbar'])
+    'ticketbox.boxoffice.toolbar'])
 
     .config(function($routeProvider) {
         $routeProvider.when('/block/:blockId', {
             controller: 'BlockCtrl',
-            templateUrl: 'common.block/common.block.html'
+            templateUrl: 'boxoffice.block/boxoffice.block.html'
         });
     })
 

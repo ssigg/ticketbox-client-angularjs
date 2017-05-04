@@ -1,11 +1,11 @@
 'use strict';
 
-describe('ticketbox.common.toolbar', function () {
+describe('ticketbox.customer.toolbar', function () {
     var scope, pathSpy, getReservationsSpy, releaseReservationSpy;
     
     beforeEach(function () {
         angular.module('ticketbox.components.api',[]);
-        module('ticketbox.common.toolbar');
+        module('ticketbox.customer.toolbar');
 
         inject(function (_$rootScope_, $controller) {
             scope = _$rootScope_.$new();
