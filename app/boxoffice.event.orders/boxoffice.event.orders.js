@@ -15,7 +15,7 @@ angular.module('ticketbox.boxoffice.event.orders', [
         });
     })
 
-    .controller('EventOrdersCtrl', function($scope, $routeParams, $translate, Order, OrderUpgrade, currency, boxoffice, administrator) {
+    .controller('EventOrdersCtrl', function($rootScope, $scope, $routeParams, $location, $translate, Order, Log, OrderUpgrade, currency, boxoffice, administrator) {
         $scope.administrator = administrator;
         $scope.currency = currency;
         
@@ -36,9 +36,28 @@ angular.module('ticketbox.boxoffice.event.orders', [
                 boxofficeName: boxoffice.name,
                 boxofficeType: boxoffice.type
             };
+
+            $translate('PROCESSING PURCHASE...').then(function (processingPurchaseMessage) {
+                $rootScope.$broadcast('loading:progress', processingPurchaseMessage);
+            }, function (translationId) {
+                $rootScope.$broadcast('loading:progress', translationId);
+            });
             OrderUpgrade.update({ 'id': order.id }, data)
-                .$promise.then(function() {
-                    $scope.orders = Order.query({ 'event_id': $routeParams.eventId });
-                });
+                .$promise.then(_success, function(response) { _failure(response, $scope.data); });
         };
+
+        function _success(response) {
+            $rootScope.$broadcast('loading:finish');
+            $location.path('/summary/checkout/' + response.unique_id);
+        }
+
+        function _failure(response, data) {
+            $rootScope.$broadcast('loading:finish');
+            var logEntry = {
+                severity: 'error',
+                message: angular.toJson(response),
+                userData: data
+            };
+            Log.save(logEntry);
+        }
     });

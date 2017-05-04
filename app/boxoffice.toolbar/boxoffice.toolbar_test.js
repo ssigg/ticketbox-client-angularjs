@@ -31,7 +31,7 @@ describe('ticketbox.boxoffice.toolbar', function () {
             };
             getReservationsSpy = spyOn(basket, 'getReservations').and.returnValue([ 'reservation 1', 'reservation 2' ]);
 
-            $controller('ToolbarCtrl', {$scope: scope, $location: location, $route: route, reserver: reserver, basket: basket, currency: '$'});
+            $controller('ToolbarCtrl', {$scope: scope, $location: location, $route: route, reserver: reserver, basket: basket, currency: '$', boxoffice: { }});
         });
     });
 

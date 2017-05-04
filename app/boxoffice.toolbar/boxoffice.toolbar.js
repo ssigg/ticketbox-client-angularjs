@@ -15,7 +15,7 @@ angular.module('ticketbox.boxoffice.toolbar', [
         }
     })
 
-    .controller('ToolbarCtrl', function($scope, $route, $location, $window, reserver, basket, currency, canCustomerPurchase) {
+    .controller('ToolbarCtrl', function($scope, $route, $location, $window, reserver, basket, currency, boxoffice) {
         $scope.controller = $route.current.controller;
 
         angular.element($window).bind("scroll", function() {
@@ -28,7 +28,7 @@ angular.module('ticketbox.boxoffice.toolbar', [
 
         $scope.reservations = basket.getReservations();
         $scope.currency = currency;
-        $scope.canCustomerPurchase = canCustomerPurchase;
+        $scope.boxoffice = boxoffice;
 
         $scope.areButtonsVisible = false;
         $scope.toggleButtonsVisibility = function() {

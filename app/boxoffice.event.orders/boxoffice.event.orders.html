@@ -12,13 +12,19 @@
         </div>
         <div class="item-list-row-details" ng-show="selectedOrder === order">
             <div ng-repeat="reservation in order.reservations">
-                {{reservation.event.name}}, {{reservation.event.dateandtime}} - {{reservation.seat.name}}: {{reservation.price}} {{currency}} <span ng-show="reservation.isReduced">(REDUCED)</span>
+                {{reservation.event.name}} | {{reservation.event.location}} | {{reservation.event.dateandtime}}<br>&nbsp;&nbsp;{{reservation.seat.name}}: {{reservation.price}} {{currency}} <span ng-show="reservation.isReduced">(<translate>REDUCED</translate>)</span>
             </div>
         </div>
     </div>
     <div class="four columns buttons">
-        <a ng-click="toggleOrderSelection(order)" class="button button-primary">DETAILS</a>
-        <a ng-click="sell(order)" class="button button-primary">SELL</a>
+        <div>
+            <a ng-click="toggleOrderSelection(order)" class="button button-primary">DETAILS</a>
+        </div>
+        <br ng-show="selectedOrder === order">
+        <br ng-show="selectedOrder === order">
+        <div>
+            <a ng-show="selectedOrder === order" ng-click="sell(order)" class="button button-primary checkout" translate>SELL</a>
+        </div>
     </div>
 </div>
 <div class="row">
