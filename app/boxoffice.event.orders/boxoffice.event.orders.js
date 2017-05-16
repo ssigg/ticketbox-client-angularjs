@@ -18,6 +18,7 @@ angular.module('ticketbox.boxoffice.event.orders', [
     .controller('EventOrdersCtrl', function($rootScope, $scope, $routeParams, $location, $translate, Order, Log, OrderUpgrade, currency, boxoffice, administrator) {
         $scope.administrator = administrator;
         $scope.currency = currency;
+        $scope.eventId = $routeParams.eventId;
         
         $scope.orders = Order.query({ 'event_id': $routeParams.eventId });
 
@@ -30,8 +31,9 @@ angular.module('ticketbox.boxoffice.event.orders', [
             }
         };
 
-        $scope.sell = function(order) {
+        $scope.sell = function(order, eventId) {
             var data = {
+                eventId: eventId,
                 locale: $translate.use(),
                 boxofficeName: boxoffice.name,
                 boxofficeType: boxoffice.type

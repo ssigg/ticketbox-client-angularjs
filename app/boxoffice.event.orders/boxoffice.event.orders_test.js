@@ -92,12 +92,14 @@ describe('ticketbox.boxoffice.event.orders', function () {
                 var orderId = 'o1';
                 var order = { 'id': orderId };
 
+                var eventId = 1;
+
                 var locale = 'en';
                 var translateUseSpy = spyOn(translate, 'use').and.returnValue(locale);
                 
                 expect(orderUpgradeUpdateSpy).not.toHaveBeenCalled();
-                scope.sell(order);
-                expect(orderUpgradeUpdateSpy).toHaveBeenCalledWith({ 'id': orderId }, { locale: locale, boxofficeName: boxofficeName, boxofficeType: boxofficeType });
+                scope.sell(order, eventId);
+                expect(orderUpgradeUpdateSpy).toHaveBeenCalledWith({ 'id': orderId }, { locale: locale, boxofficeName: boxofficeName, boxofficeType: boxofficeType, eventId: eventId });
             });
         });
     });

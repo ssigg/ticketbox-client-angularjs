@@ -3,7 +3,7 @@
         <p ng-show="boxoffice.type === 'pdf'" translate="THANK YOU PURCHASE TEXT EMAIL"></p>
         <p ng-show="boxoffice.type === 'paper'" translate="THANK YOU PURCHASE TEXT PAPER"></p>
         <p class="ticket-number" ng-show="boxoffice.type === 'printout' || boxoffice.type === 'download'"><span>{{boxofficePurchase.id | padWithZeros : 4}}</span></p>
-        <p><a class="checkout button button-primary" ng-href="{{api}}/tickets/{{uniqueId}}" target="_blank" translate>PRINT</a></p>
+        <p><a ng-show="boxoffice.type === 'download'" class="checkout button button-primary" ng-href="{{api}}/tickets/{{uniqueId}}" target="_blank" translate>PRINT</a></p>
         <p><a class="button button-primary" href="#/" translate>CLOSE</a></p>
     </div>
     <div class="six columns">
