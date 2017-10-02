@@ -1,0 +1,14 @@
+<div class="row actions">
+    <div class="twelve columns actions-title">
+        <h2 translate>CONCERT BOX OFFICE</h2>
+        <p>{{event.name}} | {{event.location}} | {{event.dateandtime}}</p>
+    </div>
+</div>
+<div class="row actions-buttons">
+    <div class="five columns offset-by-one">
+        <a class="checkout button button-primary" ng-href="#/event/{{eventId}}" translate>SELL NEW TICKETS</a>
+    </div>
+    <div class="five columns">
+        <a class="checkout button button-primary" ng-href="#/event/orders/{{eventId}}" translate>SELL RESERVED TICKETS</a>
+    </div>
+</div>

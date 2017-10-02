@@ -13,7 +13,9 @@ describe('ticketbox.boxoffice.events', function () {
                 query: function() { }
             };
             querySpy = spyOn(event, 'query');
-            $controller('EventsCtrl', {$scope: scope, Event: event});
+
+            var boxoffice = { };
+            $controller('EventsCtrl', {$scope: scope, Event: event, boxoffice: boxoffice});
         });
     });
 

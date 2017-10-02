@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ticketbox.common.toolbar', [
+angular.module('ticketbox.customer.toolbar', [
     'ngRoute',
     'ticketbox.config',
     'ticketbox.components.basket',
@@ -11,7 +11,7 @@ angular.module('ticketbox.common.toolbar', [
             restrict: 'E',
             scope: { },
             controller: 'ToolbarCtrl',
-            templateUrl: 'common.toolbar/common.toolbar.html'
+            templateUrl: 'customer.toolbar/customer.toolbar.html'
         }
     })
 

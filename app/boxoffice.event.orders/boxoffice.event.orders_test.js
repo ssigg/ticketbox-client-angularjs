@@ -15,9 +15,12 @@ describe('ticketbox.boxoffice.event.orders', function () {
                 eventId: eventId
             }
 
-            translate = {
-                use: function() { }
+            translate = function() {
+                return {
+                    then: function() { }
+                }
             };
+            translate.use = function() { };
 
             var order = {
                 query: function() { }
@@ -28,13 +31,17 @@ describe('ticketbox.boxoffice.event.orders', function () {
                 update: function() { }
             };
 
+            var log = {
+                save: function() { }
+            };
+
             boxofficeName = 'Box Office';
             boxofficeType = 'pdf';
             var boxoffice = {
                 'name': boxofficeName,
                 'type': boxofficeType
             };
-            $controller('EventOrdersCtrl', {$scope: scope, $routeParams: routeParams, $translate: translate, Order: order, OrderUpgrade: orderUpgrade, boxoffice: boxoffice});
+            $controller('EventOrdersCtrl', {$scope: scope, $routeParams: routeParams, $translate: translate, Order: order, OrderUpgrade: orderUpgrade, Log: log, boxoffice: boxoffice});
         });
     });
 
@@ -85,30 +92,14 @@ describe('ticketbox.boxoffice.event.orders', function () {
                 var orderId = 'o1';
                 var order = { 'id': orderId };
 
+                var eventId = 1;
+
                 var locale = 'en';
                 var translateUseSpy = spyOn(translate, 'use').and.returnValue(locale);
                 
                 expect(orderUpgradeUpdateSpy).not.toHaveBeenCalled();
-                scope.sell(order);
-                expect(orderUpgradeUpdateSpy).toHaveBeenCalledWith({ 'id': orderId }, { locale: locale, boxofficeName: boxofficeName, boxofficeType: boxofficeType });
-            });
-        });
-
-        describe('$scope.sell', function() {
-            it('should reload the orders after upgrade', function() {
-                var updatePromiseStub = {
-                    $promise: {
-                        then: function(func) {
-                            func();
-                        }
-                    }
-                };
-                var orderUpgradeUpdateSpy = spyOn(orderUpgrade, 'update').and.returnValue(updatePromiseStub);
-                var order = { };
-
-                expect(orderQuerySpy).toHaveBeenCalledTimes(1);
-                scope.sell(order);
-                expect(orderQuerySpy).toHaveBeenCalledTimes(2);
+                scope.sell(order, eventId);
+                expect(orderUpgradeUpdateSpy).toHaveBeenCalledWith({ 'id': orderId }, { locale: locale, boxofficeName: boxofficeName, boxofficeType: boxofficeType, eventId: eventId });
             });
         });
     });

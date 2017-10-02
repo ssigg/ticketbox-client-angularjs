@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="twelve columns">
+        <toolbar/>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+        <h3>{{block.event.name}}</h3>
+        <p>{{block.event.dateandtime}} - {{block.event.location}}<br>
+        {{block.block.name}}</p>
+    </div>
+</div>
+<div class="row overflow-wrapper">
+    <div class="twelve columns">
+        <ng-merged-seat-selection src="block.seatplan_image_data_url" eventid="block.event.id" parts="block.parts">
+    </div>
+</div>

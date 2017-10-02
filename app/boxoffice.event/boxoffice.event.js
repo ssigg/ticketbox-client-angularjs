@@ -1,14 +1,14 @@
 'use strict';
 
-angular.module('ticketbox.common.event', [
+angular.module('ticketbox.boxoffice.event', [
     'ngRoute',
     'ticketbox.components.api',
-    'ticketbox.common.toolbar'])
+    'ticketbox.boxoffice.toolbar'])
 
     .config(function($routeProvider) {
         $routeProvider.when('/event/:eventId', {
             controller: 'EventCtrl',
-            templateUrl: 'common.event/common.event.html'
+            templateUrl: 'boxoffice.event/boxoffice.event.html'
         });
     })
 

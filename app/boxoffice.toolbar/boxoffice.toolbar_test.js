@@ -1,11 +1,11 @@
 'use strict';
 
-describe('ticketbox.common.toolbar', function () {
+describe('ticketbox.boxoffice.toolbar', function () {
     var scope, pathSpy, getReservationsSpy, releaseReservationSpy;
     
     beforeEach(function () {
         angular.module('ticketbox.components.api',[]);
-        module('ticketbox.common.toolbar');
+        module('ticketbox.boxoffice.toolbar');
 
         inject(function (_$rootScope_, $controller) {
             scope = _$rootScope_.$new();
@@ -31,7 +31,7 @@ describe('ticketbox.common.toolbar', function () {
             };
             getReservationsSpy = spyOn(basket, 'getReservations').and.returnValue([ 'reservation 1', 'reservation 2' ]);
 
-            $controller('ToolbarCtrl', {$scope: scope, $location: location, $route: route, reserver: reserver, basket: basket, currency: '$'});
+            $controller('ToolbarCtrl', {$scope: scope, $location: location, $route: route, reserver: reserver, basket: basket, currency: '$', boxoffice: { }});
         });
     });
 

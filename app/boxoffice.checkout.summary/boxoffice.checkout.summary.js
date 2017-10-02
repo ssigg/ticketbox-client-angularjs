@@ -13,10 +13,12 @@ angular.module('ticketbox.boxoffice.checkout.summary', [
         });
     })
 
-    .controller('BoxofficeCheckoutSummaryCtrl', function($scope, $routeParams, BoxofficePurchase, currency, boxoffice) {
+    .controller('BoxofficeCheckoutSummaryCtrl', function($scope, $location, $routeParams, BoxofficePurchase, api, currency, boxoffice) {
         $scope.boxofficePurchase = BoxofficePurchase.get({ 'unique_id': $routeParams.uniqueId });
         $scope.currency = currency;
         $scope.boxoffice = boxoffice;
+        $scope.api = api;
+        $scope.uniqueId = $routeParams.uniqueId;
     })
     
     .filter('padWithZeros', function() {

@@ -12,6 +12,9 @@
   "CANCEL (TOOLBAR)": "Cancel",
   "SELL TICKETS": "Tickets",
   "SELL ORDERS": "Orders",
+  "ACTIONS TITLE": "What do you want to do?",
+  "SELL NEW TICKETS": "Sell tickets",
+  "SELL RESERVED TICKETS": "Sell reservations",
   "REDUCED": "Legi",
   "FIRSTNAME": "Firstname",
   "LASTNAME": "Lastname",
@@ -33,5 +36,6 @@
   "THANK YOU PURCHASE TEXT PAPER": "This is the summary of your purchase. The tickets are paid at the box office you got on paper.",
   "CLOSE": "Close",
   "PROCESSING PURCHASE...": "Processing purchase...",
-  "PRINT": "Print"
+  "PRINT": "Print",
+  "CONCERT BOX OFFICE": "Concert Box Office"
 }

@@ -114,3 +114,12 @@
     padding:.2em;
     color:#000;
 }
+
+.actions-title {
+    margin-top:10em;
+    text-align:center;
+}
+
+.actions-title h2 {
+    font-size:4em;
+}

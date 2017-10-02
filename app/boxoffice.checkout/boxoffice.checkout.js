@@ -5,7 +5,7 @@ angular.module('ticketbox.boxoffice.checkout', [
     'pascalprecht.translate',
     'ticketbox.components.api',
     'ticketbox.components.reserver',
-    'ticketbox.common.toolbar',
+    'ticketbox.boxoffice.toolbar',
     'ticketbox.config'])
 
     .config(function($routeProvider) {
