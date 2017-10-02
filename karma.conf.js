@@ -27,6 +27,8 @@ module.exports = function (config) {
 
         browsers: ['Chrome'],
 
+        browserNoActivityTimeout: 30000,
+
         plugins: [
             'karma-chrome-launcher',
             'karma-firefox-launcher',
