@@ -9,10 +9,11 @@
         {{block.name}}
     </div>
     <div class="four columns" ng-show="!block.isInEditMode">
-        <a class="button button-primary" ng-click="delete(block)">delete</a>
-        <a class="button button-primary" ng-click="block.isInEditMode = true">edit</a>
-        <a class="button button-primary" href="#/block/{{block.id}}/image">image</a>
-        <a class="button button-primary" href="#/block/{{block.id}}/seats">seats</a>
+        <a class="button button-primary u-full-width" ng-click="delete(block)">delete</a>
+        <a class="button button-primary u-full-width" ng-click="block.isInEditMode = true">edit</a>
+        <a ng-show="block.numbered" class="button button-primary u-full-width" href="#/block/{{block.id}}/image">image</a>
+        <a ng-show="block.numbered" class="button button-primary u-full-width" href="#/block/{{block.id}}/seats">seats</a>
+        <a ng-show="!block.numbered" class="button button-primary u-full-width" href="#/block/{{block.id}}/unnumbered-seats">seats</a>
     </div>
     <!-- /view mode -->
 
@@ -21,6 +22,7 @@
         <div class="eight columns">
             <label for="block-name-{{block.id}}">Name</label>
             <input type="text" ng-model="block.name" id="block-name-{{block.id}}">
+            <label for="block-numbered-{{block.id}}"><input type="checkbox" ng-model="block.numbered" id="block-numbered-{{block.id}}"> Numbered</label>
         </div>
         <div class="four columns">
             <a class="button button-primary" ng-click="cancel()">cancel</a>

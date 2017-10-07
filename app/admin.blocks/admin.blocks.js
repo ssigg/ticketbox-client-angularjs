@@ -23,7 +23,8 @@ angular.module('ticketbox.admin.blocks', [
         $scope.save = function(block) {
             var blockData = {
                 'name': block.name,
-                'seatplan_image_data_url': block.seatplan_image_data_url
+                'seatplan_image_data_url': block.seatplan_image_data_url,
+                'numbered': block.numbered
             };
             list.save(blockData, block);
         }
@@ -35,7 +36,8 @@ angular.module('ticketbox.admin.blocks', [
         $scope.create = function() {
             var newBlock = {
                 'name': '',
-                'seatplan_image_data_url': 'abc'
+                'seatplan_image_data_url': 'none',
+                'numbered': true
             };
             list.create(newBlock);
         }
