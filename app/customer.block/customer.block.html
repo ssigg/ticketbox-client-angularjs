@@ -7,11 +7,27 @@
     <div class="twelve columns">
         <h3>{{block.event.name}}</h3>
         <p>{{block.event.dateandtime}} - {{block.event.location}}<br>
-        {{block.block.name}}</p>
+        {{block.name}}</p>
     </div>
 </div>
-<div class="row overflow-wrapper">
+<div ng-show="block.numbered" class="row overflow-wrapper">
     <div class="twelve columns">
         <ng-merged-seat-selection src="block.seatplan_image_data_url" eventid="block.event.id" parts="block.parts">
     </div>
+</div>
+<div ng-show="!block.numbered" class="row">
+    <form name="unnumberedSeatSelectionForm" ng-submit="reserveMultiple(block, data.numberOfSeats)">
+        <div class="four columns">
+            <p translate>UNSPECIFIED SEATS MESSAGE</p>
+            <input type="number" min="1" max="{{maxNumberOfUnspecifiedSeats}}" ng-model="data.numberOfSeats" name="numberOfSeats" translate-attr="{ placeholder: 'NUMBER OF SEATS' }" class="u-full-width" required>
+            <div
+                class="hint"
+                ng-show="unnumberedSeatSelectionForm.numberOfSeats.$touched && (unnumberedSeatSelectionForm.numberOfSeats.$error.required || unnumberedSeatSelectionForm.numberOfSeats.$error.min || unnumberedSeatSelectionForm.numberOfSeats.$error.max)"
+                translate="UNSPECIFIED SEATS VALIDATION TEXT"
+                translate-values="{ max: {{maxNumberOfUnspecifiedSeats}} }"></div>
+        </div>
+        <div class="four columns">
+            <input type="submit" ng-disabled="!unnumberedSeatSelectionForm.$valid" title="{{!unnumberedSeatSelectionForm.$valid ? 'PLEASE SELECT A NUMBER OF SEATS' : '' | translate}}" translate-attr="{ value: 'ADD SEATS' }" class="checkout button button-primary">
+        </div>
+    </form>
 </div>
