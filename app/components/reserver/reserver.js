@@ -39,6 +39,13 @@ angular.module('ticketbox.components.reserver', [
                         _.each(responseData, function(reservation) {
                             basket.addReservation(reservation);
                         });
+                        if (responseData.length < numberOfSeats) {
+                            $translate('FREE SEATING NOT ENOUGH SEATS').then(function (message) {
+                                $window.alert(message);
+                            }, function (translationId) {
+                                $window.alert(translationId);
+                            });
+                        }
                     });
             },
             release: function(seat) {
