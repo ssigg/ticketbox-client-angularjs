@@ -27,7 +27,7 @@ angular.module('ticketbox.boxoffice.block', [
         $scope.reserveMultiple = function(block, numberOfSeats) {
             reserver.reserveMultiple(block.id, numberOfSeats)
                 .then(function() {
-                    $scope.data.numberOfSeats = undefined;
+                    $scope.data.numberOfSeats = 0;
                 });
         }
     });
