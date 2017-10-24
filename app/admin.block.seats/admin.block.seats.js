@@ -42,7 +42,9 @@ angular.module('ticketbox.admin.block.seats', [
             }
             Seat.save(newSeats)
                 .$promise.then(function(response) {
-                    $scope.seats.push(response);
+                    _.each(response, function(s) {
+                        $scope.seats.push(s);
+                    });
                     _resetState();
                 });
         };

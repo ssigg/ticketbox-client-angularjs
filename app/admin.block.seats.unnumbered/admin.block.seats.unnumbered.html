@@ -1,0 +1,24 @@
+<div class="row admin-toolbar">
+    <div class="twelve columns">
+        <a class="button button-primary" href="#/dashboard">back</a>
+    </div>
+</div>
+<div class="row">
+    <div class="twelve columns">
+        <h4>Block "{{block.name}}"</h4>
+        <p><strong>{{seats.length}} Seats</strong><br>
+        To remove seats, delete the block and re-add it.</p>
+    </div>
+</div>
+<div class="row dashboard-content-row">
+    <div class="eight columns">
+        <label for="number-of-seats">Number of seats</label>
+        <input type="number" ng-model="numberOfSeats" id="number-of-seats">
+        <label for="name-of-seats">Name of seats</label>
+        <input type="text" ng-model="nameOfSeats" id="name-of-seats">
+
+    </div>
+    <div class="four columns">
+        <a class="button button-primary" ng-click="add(block.id, numberOfSeats, nameOfSeats)">add</a>
+    </div>
+</div>

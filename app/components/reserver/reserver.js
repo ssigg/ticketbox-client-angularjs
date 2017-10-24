@@ -5,7 +5,7 @@ angular.module('ticketbox.components.reserver', [
     'ticketbox.components.basket',
     'ticketbox.components.api'])
 
-    .service('reserver', function($window, $translate, Reservation, basket) {
+    .service('reserver', function($window, $translate, Reservation, UnspecifiedReservation, basket) {
         return {
             reserve: function(eventId, categoryId, seat) {
                 var reservation = {
@@ -22,6 +22,25 @@ angular.module('ticketbox.components.reserver', [
                         if (response.status === 409) {
                             seat.state = 'reserved';
                             $translate('SEAT IS ALREADY RESERVED').then(function (message) {
+                                $window.alert(message);
+                            }, function (translationId) {
+                                $window.alert(translationId);
+                            });
+                        }
+                    });
+            },
+            reserveMultiple: function(eventblockId, numberOfSeats) {
+                var requestData = {
+                    eventblock_id: eventblockId,
+                    number_of_seats: numberOfSeats
+                };
+                return UnspecifiedReservation.save(requestData)
+                    .$promise.then(function(responseData) {
+                        _.each(responseData, function(reservation) {
+                            basket.addReservation(reservation);
+                        });
+                        if (responseData.length < numberOfSeats) {
+                            $translate('FREE SEATING NOT ENOUGH SEATS').then(function (message) {
                                 $window.alert(message);
                             }, function (translationId) {
                                 $window.alert(translationId);

@@ -7,11 +7,25 @@
     <div class="twelve columns">
         <h3>{{block.event.name}}</h3>
         <p>{{block.event.dateandtime}} - {{block.event.location}}<br>
-        {{block.block.name}}</p>
+        {{block.name}}</p>
     </div>
 </div>
-<div class="row overflow-wrapper">
+<div ng-show="block.numbered" class="row overflow-wrapper">
     <div class="twelve columns">
         <ng-merged-seat-selection src="block.seatplan_image_data_url" eventid="block.event.id" parts="block.parts">
     </div>
+</div>
+<div ng-show="!block.numbered" class="row">
+    <form name="unnumberedSeatSelectionForm" ng-submit="reserveMultipleAndContinue(block, data.numberOfSeats)">
+        <div class="six columns">
+            <label for="numberOfSeats" translate>UNSPECIFIED SEATS MESSAGE</label>
+            <select
+                ng-model="data.numberOfSeats"
+                ng-change="reserveMultiple(block, data.numberOfSeats)"
+                name="numberOfSeats">
+            <option value="0" translate>PLEASE SELECT</option>
+            <option value="{{i}}" ng-repeat="i in selectableNumbersOfUnspecifiedSeats">{{i}}</option>
+        </select>
+        </div>
+    </form>
 </div>

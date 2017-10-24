@@ -10,7 +10,8 @@ angular.module('ticketbox.admin', [
     'ticketbox.admin.reservations.seatplan',
     'ticketbox.admin.event.blocks',
     'ticketbox.admin.block.image',
-    'ticketbox.admin.block.seats'])
+    'ticketbox.admin.block.seats',
+    'ticketbox.admin.block.seats.unnumbered'])
 
     .config(function ($routeProvider, $httpProvider, $translateProvider) {
         $routeProvider.otherwise({

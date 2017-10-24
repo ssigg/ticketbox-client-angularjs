@@ -47,6 +47,9 @@ describe('ticketbox.components.reserver', function() {
             reservationSaveSpy = spyOn(reservationStub, 'save').and.returnValue(promiseContainerStub);
             reservationDeleteSpy = spyOn(reservationStub, 'delete').and.returnValue(promiseContainerStub);
             $provide.value('Reservation', reservationStub);
+
+            var unspecifiedReservationStub = { };
+            $provide.value('UnspecifiedReservation', unspecifiedReservationStub);
             
             var basketStub = {
                 addReservation: function() { },

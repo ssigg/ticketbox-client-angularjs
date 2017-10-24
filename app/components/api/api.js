@@ -38,6 +38,15 @@ angular.module('ticketbox.components.api', [
         });
     })
 
+    .factory('UnspecifiedReservation', function($resource, api) {
+        return $resource(api + '/unspecified-reservations', {}, {
+            save: {
+                method: 'POST',
+                isArray: true
+            }
+        });
+    })
+
     .factory('ReservationsExpirationTimestamp', function($resource, api) {
         return $resource(api + '/reservations-expiration-timestamp', {}, {
             query: {

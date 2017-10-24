@@ -8,6 +8,8 @@ angular.module('ticketbox.config', [])
 
     .constant('canCustomerPurchase', true)
 
+    .constant('maxNumberOfUnspecifiedSeats', 20)
+
     .constant('hostName', 'Host Name')
 
     .constant('administrator', {

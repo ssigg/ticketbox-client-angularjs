@@ -17,7 +17,9 @@ describe('ticketbox.boxoffice.block', function () {
             var routeParams = {
                 'blockId': 42
             };
-            $controller('BlockCtrl', {$scope: scope, Eventblock: eventblock, $routeParams: routeParams});
+
+            var reserver = { };
+            $controller('BlockCtrl', {$scope: scope, Eventblock: eventblock, $routeParams: routeParams, reserver: reserver});
         });
     });
 
