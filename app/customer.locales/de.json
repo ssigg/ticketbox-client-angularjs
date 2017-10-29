@@ -28,6 +28,8 @@
   "PLEASE FILL IN ALL FIELDS": "Bitte füllen Sie alle Felder aus",
   "UNSPECIFIED SEATS MESSAGE": "Freie Platzwahl: Anzahl Plätze",
   "PLEASE SELECT": "--- Bitte wählen ---",
+  "SEATS WERE ADDED ABOVE": "⇧ {{numberOfReservedSeats}} Plätze wurde oben hinzugefügt",
+  "SEAT WAS ADDED ABOVE": "⇧ Der Platz wurde oben hinzugefügt",
   "FREE SEATING NOT ENOUGH SEATS": "Es stehen nicht mehr genügend Plätze zur Verfügung. Die verfügbaren Plätze wurden reserviert.",
   "SEAT IS ALREADY RESERVED": "Dieser Platz wurde soeben von einem anderen Benutzer reserviert",
   "EXPIRATION TIME": "Die Reservationen sind gültig bis",

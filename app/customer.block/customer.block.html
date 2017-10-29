@@ -26,6 +26,8 @@
                 <option value="0" translate>PLEASE SELECT</option>
                 <option value="{{i}}" ng-repeat="i in selectableNumbersOfUnspecifiedSeats">{{i}}</option>
             </select>
+            <div ng-if="showNotification && data.numberOfReservedSeats > 1" class="select-notification" translate="SEATS WERE ADDED ABOVE" translate-values="{numberOfReservedSeats: data.numberOfReservedSeats}"></div>
+            <div ng-if="showNotification && data.numberOfReservedSeats === 1" class="select-notification" translate="SEAT WAS ADDED ABOVE"></div>
         </div>
     </form>
 </div>

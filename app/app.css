@@ -152,6 +152,16 @@ input.ng-invalid.ng-touched {
     border-bottom-right-radius: 5px;
 }
 
+.select-notification {
+    margin-top:-20px;
+    padding-top:10px;
+    padding-left:5px;
+    margin-bottom:5px;
+    background:#aaddFF;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
 input.button.button-primary, a.button.button-primary {
     background-color:#333;
     border-color:#333;

@@ -46,6 +46,7 @@ angular.module('ticketbox.components.reserver', [
                                 $window.alert(translationId);
                             });
                         }
+                        return { numberOfReservedSeats: responseData.length };
                     });
             },
             release: function(seat) {
