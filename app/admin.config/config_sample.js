@@ -2,9 +2,9 @@
 
 angular.module('ticketbox.config', [])
 
-    .constant('api', '<ticketbox-server-url>')
+    .constant('api', '%API_URL%')
     
-    .constant('currency', '$')
+    .constant('currency', '%CURRENCY%')
     
     .factory('styles', function() {
         return {
