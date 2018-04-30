@@ -1,0 +1,20 @@
+<div class="row dashboard-content-row">
+    <div class="twelve columns">
+        <h1>Login</h1>
+    </div>
+</div>
+<div class="row dashboard-content-row">
+    <form ng-submit="login(user, pass)">
+        <div class="four columns">
+            <label for="user">User</label>
+            <input type="text" ng-model="user" id="user">
+        </div>
+        <div class="four columns">
+            <label for="pass">Pass</label>
+            <input type="password" ng-model="pass" id="pass">
+        </div>
+        <div class="four columns">
+            <input type="submit" class="button button-primary" value="Login">
+        </div>
+    </form>
+</div>

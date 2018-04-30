@@ -127,11 +127,11 @@ select {
     width:100%;
 }
 
-select, input[type=email], input[type=text], input[type=number], textarea {
+select, input[type=email], input[type=text], input[type=password], input[type=number], textarea {
     border-color:#333;
 }
 
-select:focus, input[type=email]:focus, input[type=text]:focus, input[type=number]:focus, textarea:focus {
+select:focus, input[type=email]:focus, input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, textarea:focus {
     border-color:#111;
 }
 

@@ -4,7 +4,8 @@ angular.module('ticketbox.admin', [
     'ngRoute',
     'pascalprecht.translate',
     'ticketbox.components.progressInterceptor',
-    'ticketbox.components.api',
+    'ticketbox.config',
+    'ticketbox.admin.login',
     'ticketbox.admin.dashboard',
     'ticketbox.admin.reservations.printout',
     'ticketbox.admin.reservations.seatplan',
@@ -36,22 +37,34 @@ angular.module('ticketbox.admin', [
         $translateProvider.fallbackLanguage('en');
     })
 
-    .run(function($rootScope) {
-        $rootScope.$on('$routeChangeStart', function() {
+    .run(function ($rootScope, $http, $location, $window) {
+        if ($window.localStorage.access_token) {
+            $http.defaults.headers.common.Authorization = 'Bearer ' + $window.localStorage.access_token;
+        }
+
+        $rootScope.$on('$routeChangeStart', function () {
+            _checkAuth();
             _displayLoader();
         });
 
-        $rootScope.$on('$routeChangeSuccess', function() {
+        $rootScope.$on('$routeChangeSuccess', function () {
             _displayContent();
         });
 
-        $rootScope.$on('loading:progress', function() {
+        $rootScope.$on('loading:progress', function () {
             _displayLoader();
         })
 
-        $rootScope.$on('loading:finish', function() {
+        $rootScope.$on('loading:finish', function () {
             _displayContent();
         })
+
+        function _checkAuth() {
+            var restrictedPage = $location.path() !== '/login';
+            if (restrictedPage && !$window.localStorage.access_token) {
+                $location.path('/login');
+            }
+        }
 
         function _displayLoader() {
             angular.element(document.getElementById('content')).addClass('hide');
