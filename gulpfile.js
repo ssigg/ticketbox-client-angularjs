@@ -33,6 +33,7 @@ var paths = {
         'app/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
         'app/bower_components/ocanvas/index.js',
         'app/bower_components/underscore/underscore.js',
+        'app/bower_components/angular-image-upload-datauri/src/imageupload.js',
         'app/components/*/*.js',
         '!app/components/*/*_test.js',
         '!app/*.config/*.js'

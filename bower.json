@@ -15,6 +15,7 @@
     "skeleton-css": "^2.0.4",
     "ocanvas": "http://cdnjs.cloudflare.com/ajax/libs/ocanvas/2.8.1/ocanvas.js",
     "underscore": "^1.8.3",
-    "braintree-web": "^2.30.0"
+    "braintree-web": "^2.30.0",
+    "angular-image-upload-datauri": "^1.0.7"
   }
 }

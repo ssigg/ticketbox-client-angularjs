@@ -2,7 +2,8 @@
 
 angular.module('ticketbox.admin.events', [
     'ticketbox.components.api',
-    'ticketbox.components.itemlist'])
+    'ticketbox.components.itemlist',
+    'imageupload'])
 
     .directive('events', function() {
         return {
@@ -23,12 +24,16 @@ angular.module('ticketbox.admin.events', [
         $scope.save = function(event) {
             var eventData = {
                 'name': event.name,
+                'works': event.works,
+                'conductor': event.conductor,
+                'soloists': event.soloists,
                 'location': event.location,
                 'location_address': event.location_address,
                 'location_directions_public_transport': event.location_directions_public_transport,
                 'location_directions_car': event.location_directions_car,
                 'dateandtime': event.dateandtime,
-                'visible': event.visible
+                'visible': event.visible,
+                'logo_image_data_url': event.logo_image_data_url
             };
             list.save(eventData, event);
         }
@@ -40,12 +45,16 @@ angular.module('ticketbox.admin.events', [
         $scope.create = function() {
             var newEvent = {
                 'name': '',
+                'works': '',
+                'conductor': '',
+                'soloists': '',
                 'location': '',
                 'location_address': '',
                 'location_directions_public_transport': '',
                 'location_directions_car': '',
                 'dateandtime': '',
-                'visible': false
+                'visible': false,
+                'logo_image_data_url': ''
             };
             list.create(newEvent);
         }
@@ -54,6 +63,11 @@ angular.module('ticketbox.admin.events', [
             if (confirm("Delete event " + event.name + "?")) {
                 list.delete(event);
             }
+        }
+
+        $scope.uploadImage = function(event, image) {
+            event.isInEditMode = true;
+            event.logo_image_data_url = image.dataURL;
         }
     })
     

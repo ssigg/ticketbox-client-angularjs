@@ -20,6 +20,12 @@
         <div class="eight columns">
             <label for="event-name-{{event.id}}">Name</label>
             <input type="text" ng-model="event.name" id="event-name-{{event.id}}">
+            <label for="event-works-{{event.id}}">Works</label>
+            <textarea ng-model="event.works" id="event-works-{{event.id}}"></textarea>
+            <label for="event-conductor-{{event.id}}">Conductor</label>
+            <textarea ng-model="event.conductor" id="event-conductor-{{event.id}}"></textarea>
+            <label for="event-soloists-{{event.id}}">Soloists</label>
+            <textarea ng-model="event.soloists" id="event-soloists-{{event.id}}"></textarea>
             <label for="event-location-{{event.id}}">Location name</label>
             <input type="text" ng-model="event.location" id="event-location-{{event.id}}">
             <label for="event-location_address-{{event.id}}">Location address</label>
@@ -31,6 +37,15 @@
             <label for="event-dateandtime-{{event.id}}">Date and Time</label>
             <input type="text" ng-model="event.dateandtime" id="event-dateandtime-{{event.id}}">
             <label for="event-visible-{{event.id}}"><input type="checkbox" ng-model="event.visible" id="event-visible-{{event.id}}"> Visible</label>
+            <button
+                class="button"
+                input-image
+                append-data-uri
+                ng-model="image"
+                ng-change="uploadImage(event, image)">
+                Upload logo
+            </button>
+            <img ng-show="event.logo_image_data_url" ng-src="{{event.logo_image_data_url}}" />
         </div>
         <div class="four columns">
             <a class="button button-primary" ng-click="cancel()">cancel</a>
