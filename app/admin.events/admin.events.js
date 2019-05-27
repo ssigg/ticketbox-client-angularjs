@@ -24,6 +24,9 @@ angular.module('ticketbox.admin.events', [
         $scope.save = function(event) {
             var eventData = {
                 'name': event.name,
+                'works': event.works,
+                'conductor': event.conductor,
+                'soloists': event.soloists,
                 'location': event.location,
                 'location_address': event.location_address,
                 'location_directions_public_transport': event.location_directions_public_transport,
@@ -42,6 +45,9 @@ angular.module('ticketbox.admin.events', [
         $scope.create = function() {
             var newEvent = {
                 'name': '',
+                'works': '',
+                'conductor': '',
+                'soloists': '',
                 'location': '',
                 'location_address': '',
                 'location_directions_public_transport': '',
