@@ -52,6 +52,10 @@ angular.module('ticketbox.customer.purchase', [
                 form.addEventListener('submit', function(event) {
                     event.preventDefault();
 
+                    if (!instance.isPaymentMethodRequestable()) {
+                        return;
+                    }
+
                     instance.requestPaymentMethod(function(err, payload) {
                         if (err) {
                             _failure(err, $scope.data);
