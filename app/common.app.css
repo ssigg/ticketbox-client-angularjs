@@ -95,11 +95,14 @@
     }
 }
 
-.cc-payment-title {
+p.cc-payment-title {
     font-size:1.3em;
+    margin-bottom:0.5em;
 }
-.checkout-form {
-    margin-top:2em;
+
+div.braintree-placeholder {
+    margin-bottom:0;
+    line-height:0;
 }
 
 .summary {

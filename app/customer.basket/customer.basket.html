@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="twelve columns">
+        <toolbar/>
+    </div>
+</div>
+<div class="row">
+    <div class="six columns">
+        <ul class="checkout-reservations">
+            <li ng-repeat="reservation in reservations">
+                <p class="reservation-release"><a class="button button-primary" ng-click="release(reservation)">✕</a></p>
+                <h2>{{reservation.seat.name}}</h2>
+                <p>{{reservation.category.name}}</p>
+                <p>{{reservation.event.name}} - {{reservation.event.location}}, {{reservation.event.dateandtime}}</p>
+                <p><label><input type="checkbox" ng-checked="{{reservation.isReduced}}" ng-click="toggleReduction(reservation)"> <translate>REDUCED</translate></label></p>
+                <p class="reservation-price">{{reservation.price}} {{currency}}</p>
+                <div class="clear"></div>
+            </li>
+        </ul>
+    </div>
+    <div class="six columns">
+        <p class="expiration-time"><span translate>EXPIRATION TIME</span> {{expirationTimestamp.value * 1000 | date:'HH:mm'}}</p>
+        <a href="#/checkout" class="checkout button button-primary with-hint" translate>RESERVE NOW</a>
+        <div class="hint blue" translate>RESERVE NOW HINT</div>
+        <p></p>
+        <a href="#/purchase" class="checkout button button-primary with-hint" translate>PURCHASE NOW</a>
+        <div class="hint blue" translate>PURCHASE NOW HINT</div>
+    </div>
+</div>

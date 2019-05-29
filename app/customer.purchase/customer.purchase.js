@@ -35,44 +35,53 @@ angular.module('ticketbox.customer.purchase', [
         });
 
         var token = Token.query(function() {
-            braintree.setup(token.value, 'dropin', {
-                container: 'dropin-container',
-                onPaymentMethodReceived: function (data) {
-                    var purchaseData = {
-                        nonce: data.nonce,
-                        title: $scope.data.title,
-                        firstname: $scope.data.firstname,
-                        lastname: $scope.data.lastname,
-                        email: $scope.data.email,
-                        locale: $translate.use()
-                    };
-                    $translate('PROCESSING PURCHASE...').then(function (processingPurchaseMessage) {
-                        $rootScope.$broadcast('loading:progress', processingPurchaseMessage);
-                    }, function (translationId) {
-                        $rootScope.$broadcast('loading:progress', translationId);
-                    });
-                    CustomerPurchase.save(purchaseData)
-                        .$promise.then(_success, function(response) { _failure(response, $scope.data); });
+            braintree.dropin.create({
+                authorization: token.value,
+                container: '#dropin-container',
+                locale: $translate.use(),
+                threeDSecure: {
+                    amount: _.reduce($scope.reservations, function(totalPrice, r) { return totalPrice + r.price; }, 0)
                 }
+            }, function(createErr, instance) {
+                if (createErr) {
+                    _failure(createErr, $scope.data);
+                    return;
+                }
+
+                var form = document.querySelector('#checkout-form');
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    instance.requestPaymentMethod(function(err, payload) {
+                        if (err) {
+                            _failure(err, $scope.data);
+                            return;
+                        }
+
+                        if (payload.liabilityShiftPossible && !payload.liabilityShifted) {
+                            dropinInstance.clearSelectedPaymentMethod();
+                            return;
+                        }
+
+                        var purchaseData = {
+                            nonce: payload.nonce,
+                            title: $scope.data.title,
+                            firstname: $scope.data.firstname,
+                            lastname: $scope.data.lastname,
+                            email: $scope.data.email,
+                            locale: $translate.use()
+                        };
+                        $translate('PROCESSING PURCHASE...').then(function (processingPurchaseMessage) {
+                            $rootScope.$broadcast('loading:progress', processingPurchaseMessage);
+                        }, function (translationId) {
+                            $rootScope.$broadcast('loading:progress', translationId);
+                        });
+                        CustomerPurchase.save(purchaseData)
+                            .$promise.then(_success, function(response) { _failure(response, $scope.data); });
+                    });
+                });
             });
         });
-
-        $scope.toggleReduction = function(reservation) {
-            var newReductionValue = !reservation.isReduced;
-            Reservation.update({ 'id': reservation.id }, { 'isReduced': newReductionValue  })
-                .$promise.then(function(data) {
-                    reservation.isReduced = newReductionValue;
-                    reservation.price = data.price;
-                });
-        };
-
-        $scope.release = function(reservation) {
-            var isLastReservation = $scope.reservations.length === 1;
-            reserver.releaseReservation(reservation);
-            if (isLastReservation) {
-                $location.path('/');
-            }
-        };
 
         function _success(response) {
             $rootScope.$broadcast('loading:finish');

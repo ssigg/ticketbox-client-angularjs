@@ -7,6 +7,7 @@ angular.module('ticketbox.customer', [
     'ticketbox.customer.events',
     'ticketbox.customer.event',
     'ticketbox.customer.block',
+    'ticketbox.customer.basket',
     'ticketbox.customer.checkout',
     'ticketbox.customer.checkout.summary',
     'ticketbox.customer.purchase',

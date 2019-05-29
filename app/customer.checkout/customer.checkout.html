@@ -4,14 +4,19 @@
     </div>
 </div>
 <div class="row">
+    <div class="twelve columns">
+        <h2 translate>YOUR ORDER</h2>
+        <a href="#/basket" class="button button-primary" translate>EDIT ORDER</a>
+    </div>
+</div>
+<div class="row">
     <div class="six columns">
         <ul class="checkout-reservations">
             <li ng-repeat="reservation in reservations">
-                <p class="reservation-release"><a class="button button-primary" ng-click="release(reservation)">✕</a></p>
                 <h2>{{reservation.seat.name}}</h2>
                 <p>{{reservation.category.name}}</p>
                 <p>{{reservation.event.name}} - {{reservation.event.location}}, {{reservation.event.dateandtime}}</p>
-                <p><label><input type="checkbox" ng-checked="{{reservation.isReduced}}" ng-click="toggleReduction(reservation)"> <translate>REDUCED</translate></label></p>
+                <p ng-show="reservation.isReduced"><strong translate>REDUCED</strong></p>
                 <p class="reservation-price">{{reservation.price}} {{currency}}</p>
                 <div class="clear"></div>
             </li>
@@ -31,7 +36,9 @@
             <div class="hint" ng-show="checkoutForm.lastname.$touched && checkoutForm.lastname.$error.required" translate>PLEASE ENTER A LASTNAME</div>
             <input type="email" ng-model="data.email" name="email" translate-attr="{ placeholder: 'EMAIL' }" class="u-full-width" required>
             <div class="hint" ng-show="checkoutForm.email.$touched && checkoutForm.email.$error.required" translate>PLEASE ENTER A VALID EMAIL ADDRESS</div>
-            <input type="submit" ng-disabled="!checkoutForm.$valid" title="{{!checkoutForm.$valid ? 'PLEASE FILL IN ALL FIELDS' : '' | translate}}" translate-attr="{ value: 'RESERVE DEFINITELY' }" class="checkout button button-primary">
+            <input type="submit" ng-disabled="!checkoutForm.$valid" translate-attr="{ value: 'RESERVE DEFINITELY' }" class="checkout button button-primary with-hint">
+            <div ng-show="!checkoutForm.$valid" class="hint" translate>PLEASE FILL IN ALL FIELDS</div>
+            <div ng-show="checkoutForm.$valid" class="hint blue" translate>RESERVE DEFINITELY HINT</div>
         </form>
     </div>
 </div>

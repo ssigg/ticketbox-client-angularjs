@@ -8,8 +8,8 @@
     <div class="twelve columns">
         <p>
             <a class="button button-primary action-button" ng-show="controller !== 'EventsCtrl'" href="#/events" translate>SELECT MORE SEATS (HEADER)</a>
-            <a class="button button-primary action-button" ng-show="reservations.length > 0 && controller !== 'CheckoutCtrl'" href="#/checkout" translate>CHECKOUT AND REDUCTIONS (HEADER)</a>
-            <a class="button button-primary action-button" ng-show="canCustomerPurchase && reservations.length > 0 && controller !== 'PurchaseCtrl'" href="#/purchase" translate>PURCHASE AND REDUCTIONS (HEADER)</a>
+            <a class="button button-primary action-button" ng-show="reservations.length > 0 && controller !== 'BasketCtrl' && controller !== 'CheckoutCtrl' && controller !== 'PurchaseCtrl'" href="#/basket" translate>BASKET (HEADER)</a>
+            <a class="button button-primary action-button" ng-show="reservations.length > 0 && controller !== 'BasketCtrl' && (controller === 'CheckoutCtrl' || controller === 'PurchaseCtrl')" href="#/basket" translate>EDIT RESERVATIONS (HEADER)</a>
             <a class="button button-primary action-button" ng-show="reservations.length > 0" ng-click="cancel()" translate>CANCEL (HEADER)</a>
         </p>
     </div>
@@ -27,8 +27,8 @@
             <a class="button mobile-toggle-button" ng-show="areButtonsVisible" ng-click="toggleButtonsVisibility()">–</a>
             <div class="buttons">
                 <a class="button button-primary action-button" ng-show="controller !== 'EventsCtrl'" href="#/events" translate>SELECT MORE SEATS (TOOLBAR)</a>
-                <a class="button button-primary action-button" ng-show="reservations.length > 0 && controller !== 'CheckoutCtrl'" href="#/checkout" translate>CHECKOUT AND REDUCTIONS (TOOLBAR)</a>
-                <a class="button button-primary action-button" ng-show="canCustomerPurchase && reservations.length > 0 && controller !== 'PurchaseCtrl'" href="#/purchase" translate>PURCHASE AND REDUCTIONS (TOOLBAR)</a>
+                <a class="button button-primary action-button" ng-show="reservations.length > 0 && controller !== 'BasketCtrl' && controller !== 'CheckoutCtrl' && controller !== 'PurchaseCtrl'" href="#/basket" translate>BASKET (TOOLBAR)</a>
+                <a class="button button-primary action-button" ng-show="reservations.length > 0 && controller !== 'BasketCtrl' && (controller === 'CheckoutCtrl' || controller === 'PurchaseCtrl')" href="#/basket" translate>EDIT RESERVATIONS (TOOLBAR)</a>
                 <a class="button button-primary action-button" ng-show="reservations.length > 0" ng-click="cancel()" translate>CANCEL (TOOLBAR)</a>
             </div>
          </p>

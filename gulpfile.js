@@ -52,7 +52,7 @@ var paths = {
             'app/common.app.css'
         ],
         scripts: [
-            'app/bower_components/braintree-web/dist/braintree.js',
+            'app/bower_components/braintree-web-drop-in/dropin.js',
             'app/common.*/*.js',
             '!app/common.*/*_test.js',
             'app/customer.app.js',

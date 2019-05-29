@@ -3,40 +3,47 @@
         <toolbar/>
     </div>
 </div>
+<div class="row">
+    <div class="twelve columns">
+        <h2 translate>YOUR ORDER</h2>
+        <a href="#/basket" class="button button-primary" translate>EDIT ORDER</a>
+    </div>
+</div>
 <div class="row" ng-show="errorMessage !== ''">
     <div class="twelve columns error">{{errorMessage}}</div>
 </div>
-<div class="row">
+<div class="row">    
     <div class="six columns">
         <ul class="checkout-reservations">
             <li ng-repeat="reservation in reservations">
-                <p class="reservation-release"><a class="button button-primary" ng-click="release(reservation)">✕</a></p>
                 <h2>{{reservation.seat.name}}</h2>
                 <p>{{reservation.category.name}}</p>
                 <p>{{reservation.event.name}} - {{reservation.event.location}}, {{reservation.event.dateandtime}}</p>
-                <p><label><input type="checkbox" ng-checked="{{reservation.isReduced}}" ng-click="toggleReduction(reservation)"> <translate>REDUCED</translate></label></p>
+                <p ng-show="reservation.isReduced"><strong translate>REDUCED</strong></p>
                 <p class="reservation-price">{{reservation.price}} {{currency}}</p>
                 <div class="clear"></div>
             </li>
         </ul>
     </div>
     <div class="six columns">
-        <p class="expiration-time"><span translate>EXPIRATION TIME</span> {{expirationTimestamp.value * 1000 | date:'HH:mm'}}</p>
-        <form class="checkout-form" name="checkoutForm">
-            <select ng-model="data.title" name="title" required>
-                <option value="m" translate>MR</option>
-                <option value="f" translate>MRS</option>
-            </select>
-            <div class="hint" ng-show="checkoutForm.title.$touched && checkoutForm.title.$error.required" translate>PLEASE SELECT A TITLE</div> 
-            <input type="text" ng-model="data.firstname" name="firstname" translate-attr="{ placeholder: 'FIRSTNAME' }" class="u-full-width" required>
-            <div class="hint" ng-show="checkoutForm.firstname.$touched && checkoutForm.firstname.$error.required" translate>PLEASE ENTER A FIRSTNAME</div>
-            <input type="text" ng-model="data.lastname" name="lastname" translate-attr="{ placeholder: 'LASTNAME' }" class="u-full-width" required>
-            <div class="hint" ng-show="checkoutForm.lastname.$touched && checkoutForm.lastname.$error.required" translate>PLEASE ENTER A LASTNAME</div>
-            <input type="email" ng-model="data.email" name="email" translate-attr="{ placeholder: 'EMAIL' }" class="u-full-width" required>
-            <div class="hint" ng-show="checkoutForm.email.$touched && checkoutForm.email.$error.required" translate>PLEASE ENTER A VALID EMAIL ADDRESS</div>
-            <p class="cc-payment-title"><span translate>CC PAYMENT TITLE PREFIX</span> <strong>{{reservations | totalPrice}} {{currency}}</strong> <span translate>CC PAYMENT TITLE SUFFIX</span>:</p>
-            <div id="dropin-container"></div>
-            <input type="submit" ng-disabled="!checkoutForm.$valid" title="{{!checkoutForm.$valid ? 'PLEASE FILL IN ALL FIELDS' : '' | translate}}" translate-attr="{ value: 'PURCHASE DEFINITELY' }" class="checkout button button-primary">
+        <form class="checkout-form" id="checkout-form" name="checkoutForm">
+                <p class="expiration-time"><span translate>EXPIRATION TIME</span> {{expirationTimestamp.value * 1000 | date:'HH:mm'}}</p>
+                <select ng-model="data.title" name="title" required>
+                    <option value="m" translate>MR</option>
+                    <option value="f" translate>MRS</option>
+                </select>
+                <div class="hint" ng-show="checkoutForm.title.$touched && checkoutForm.title.$error.required" translate>PLEASE SELECT A TITLE</div> 
+                <input type="text" ng-model="data.firstname" name="firstname" translate-attr="{ placeholder: 'FIRSTNAME' }" class="u-full-width" required>
+                <div class="hint" ng-show="checkoutForm.firstname.$touched && checkoutForm.firstname.$error.required" translate>PLEASE ENTER A FIRSTNAME</div>
+                <input type="text" ng-model="data.lastname" name="lastname" translate-attr="{ placeholder: 'LASTNAME' }" class="u-full-width" required>
+                <div class="hint" ng-show="checkoutForm.lastname.$touched && checkoutForm.lastname.$error.required" translate>PLEASE ENTER A LASTNAME</div>
+                <input type="email" ng-model="data.email" name="email" translate-attr="{ placeholder: 'EMAIL' }" class="u-full-width" required>
+                <div class="hint" ng-show="checkoutForm.email.$touched && checkoutForm.email.$error.required" translate>PLEASE ENTER A VALID EMAIL ADDRESS</div>
+                <p class="cc-payment-title"><span translate>CC PAYMENT TITLE PREFIX</span> <strong>{{reservations | totalPrice}} {{currency}}</strong> <span translate>CC PAYMENT TITLE SUFFIX</span>:</p>
+                <div id="dropin-container"></div>
+                <input type="submit" ng-disabled="!checkoutForm.$valid" translate-attr="{ value: 'PURCHASE DEFINITELY' }" class="checkout button button-primary with-hint">
+                <div ng-show="!checkoutForm.$valid" class="hint" translate>PLEASE FILL IN ALL FIELDS</div>
+                <div ng-show="checkoutForm.$valid" class="hint blue" translate>PURCHASE DEFINITELY HINT</div>
         </form>
     </div>
 </div>
